@@ -1,6 +1,7 @@
 <?php
 namespace core;
 
+
 try {
 
 	define('TYPE','front');
