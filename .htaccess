@@ -1,0 +1,29 @@
+AddType text/x-component .htc
+RewriteEngine On
+RewriteBase /
+
+php_flag magic_quotes_gpc off
+
+RewriteCond %{REQUEST_FILENAME} /admin/(.*)
+RewriteCond %{REQUEST_FILENAME} !/admin/captcha.php
+
+RewriteRule !\.(js|ico|css|png)$ %{DOCUMENT_ROOT}/admin/index.php [L]
+
+#RewriteCond %{REQUEST_FILENAME} !/phpMemcachedAdmin/(.*)
+#RewriteRule ^(.*)$ %{DOCUMENT_ROOT}/vendor/phpMemcachedAdmin/index.php [L]
+
+#RewriteCond %{REQUEST_FILENAME} !/xhprof/(.*)
+#RewriteRule !\.(ico)$ %{DOCUMENT_ROOT}/vendor/xhprof/xhprof_html/ [L]
+
+RewriteCond %{REQUEST_FILENAME} !/vendor/phpMemcachedAdmin/(.*)
+RewriteCond %{REQUEST_FILENAME} !/vendor/xhprof/xhprof_html/(.*)
+RewriteCond %{REQUEST_FILENAME} !/admin/(.*)
+RewriteCond %{REQUEST_FILENAME} !/cache/(.*)
+RewriteCond %{REQUEST_FILENAME} !/tmp/(.*)
+RewriteCond %{REQUEST_FILENAME} !/images/fonts/(.*)
+RewriteCond %{REQUEST_FILENAME} !/templates/node_modules/bootstrap/dist/fonts/(.*)
+RewriteCond %{REQUEST_FILENAME} !/PIE.htc
+RewriteCond %{REQUEST_FILENAME} !/live-cbea7ffc.txt
+RewriteCond %{REQUEST_FILENAME} !/yandex_6f91eaf6f6d4f7ba.txt
+
+RewriteRule !\.(js|ico|css)$ index.php [L]

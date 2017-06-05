@@ -1,0 +1,202 @@
+.banner-img-inset {
+	padding-bottom: 30px;
+
+}
+
+.banner-img-inset img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+.textPage .red-text {
+	color: #a2223c;
+	font-size: 18px;
+}
+
+.textPage  .big-text-inset-page {
+	font-size: 18px;
+	color: #555;
+	font-weight: 500;
+}
+
+.textPage .second-title {
+	font-size: 18px;
+	color: #555;
+	font-weight: 600;
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
+
+.textPage ol li {
+    list-style-type: circle;
+    font-size: 20px;
+    margin-left: 30px;
+    color: #a2223c;
+}
+
+.textPage ol li p {
+	font-size: 16px;
+	color: 777;
+}
+
+.phone-icon-inset {
+	background: url(/images/content/dana/articles/phone.png) no-repeat left top;
+	padding: 10px 0px 10px 40px ;
+	color: #777
+
+}
+
+.email-icon-inset {
+	background: url(/images/content/dana/articles/mail.png) no-repeat left top;
+	padding: 4px 0px 10px 40px ;
+	color: #777;
+	margin-top: 10px;
+	margin-bottom: 50px;
+}
+
+.float-left {
+	float: right;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	width: 100%;
+	max-width: 622px;
+	height: auto;
+}
+
+.textPage .red-title {
+	color: #a7233e;
+	font-size: 18px;
+	padding-top: 30px;
+}
+
+.text-cargo-half {
+	float: left;
+	width: 50%;
+}
+
+.textPage  .border-red {
+	border-bottom: 1px solid #a7233e;
+	display: inline;
+	padding-bottom: 1px;
+}
+
+.solid-red {
+	color: #a7233e;
+	font-weight: 700;
+
+}
+
+.cart-right {
+	float: left;
+	width: 50%;
+	text-align: center;
+	padding: 0 15px;
+    box-sizing: border-box;
+}
+
+.cart-right img { 
+	width: 100%;
+	max-width: 362px;
+	height: auto;
+
+}
+
+.text-red-line {
+	color: #f7f7f7;
+	border-left: 5px solid #a7233e;
+	background: #f7f7f7;
+	float: left;
+	width: 50%;
+	padding: 15px 20px;
+}
+
+
+.text-red-line p {
+	
+}
+
+.all-day {
+	color: #f7f7f7;
+	background: #f7f7f7;
+	float: left;
+	width: 50%;
+	padding: 25px 20px 15px 100px;
+	background: url(/images/content/dana/articles/24-7.png) no-repeat 15px 10px;
+	padding-bottom: 50px;
+
+}
+
+.phone-email-blocks {
+	float: left;
+	width: 50%;
+	 
+}
+
+.phone-email-blocks.one {
+	background: url(/images/content/dana/articles/phone.png) no-repeat 10px 70px;
+}
+
+.phone-email-blocks.two {
+	background: url(/images/content/dana/articles/mail.png) no-repeat 10px 70px;
+	padding-left: 10px;
+	padding-bottom: 70px;
+}
+
+.phone-email-blocks h4 {
+	color: #555;
+	font-size: 18px;
+	padding-bottom: 15px;
+	padding-top: 35px;
+	font-weight: 700;
+}
+
+.phone-email-blocks p {
+	color: #777;
+	font-size: 18px;
+	padding-left: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 790px) {
+	.text-cargo-half {
+		width: 100%;
+	}
+
+	.cart-right {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.text-red-line {
+		width: 100%;
+	}
+
+	.all-day {
+		width: 100%;
+		margin-top: 40px;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.phone-email-blocks {
+		width: 100%;
+	}
+
+	.phone-email-blocks.two {
+		width: 100%;
+		padding-left: 0px;
+		    background: url(/images/content/dana/articles/mail.png) no-repeat 0px 70px;
+
+   
+	}
+}

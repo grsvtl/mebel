@@ -1,0 +1,7 @@
+/.idea
+/cache
+/tmp
+/microtest.php
+/includes/config.php
+/includes/devconfig.php
+/templates/node_modules

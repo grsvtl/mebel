@@ -1,0 +1,98 @@
+.main404 {
+    width: 1001px;
+    margin: 0px auto;
+    background: url(/images/bg/404.jpg) no-repeat center 10px;
+    padding-top: 570px;
+}
+
+.main404 h2 {
+    color: #e81428;
+    text-align: center;
+    display: block;
+    padding-bottom: 10px;
+}
+
+.main404 p {
+    font-size: 17px;
+    color: #373737;
+    text-align: center;
+    display: block;
+    width: 640px;
+    line-height: 20px;
+    margin: 0px auto 10px auto;
+}
+
+.main404 a:hover {
+    color: #e81428;
+}
+
+.catalog404 {
+    background: url(/images/bg/catalog-menu.png) no-repeat center 10px;
+    width: 1001px;
+    height: 58px;
+}
+
+.catalog404 a {
+    display: block;
+    float: left;
+    color: #2d2d2d;
+    text-decoration: none;
+    font-size: 12px;
+    padding: 21px 35px 0px 35px;
+    text-transform: uppercase;
+}
+
+.catalog404 a:hover {
+    color: #e81428;
+}
+
+.footer404 {
+    border-top: solid 1px #d0d0d0;
+    padding: 40px 0px;
+    margin-top: 40px;
+}
+
+.center-footer {
+    width: 1001px;
+    margin: 0px auto;
+}
+
+.center-footer .left {
+    color: #989898;
+    font-size: 16px;
+    float: left;
+    width: 400px;
+}
+
+.center-footer span {
+    display: block;
+    font-size: 16px;
+    color: #64cbcc;
+    padding-bottom: 5px;
+}
+
+.center-footer .center {
+    float: left;
+    width: 426px;
+}
+
+.center-footer .center span {
+    color: #828282;
+    font-size: 11px;
+    padding: 9px 0px 0px 36px;
+}
+
+.center-footer .right {
+    float: left;
+}
+
+.center-footer .right a {
+    background: url(/images/bg/webdelo-logo.png) no-repeat center 0px;
+    width: 122px;
+    height: 35px;
+    display: block;
+}
+
+.center-footer .right a:hover {
+    background: url(/images/bg/webdelo-logo.png) no-repeat center -35px;
+}

@@ -1,0 +1,447 @@
+.banner {
+    background: url(/images/content/articles/index/top-banner.jpg) repeat-x left top;
+    width: 100%;
+    height: 451px;
+}
+
+.center-banner {
+    margin: 0px auto;
+    width: 1181px;
+    height: 451px;
+    position: relative;
+    padding: 0px 10px;
+}
+
+.b1 {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    background: #fff;
+    width: 196px;
+    height: 188px;
+    overflow: hidden;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+}
+
+.b2 {
+    position: absolute;
+    left: 10px;
+    top: 203px;
+    background: #fff;
+    width: 196px;
+    height: 236px;
+    overflow: hidden;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+}
+
+.b3 {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: #fff;
+    width: 327px;
+    height: 276px;
+    overflow: hidden;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+}
+
+.b4 {
+    position: absolute;
+    right: 10px;
+    top: 291px;
+    background: #fff;
+    width: 327px;
+    height: 148px;
+    overflow: hidden;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+}
+
+.main-banner {
+    position: absolute;
+    top: 10px;
+    right: 343px;
+    background: #fff;
+    width: 646px;
+    height: 429px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    overflow: hidden;
+}
+
+.navy {
+    position: absolute;
+    z-index: 9;
+    right: 19px;
+    top: 13px;
+
+}
+
+.navy .select {
+    background: #fff;
+}
+
+.navy span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #bbbbbb;
+    margin-left: 5px;
+}
+
+.filter {
+    width: 100%;
+    border-bottom: 1px solid #eaeaea;
+    padding: 25px 0px;
+}
+
+.center-filter {
+    margin: 0px auto;
+    width: 740px;
+}
+
+.center-filter select {
+    border: 1px solid #d5d6d7;
+    color: #666666;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding-left: 10px;
+    margin-right: 20px;
+    height: 30px;
+    width: 230px;
+    border-radius: 2px;
+    display: block;
+    float: left;
+
+}
+
+.center-filter span {
+    display: block;
+    color: #666666;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-right: 9px;
+    float: left;
+    padding-top: 12px;
+}
+
+.center-filter input {
+    border: 1px solid #d5d6d7;
+    color: #666666;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding-left: 10px;
+    margin-right: 10px;
+    height: 30px;
+    width: 78px;
+    border-radius: 2px;
+    display: block;
+    float: left;
+}
+
+.center-filter button {
+    color: #fff;
+    font-size: 13px;
+    text-align: center;
+    text-transform: uppercase;
+    display: block;
+    height: 30px;
+    width: 150px;
+    background: #f77025;
+    background: -moz-linear-gradient(top, #f77025 0%, #f05e0e 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f77025), color-stop(100%,#f05e0e));
+    background: -webkit-linear-gradient(top, #f77025 0%,#f05e0e 100%);
+    background: -o-linear-gradient(top, #f77025 0%,#f05e0e 100%);
+    background: -ms-linear-gradient(top, #f77025 0%,#f05e0e 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f77025', endColorstr='#f05e0e',GradientType=0 );
+    box-shadow: 0px 2px 0px #c75010;
+    border-radius: 20px;
+    border: none;
+    margin-left: 5px;
+    cursor: pointer;
+    float: left;
+}
+
+.center-filter .strongArrow {
+    background: url(/images/content/articles/index/arrow.png) no-repeat 0px center;
+    display: block;
+    width: 9px;
+    height: 30px;
+    float: left;
+    margin-right: 14px;
+    margin-left: 10px;
+}
+
+.center-filter button:hover {
+    opacity: 0.8;
+}
+
+.center-filter button:active {
+    box-shadow: inset 0px 2px 0px #c75010;
+    margin-top: 2px;
+}
+
+.factory {
+    padding: 20px 0px;
+}
+
+.factory h2, .h2 {
+    font-size: 18px;
+    color: #5a5959;
+    text-transform: uppercase;
+    padding-bottom: 20px;
+    font-weight: normal;
+}
+
+.factory li {
+    display: block;
+    width: 25%;
+    float: left;
+}
+
+.factory li a {
+    background: url(/images/content/articles/index/dotted.png) no-repeat 0px center;
+    display: block;
+    color: #636262;
+    text-transform: uppercase;
+    font-size: 12px;
+    text-decoration: none;
+    padding-left: 16px;
+    margin-bottom: 10px;
+}
+
+.rubrics {
+    padding: 20px 0px;
+    position: relative;
+    height: 540px;
+}
+
+.rubrics h2 {
+    font-size: 18px;
+    color: #5a5959;
+    text-transform: uppercase;
+    padding-bottom: 15px;
+    font-weight: normal;
+}
+
+.rubrics .d1 {
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    width: 397px;
+    height: 303px;
+}
+
+.rubrics a {
+    display: block;
+    color: #2f2f2f;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.rubrics a span {
+    display: block;
+    font-size: 12px;
+    color: #5a5959;
+    text-transform: capitalize;
+    padding-top: 3px;
+    font-weight: normal;
+}
+
+.rubrics img {
+    margin-bottom: 8px;
+    display: block;
+}
+
+.rubrics .d2 {
+    position: absolute;
+    top: 50px;
+    left: 415px;
+    width: 314px;
+    height: 108px;
+}
+
+.rubrics .d3 {
+    position: absolute;
+    top: 209px;
+    left: 415px;
+    width: 314px;
+    height: 143px;
+}
+
+.rubrics .d4 {
+    position: absolute;
+    top: 50px;
+    left: 748px;
+    width: 231px;
+    height: 231px;
+}
+
+.rubrics .d5 {
+    position: absolute;
+    top: 412px;
+    left: 0px;
+    width: 189px;
+    height: 131px;
+}
+
+.rubrics .d6 {
+    position: absolute;
+    top: 412px;
+    left: 208px;
+    width: 189px;
+    height: 131px;
+}
+
+.rubrics .d7 {
+    position: absolute;
+    top: 412px;
+    left: 414px;
+    width: 314px;
+    height: 131px;
+}
+
+.rubrics .d8 {
+    position: absolute;
+    top: 359px;
+    left: 748px;
+    width: 231px;
+    height: 183px;
+}
+
+.mini-baner {
+    display: block;
+    margin: 30px 0px 20px 0px;
+}
+
+.interestingly li {
+    margin-bottom: 15px;
+}
+
+.info-block {
+
+}
+
+.info-block .news {
+    width: 645px;
+    float: left;
+    margin-right: 15px;
+}
+
+.news img {
+    float: left;
+    margin-right: 15px;
+}
+
+.news li {
+    display: block;
+    padding-bottom: 25px;
+}
+
+.news a {
+    color: #273036;
+    font-size: 14px;
+    display: block;
+    padding-bottom: 8px;
+    text-decoration: none;
+}
+
+.news span {
+    color: #b8b8b8;
+    font-size: 11px;
+    display: block;
+    padding-bottom: 14px;
+}
+
+.news p {
+    color: #7f7f7f;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.news .more-news {
+    color: #0f95d3;
+    font-size: 12px;
+    text-transform: uppercase;
+    float: right;
+    margin-top: 10px;
+}
+
+.news h3 {
+    color: #5a5959;
+    font-size: 18px;
+    display: block;
+    padding-bottom: 13px;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+.article {
+    float: left;
+    width: 320px;
+}
+
+.article h3 {
+    color: #5a5959;
+    font-size: 18px;
+    display: block;
+    padding-bottom: 25px;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+.article a {
+    color: #273036;
+    display: block;
+    margin-bottom: 30px;
+    font-size: 14px;
+    background: url(/images/content/articles/index/dotted.png) no-repeat 0px 4px;
+    padding-left: 18px;
+    text-decoration: none;
+    line-height: 18px;
+}
+
+
+.article .more-article {
+    color: #0f95d3;
+    font-size: 12px;
+    text-transform: uppercase;
+    float: right;
+    margin-top: 10px;
+    background: none;
+}
+
+@media screen and (max-width: 1228px) {
+    .b1 {
+        display: none;
+    }
+
+    .b2 {
+        display: none;
+    }
+
+    .center-banner {
+        width: 980px;
+    }
+}
+
+.factory li a:hover {
+    color: #d45e00;
+}
+
+.rubrics img:hover {
+    opacity: 0.8;
+}
+
+.rubrics a:hover {
+    color: #d45e00;
+}
+
+.news a:hover {
+    color: #d45e00;
+}
+
+.article a:hover {
+    color: #d45e00;
+}

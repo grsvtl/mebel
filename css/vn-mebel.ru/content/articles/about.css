@@ -1,0 +1,148 @@
+.top-company {
+    background: #eef4f9 url(/images/content/articles/about/top-images.jpg) no-repeat right center;
+    padding: 36px 36px;
+    margin-top: 20px;
+}
+
+.top-company p {
+    color: #273036;
+    font-size: 14px;
+    font-style: italic;
+    padding-bottom: 15px;
+    width: 496px;
+    line-height: 17px;
+}
+
+.bold-text {
+    color: #666666;
+    font-size: 14px;
+    padding: 25px 0px;
+    font-weight: bold;
+}
+
+.sclad {
+    border: 1px solid #eaeaea;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    position: relative;
+    height: 156px;
+}
+
+.sclad h2 {
+    font-size: 18px;
+    color: #6f6e6e;
+    background: #eef4f9;
+    padding: 8px 10px;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.sclad img {
+    position: absolute;
+    top: 15px;
+    right: 0px;
+}
+
+.sclad p {
+    line-height: 24px;
+    width: 500px;
+    padding: 9px 11px 31px 31px;
+    color: #666666;
+    font-size: 13px;
+}
+
+.mini {
+    border: 1px solid #eaeaea;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    position: relative;
+    height: 450px;
+}
+
+.mini h2 {
+    font-size: 18px;
+    color: #6f6e6e;
+    background: #eef4f9;
+    padding: 8px 10px;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.mini p {
+    line-height: 24px;
+    width: 602px;
+    padding: 0px 0px 0px 31px;
+    color: #666666;
+    font-size: 13px;
+}
+
+.mini li {
+    border-bottom: 1px solid #ededed;
+    padding: 11px 0px 11px 5px;
+    width: 612px;
+    margin: 0px 0px 0px 26px;
+}
+
+.mini li img {
+    float: left;
+}
+
+
+.mini li span {
+    float: left;
+    font-size: 14px;
+    color: #273036;
+    padding: 9px 0px 0px 15px;
+}
+
+.img-list {
+    position: absolute;
+    bottom: 0px;
+    right: 37px;
+}
+
+.mini .end {
+    border-bottom: none;
+    padding-bottom: 20px;
+}
+
+.mini .end span {
+    padding: 15px 0px 0px 15px;
+}
+
+.indiv {
+    border: 1px solid #eaeaea;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    position: relative;
+    height: 189px;
+}
+
+.indiv h2 {
+    font-size: 18px;
+    color: #6f6e6e;
+    background: #eef4f9;
+    padding: 8px 10px;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.indiv p {
+    line-height: 24px;
+    width: 602px;
+    padding: 0px 0px 0px 31px;
+    color: #666666;
+    font-size: 13px;
+}
+
+.indiv img {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+.indiv .orang {
+    color: #f05e0e;
+    font-weight: bold;
+    padding-top: 20px;
+}

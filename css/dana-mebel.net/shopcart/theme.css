@@ -1,0 +1,229 @@
+.btn-basket {
+    display: inline-block;
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    right: 15%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 0 0 4px 4px;
+    box-shadow: rgba(0, 0, 0, .1) 0 0 4px;
+}
+
+.btn-basket:before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url(../images/shoppingbasket.png);
+    vertical-align: middle;
+}
+
+.table-basket .img-cover {
+    height: 80px;
+}
+.table-basket>tbody>tr>td {
+    vertical-align: middle;
+    text-align: center;
+}
+.table-basket>thead {
+    /*background-color: #949494;*/
+    background-color: #a7233e;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+}
+.table-basket>tbody {
+    background-color: #f2f3f3;
+    color: #222;
+}
+.table-basket>tfoot {
+    /*background-color: rgba(221, 198, 60, 0.53);*/
+    background-color: #a7233e;
+    border-width: 0;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+.table-basket>tbody>tr.row-product-complect-details>td {
+    border-width: 0;
+}
+.product-complect-details {
+    background-color: #fff;
+    padding: 15px;
+    margin: 10px;
+    text-align: left;
+}
+.product-complect-details>table {
+    margin-left: 30px;
+}
+
+.table-basket h1,
+.table-basket h2,
+.table-basket h3,
+.table-basket h4,
+.table-basket h5,
+.table-basket h6 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.table-basket>thead>tr>td,
+.table-basket>tfoot>tr>td {
+    padding: 15px;
+    border-width: 0;
+    vertical-align: middle;
+    text-align: center;
+}
+.table-basket>thead>tr>td {
+    font-size: .9em;
+    font-weight: bold;
+    border-right: 1px solid rgba(255,255,255, .2);
+}
+.table-basket .btn-remove {
+    border-radius: 0;
+    padding: 5px 10px;
+}
+.table-basket>thead>tr>td.col-photo {
+    width: 150px;
+}
+.table-basket>thead>tr>td.col-name {
+    width: 180px;
+}
+.table-basket>thead>tr>td.col-price {
+    width: 180px;
+}
+.table-basket>thead>tr>td.col-count {
+    width: 200px;
+}
+.table-basket>thead>tr>td.col-total-price {
+    width: 180px;
+}
+.table-basket>thead>tr>td.col-remove {
+    width: 60px;
+}
+
+.table-basket>tbody>tr>td.col-photo {
+    padding: 5px 15px 5px 23px;
+}
+.table-basket>tbody>tr>td.col-name {
+    text-align: left;
+}
+.table-basket small {
+    color: #919191;
+}
+.table-basket>tbody>tr>td.col-photo>img {
+    width: 100%;
+}
+.table-basket>tfoot>tr>td.is--price {
+    text-align: center;
+}
+
+.table-basket .is--price {
+    font-size: 1.3em;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+    .btn-basket {
+        right: 15px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .btn-basket {
+        right: 0;
+        top: 67px;
+        border-radius: 4px 0 0 4px;
+        padding: 10px;
+        opacity: .9;
+    }
+}
+
+
+
+
+
+.btn-danger, .btn-danger{
+    background-color: #a7233e;
+}
+
+.btn-danger:active:focus, .btn-danger:active:hover{
+    background-color: #a7235e;
+}
+
+.row-product .is--price, .table-basket>tfoot .is--price{
+    color: #a7233e;
+    font-weight: bold;
+}
+
+.table-basket>tfoot tr td, .table-basket>tfoot .is--price{
+    color: white;
+    font-weight: bold;
+}
+
+.btn-warning{
+    background-color: #ddc63c;
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.btn-outline, .btn-info {
+    background-color: #f2f3f3;
+    border: #cacaca 1px solid;
+    color: #4c4c4c;
+    padding: 10px 40px;
+}
+
+.btn-outline:hover, .btn-info:hover, .btn-info:active, .btn-info:focus, .btn-info:visited, .btn-info:active:focus, .btn-info:active:hover {
+    border-color: #a1223b;
+    color: #a7233e;
+    background-color: #f2f3f3 !important;
+}
+
+.row{
+    margin-bottom: 10px;
+}
+
+@media (min-width: 992px){
+    .col-md-offset-2 {
+        margin-left: 28.666667%;
+    }
+}
+
+@media (min-width: 992px){
+    .col-md-7 {
+        width: 39.333333%;
+    }
+}
+
+.hint_in{
+    height: 28px;
+}
+
+.table>tbody>tr>td{
+    padding: 4px;
+}
+
+.row-product-complect-details td{
+    vertical-align: middle;
+}

@@ -1,0 +1,183 @@
+.tipr-p {
+    color: #273036;
+    font-size: 14px;
+    font-style: italic;
+    padding: 20px 0px;
+    line-height: 18px;
+}
+
+.block-servise {
+    border: 1px solid #eaeaea;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.block-servise h2 {
+    font-size: 18px;
+    color: #6f6e6e;
+    background: #eef4f9;
+    padding: 8px 10px;
+    font-weight: normal;
+}
+
+.block-servise p {
+    color: #666666;
+    font-size: 13px;
+    padding: 15px;
+}
+
+.block-servise.delivery1 {
+    min-height: 500px;
+    background: url(/images/content/articles/services/men.jpg) no-repeat 707px bottom;
+}
+
+.block-servise h3 {
+    color: #666666;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px 14px;
+}
+
+.img1 {
+    background: url(/images/content/articles/services/moscow.png) no-repeat 0px center;
+    color: #273036;
+    width: 390px;
+    padding: 25px 0px 25px 67px;
+    border-bottom: solid 1px #ededed;
+    font-size: 14px;
+    margin-left: 17px;
+}
+
+.img2 {
+    background: url(/images/content/articles/services/3tc.png) no-repeat 0px center;
+    color: #273036;
+    width: 390px;
+    padding: 25px 0px 25px 67px;
+    border-bottom: solid 1px #ededed;
+    font-size: 14px;
+    margin-left: 17px;
+}
+
+.img3 {
+    background: url(/images/content/articles/services/mo.png) no-repeat 0px center;
+    color: #273036;
+    width: 390px;
+    padding: 25px 0px 25px 67px;
+    border-bottom: solid 1px #ededed;
+    font-size: 14px;
+    margin-left: 17px;
+}
+
+.img4 {
+    background: url(/images/content/articles/services/car.png) no-repeat 0px center;
+    color: #273036;
+    width: 390px;
+    padding: 25px 0px 25px 67px;
+    font-size: 14px;
+    margin-left: 17px;
+}
+
+.warning {
+    width: 580px;
+    border: 1px solid #f6cbb3;
+    color: #f05e0e;
+    font-size: 13px;
+    line-height: 18px;
+    padding: 8px 0px 8px 53px;
+    background: url(/images/content/articles/services/warning.png) no-repeat 10px center;
+    margin: 14px 0px 10px 20px;
+}
+
+.block-servise h4 {
+    color: #273036;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 8px 0px 8px 20px;
+}
+
+.list-pr li{
+    color: #666666;
+    font-size: 13px;
+    padding-left: 37px;
+    background: url(/images/content/articles/services/dotted.png) no-repeat 20px 4px;
+    padding-bottom: 10px;
+    width: 631px;
+    line-height: 18px;
+}
+
+.block-servise.delivery2 {
+    min-height: 500px;
+    background: url(/images/content/articles/services/tr.jpg) no-repeat 707px 60px;
+}
+
+.img5 {
+    background: url(/images/content/articles/services/lift.png) no-repeat 0px center;
+    color: #273036;
+    width: 390px;
+    padding: 25px 0px 25px 67px;
+    font-size: 14px;
+    margin-left: 17px;
+    border-bottom: solid 1px #ededed;
+}
+
+.img6 {
+    background: url(/images/content/articles/services/lift2.png) no-repeat 0px center;
+    color: #273036;
+    width: 390px;
+    padding: 25px 0px 25px 67px;
+    font-size: 14px;
+    margin-left: 17px;
+    border-bottom: solid 1px #ededed;
+}
+
+.img7 {
+    background: url(/images/content/articles/services/ls.png) no-repeat 0px center;
+    color: #273036;
+    width: 390px;
+    padding: 25px 0px 25px 67px;
+    font-size: 14px;
+    margin-left: 17px;
+    border-bottom: solid 1px #ededed;
+}
+
+.img8 {
+    background: url(/images/content/articles/services/many.png) no-repeat 0px center;
+    color: #273036;
+    width: 390px;
+    padding: 25px 0px 25px 67px;
+    font-size: 14px;
+    margin-left: 17px;
+}
+
+.img9 {
+    background: url(/images/content/articles/services/pr.png) no-repeat 0px center;
+    color: #273036;
+    width: 390px;
+    padding: 25px 0px 25px 67px;
+    font-size: 14px;
+    margin-left: 17px;
+    border-bottom: solid 1px #ededed;
+}
+
+.img10 {
+    background: url(/images/content/articles/services/price.png) no-repeat 0px center;
+    color: #273036;
+    width: 390px;
+    padding: 25px 0px 25px 67px;
+    font-size: 14px;
+    margin-left: 17px;
+}
+
+.block-servise.delivery3 {
+    background: url(/images/content/articles/services/mb.jpg) no-repeat 706px 100px;
+}
+
+.block-servise.delivery3 .warning {
+    padding: 15px 0px 15px 53px;
+}
+
+.bottom-p {
+    color: #273036;
+    font-size: 14px;
+    padding: 10px 0px;
+}

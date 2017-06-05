@@ -1,0 +1,51 @@
+.loadBlock{
+	border: 1px solid #e7ebed;
+	padding: 10px;
+	margin-bottom: 30px;
+	border-radius: 4px;
+}
+.downloadCsv, .uploadSubmit{
+	display: inline-block;
+	height: 30px;
+	background: url(/admin/images/buttons/action_but.png) repeat-x left top;
+	line-height: 30px;
+	text-decoration: none;
+	color: #666666;
+	border: 1px solid #d6d9da;
+	position: relative;
+	border-radius: 3px;
+	padding: 0 5px;
+	margin-left: 102px;
+	top: 0;
+}
+.uploadSubmit{
+	margin-left: 0px;
+}
+.downloadCsv:hover, .uploadSubmit:hover{ background-position: center; color: #666666}
+.downloadCsv:active, .uploadSubmit:hover{ background-position: bottom;}
+.downloadCsv img, .uploadSubmit img{vertical-align: middle;}
+.uploadForm{}
+.uploadFile{}
+/*.uploadSubmit{
+	height: 30px;
+	background: url(/admin/images/buttons/action_but.png) repeat-x left top;
+	line-height: 30px;
+	text-decoration: none;
+	color: #666666;
+	border: 1px solid #d6d9da;
+	border-radius: 3px;
+	padding: 0 5px;
+	top: 0;
+	text-align: right;
+}
+.uploadSubmit:hover{ background-position: center;}
+.uploadSubmit:active{ background-position: bottom;}*/
+.loadBlock .title {
+	padding: 10px 0px 10px 10px;
+	font-size: 17px;
+	font-weight: bold;
+	color: #666666;
+}
+.table_edit .title{
+	color: #009a00;
+}

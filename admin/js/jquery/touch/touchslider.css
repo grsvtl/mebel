@@ -1,0 +1,54 @@
+﻿.touchslider-nav-item {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #bbbbbb;
+    margin-left: 5px;
+
+
+}
+
+.touchslider-nav-item:hover {
+    background: #fff;
+}
+
+.touchslider-nav-item.touchslider-nav-item-current {
+    background: #fff;
+}
+
+.touchslider {
+    width: 646px;
+    height: 429px;
+    margin: 0px auto;
+    position: relative;
+}
+
+.touchslider-nav {
+    position: absolute;
+    z-index: 10;
+    right: 19px;
+    top: 13px;
+}
+
+.touchslider-padding {
+    padding-bottom: 0px;
+}
+
+.touchslider.touchslider-demo {
+
+}
+
+.touchslider-viewport {
+
+}
+
+.touchslider-item {
+
+}
+
+.touchslider-item a {
+    display: block;
+    cursor: pointer;
+    z-index: 8;
+}

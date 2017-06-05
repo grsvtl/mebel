@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /shopcart
+Crawl-delay: 1
+Host: dana-mebel.net
+Sitemap: http://dana-mebel.net/sitemap.xml

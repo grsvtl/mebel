@@ -1,0 +1,157 @@
+.catalogCategory {
+    position: relative;
+    padding-bottom: 10px;
+
+}
+
+.catalogCategory.spalni {
+    height: 969px;
+}
+
+.catalogCategory.prihojie {
+    height: 969px;
+}
+
+.catalogCategory.detskie {
+    height: 1339px;
+}
+
+.catalogCategory.cabinet {
+    height: 400px;
+}
+
+.catalogCategory.gostinye {
+    height: 1339px;
+}
+
+.catalogCategory.miaghaia-mebel {
+    height: 262px;
+}
+
+.catalogCategory a {
+    position: absolute;
+    text-decoration: none;
+}
+
+.catalogCategory a:hover {
+    opacity: 0.8;
+}
+
+.catalogCategory a span {
+    font-size: 12px;
+    display: block;
+    padding: 4px 0px 4px 0px;
+    text-transform: uppercase;
+    color: #2f2f2f;
+    font-weight: 700;
+}
+
+.catalogCategory a strong {
+    font-size: 12px;
+    display: block;
+    padding: 0px 0px 10px 0px;
+    color: #f05e0e;
+}
+
+.catalogCategory .linc1 {
+    top: 0px;
+    left: 0px;
+}
+
+.catalogCategory .linc2 {
+    left: 249px;
+    top: 0px;
+}
+
+.catalogCategory .linc3 {
+    top: 0px;
+    left: 498px;
+}
+
+.catalogCategory .linc4 {
+    top: 169px;
+    left: 498px;
+}
+
+.catalogCategory .linc5 {
+    top: 395px;
+    left: 0px;
+}
+
+.catalogCategory .linc6 {
+    top: 395px;
+    left: 375px;
+}
+
+.catalogCategory .linc7 {
+    top: 576px;
+    left: 0px;
+}
+
+.catalogCategory .linc8 {
+    top: 576px;
+    left: 249px;
+}
+
+.catalogCategory .linc9 {
+    top: 747px;
+    left: 0px;
+}
+
+.catalogCategory .linc10 {
+    top: 799px;
+    left: 251px;
+}
+
+.catalogCategory .linc11 {
+    top: 576px;
+    left: 497px;
+}
+
+.catalogCategory .linc12 {
+    top: 224px;
+    left: 250px;
+}
+
+.h2Categori {
+    color: #273036;
+    font-size: 20px;
+    padding: 5px 0px 0px 0px;
+    font-weight: 700;
+	margin-bottom: 0px !important;
+}
+
+.catalogCategory .linc13 {
+    top: 576px;
+    left: 249px;
+}
+
+.catalogCategory .linc14 {
+    top: 978px;
+    left: 0px;
+}
+
+.catalogCategory .linc15 {
+    top: 978px;
+    left: 249px;
+}
+
+.catalogCategory .linc16 {
+    top: 1142px;
+    left: 249px;
+}
+
+.catalogCategory .linc17 {
+    top: 978px;
+    left: 498px;
+}
+
+.catalogCategory .linc18 {
+    top: 1146px;
+    left: 498px;
+}
+
+.catalogCategory.gostinye .linc16 {
+    top: 1145px;
+    left: 249px;
+}
