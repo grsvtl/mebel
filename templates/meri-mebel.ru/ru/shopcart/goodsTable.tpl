@@ -68,7 +68,7 @@
                 <?if($object->getSubgoods()->count()):?>
                 <tr class="row-product-complect-details">
                     <td colspan="6">
-                        <a role="button" class="btn btn-outline" data-toggle="collapse" href="#complectDetailsContent-<?=$object->id?>">Посмотреть состав комлекта</a>
+                        <a role="button" class="btn btn-outline" data-toggle="collapse" href="#complectDetailsContent-<?=$object->id?>">Состав комлекта</a>
                         <div id="complectDetailsContent-<?=$object->id?>" class="collapse product-complect-details">
                             <h4>В комплект входит</h4>
                             <table><tbody>

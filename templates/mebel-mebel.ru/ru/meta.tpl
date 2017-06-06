@@ -55,7 +55,7 @@
 			->add('loaderBlock.class.js', '/admin/js/base/actions/')
 			->add('slides.min.jquery.js')
 			->add('jquery-ui-1.10.1.custom.min.js','/js/extensions/ui/')
-			->add('js.js')
+//			->add('js.js')
 			->add('ajaxLoader.class.js')
 			->add('loaderLight.class.js', '/admin/js/base/actions/')
 			->add('errors.class.js','/admin/js/base/actions/')
