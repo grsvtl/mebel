@@ -1,105 +1,108 @@
 $(function(){
-	$('.sortLinks').live('click', function(){
-		var href = $(this).attr('href');
-		var query = (href.indexOf('?') > -1)
-						? $.deparam(href.slice(href.indexOf('?') + 1))
-						: '';
 
-		subPageStart(query);
+//	$('body').on('keyup', function(e){
+//		if(e.which == 13)
+//			if($('.filter-button').isOnScreen())
+////				if(!collision($('.filter-button'), $('*')))
+////			$('.filter-button').click();
+//					console.log(
+//						'filter-button',
+//						$('.filter-button').css('z-index') <= getMaxZ($('*')),
+//						$('.filter-button').css('z-index'),
+//						getMaxZ($('*'))
+//					);
+//	});
+//
+//	$('.filter').on('keyup', function(e){
+//		if(e.which == 13)
+////			$('.indexSearchButton').click();
+//			console.log('indexSearchButton');
+//	});
+//
+//	function getMaxZ(selector){
+//		return Math.max.apply(null, $(selector).map(function(){
+//			var z;
+//			return isNaN(z = parseInt($(this).css("z-index"), 10)) ? 0 : z;
+//		}));
+//	};
+//
+//	$.fn.isOnScreen = function(){
+//		var win = $(window);
+//
+//		var viewport = {
+//			top : win.scrollTop(),
+//			left : win.scrollLeft()
+//		};
+//		viewport.right = viewport.left + win.width();
+//		viewport.bottom = viewport.top + win.height();
+//
+//		var bounds = this.offset();
+//		bounds.right = bounds.left + this.outerWidth();
+//		bounds.bottom = bounds.top + this.outerHeight();
+//
+//		return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
+//	};
 
-		return false;
-	});
+    $('.filter').on('keyup', function(e){
+        if(e.which == 13)
+            $('.indexSearchButton').click();
+    });
 
-	$('.sortLinks div').live('click', function(){
-		var href = $(this).parent().attr('href');
-		var query = (href.indexOf('?') > -1)
-						? $.deparam(href.slice(href.indexOf('?') + 1))
-						: '';
+    $('.filters').on('keyup', function(e){
+        if(e.which == 13)
+            $('.filter-button').click();
+    });
 
-		subPageStart(query);
+    $('body').on('click', '.filter-button', function(){
+        var queryString = '?' + 'minPrice=' + $("#slider-range").slider( "option", "values" )[0] + '&maxPrice=' + $("#slider-range").slider( "option", "values" )[1];
 
-		return false;
-	});
+        if($('.word').val() != '')
+            queryString += '&word=' + $('.word').val();
 
-	$('.pagerElement a').live('click', function(){
-		var href = $(this).attr('href');
-		var query = (href.indexOf('?') > -1)
-						? $.deparam(href.slice(href.indexOf('?') + 1))
-						: '';
+        var i=0;
+        $('.type input:checkbox:checked').each(function(){
+            queryString += '&' + $(this).attr('data-name') + '[' + i + ']=' + $(this).val();
+            i++;
+        });
 
-		subPageStart(query);
+        var i=0;
+        $('.manufacturer input:checkbox:checked').each(function(){
+            queryString += '&' + $(this).attr('data-name') + '[' + i + ']=' + $(this).val();
+            i++;
+        });
 
-		return false;
-	});
+        var i=0;
+        $('.seria input:checkbox:checked').each(function(){
+            queryString += '&' + $(this).attr('data-name') + '[' + i + ']=' + $(this).val();
+            i++;
+        });
 
-	$('.filter-button').live('click', function(){
-		var hashString = '#' + 'minPrice=' + $("#slider-range").slider( "option", "values" )[0] + '&maxPrice=' + $("#slider-range").slider( "option", "values" )[1];
+//		queryString += '&sortBy[price]=down';
 
-		if($('.word').val() != '')
-			hashString += '&word=' + $('.word').val();
+        location.href = '/search/'  + queryString;
+    });
 
-		var i=0;
-		$('.type input:checkbox:checked').each(function(){
-			hashString += '&' + $(this).attr('data-name') + '[' + i + ']=' + $(this).val();
-			i++;
-		});
+    $('.indexSearchButton').click(function(){
+        var queryString = '?' + 'minPrice=' + $('.minPrice').val() + '&maxPrice=' + $('.maxPrice').val();
+        if($('.fabricator').val())
+            queryString += '&fabricator[0]=' + $('.fabricator').val();
+        if($('.mainCategory').val())
+            queryString += '&mainCategory[0]=' + $('.mainCategory').val();
 
-		var i=0;
-		$('.manufacturer input:checkbox:checked').each(function(){
-			hashString += '&' + $(this).attr('data-name') + '[' + i + ']=' + $(this).val();
-			i++;
-		});
+//		hashString += '&sortBy[price]=down';
 
-		var i=0;
-		$('.seria input:checkbox:checked').each(function(){
-			hashString += '&' + $(this).attr('data-name') + '[' + i + ']=' + $(this).val();
-			i++;
-		});
+        location.href = '/search/'  + queryString;
+    });
 
-		hashString += '&sortBy[price]=down';
+    $('.findButton').click(function(){
+        if( $('.findInput').val() ){
+            var queryString = '?' + 'word=' + $('.findInput').val();
+            location.href = '/search/'  + queryString;
+        }
+    });
 
-		changeLocation(hashString, $('.catalogListContent'));
-	});
-
-	$('.indexSearchButton').click(function(){
-		var hashString = '#' + 'minPrice=' + $('.minPrice').val() + '&maxPrice=' + $('.maxPrice').val();
-		if($('.fabricator').val())
-			hashString += '&fabricator[0]=' + $('.fabricator').val();
-		if($('.mainCategory').val())
-			hashString += '&mainCategory[0]=' + $('.mainCategory').val();
-
-		hashString += '&sortBy[price]=down';
-
-		changeLocation(hashString, $('.filter'));
-	});
+    $('.search').on('keyup', function(e){
+        if(e.which == 13)
+            $('.findButton').click();
+    });
 });
-
-var changeLocation = function(hashString, loaderBlock$)
-{
-	if(location.pathname == '/search/'){
-		history.pushState('', '', location.pathname + hashString);
-		var href = hashString;
-		var query = (href.indexOf('#') > -1)
-						? $.deparam(href.slice(href.indexOf('#') + 1))
-						: '';
-		subPageStart(query);
-	}
-	else{
-		(new loaderBlock).init(loaderBlock$)
-					.start();
-		location.href = '/search/'  + hashString;
-	}
-}
-
-var subPageStart = function(query)
-{
-	if(location.pathname == '/search/'){
-		(new subPage).setQuery(query)
-					.setQueryFromElementOrHash($('.catalogListContent'))
-					.changeSearch();
-	}
-	else
-		(new subPage).setQuery(query)
-					.setQueryFromElementOrHash($('.catalogListContent'))
-					.change();
-}

@@ -1,36 +1,44 @@
 var shopcart = function (sources) {
-	this.ajax = {
-		'addToShopcart' : '/shopcart/ajaxAddGood/',
-		'getShopcartBar' : '/shopcart/ajaxGetShopcartBar/',
-		'removeFromShopcart' : '/shopcart/ajaxRemoveGood/',
-		'getShopcartGoodsTable' : '/shopcart/ajaxGetShopcartGoodsTableContent/',
-		'validateQuantity' : '/shopcart/ajaxValidateQuantity/',
-		'changeQuantity' : '/shopcart/ajaxChangeQuantity/',
-		'checkShopcartStatusAskSaving' : '/shopcart/ajaxCheckShopcartStatusAskSaving/',
-		'checkPendingOrderExistAskSaving' : '/order/ajaxCheckPendingOrderExistAskSaving/',
-		'controller' : '/shopcart/',
-		'getShopcartPersonalDataBlock' : '/shopcart/ajaxGetShopcartPersonalDataBlock/'
-	};
 
-	this.loader = new ajaxLoader();
+    this.ajax = {
+        'addToShopcart' : '/shopcart/ajaxAddGood/',
+        'getShopcartBar' : '/shopcart/ajaxGetShopcartBar/',
+        'removeFromShopcart' : '/shopcart/ajaxRemoveGood/',
+        'getShopcartGoodsTable' : '/shopcart/ajaxGetShopcartGoodsTableContent/',
+        'sendOrder' : '/order/add/',
+        'validateQuantity' : '/shopcart/ajaxValidateQuantity/',
+        'changeQuantity' : '/shopcart/ajaxChangeQuantity/'
 
-	this.errors  = new errors({
-		'form' : '.main',
-		'error'   : '.hint',
-		'showMessage' : 'showMessage'
-	});
 
-	this.errorsSendOrder  = new errors({
-		'form'	:	'.ordering',
-		'error'   : '.hint',
-		'showMessage' : 'showMessage'
-	});
 
-	this.errorsChangeQuantity  = new errors({
-		'form'	:	'.main',
-		'error'   : '.hint',
-		'showMessage' : 'showMessage'
-	});
+//		'getShopcartModal' : '/shopcart/ajaxGetShopcartModal/',
+//		'removeFromShopcart' : '/shopcart/ajaxRemoveGood/',
+//		'getTemplateContent' : '/shopcart/ajaxGetTemplateContent/',
+//		'saveGuestShopcartToAuthorizatedShopcart' : '/shopcart/ajaxSaveGuestShopcartToAuthorizatedShopcart/',
+//		'checkShopcartStatusAskSaving' : '/shopcart/ajaxCheckShopcartStatusAskSaving/',
+//		'saveStep2' : '/shopcart/saveStep2/',
+//		'controller' : '/shopcart/'
+    };
+
+    this.loader = new ajaxLoader();
+
+    this.errors  = new errors({
+        'form' : '.main',
+        'error'   : '.hint',
+        'showMessage' : 'showMessage'
+    });
+
+    this.errorsSendOrder  = new errors({
+        'form'	:	'.ordering',
+        'error'   : '.hint',
+        'showMessage' : 'showMessage'
+    });
+
+    this.errorsChangeQuantity  = new errors({
+        'form'	:	'.main',
+        'error'   : '.hint',
+        'showMessage' : 'showMessage'
+    });
 //
 //	this.errorsRegistration  = new errors({
 //		'form'	:	'.registrationBlock',
@@ -46,227 +54,245 @@ var shopcart = function (sources) {
 //
 
 
-	this.addToShopcart = function (object) {
-		var that = this;
-		that.loader.setLoader( object );
-		var quantity = 1;
+    this.addToShopcart = function (object) {
+        var that = this;
+        that.loader.setLoader( object );
+        var objectId = $(object).attr('data-objectId');
+        var isByeMoreQuantity = $('[data-objectId=' + objectId + '].byeMoreQuantity').length > 0;
+        var quantity = 1;
 
-		$.ajax({
-			url: that.ajax.addToShopcart,
-			type: 'POST',
-			data: {
-				'objectId' : $(object).attr('data-objectId'),
-				'objectClass' : $(object).attr('data-objectClass'),
-				'quantity' : quantity,
-			},
-			dataType: 'json',
-			success: function(data){
-				that.loader.getElement();
-				if(data == 1){
-					$('.okMessage').remove();
-					object.after('<span class="okMessage">товар добавлен в корзину</span>').hide(0).delay('2500').show(0);
-					$('.okMessage').show(0).delay(2000).fadeOut("slow");
-					that.updateShopcartBar();
-				}
-				else
-					alert('Error while trying to add good in shopcart');
-			}
-		});
-	};
+        if( isByeMoreQuantity )
+            quantity = $('[data-objectId=' + objectId + '].byeMoreQuantity').html();
 
-	this.updateShopcartBar = function()
-	{
-		var that = this;
-		shopcartBar$ = $((new shopcartHandler()).sources.shopcartBar);
-		$.ajax({
-			url: that.ajax.getShopcartBar,
-			type: 'POST',
-			success: function(data){
-				if(data)
-					shopcartBar$.replaceWith(data);
-				else
-					alert('Error while trying to update shopcart bar');
-			}
-		});
+        $.ajax({
+            url: that.ajax.addToShopcart,
+            type: 'POST',
+            data: {
+                'objectId' : objectId,
+                'objectClass' : $(object).attr('data-objectClass'),
+                'quantity' : quantity,
+            },
+            dataType: 'json',
+            success: function(data){
+                that.loader.getElement();
+                if(data == 1){
+                    that.updateShopcartBar();
+                    if(isByeMoreQuantity)
+                        that.updateByeMoreQuantityBlock(objectId);
+                    if(typeof dataLayer != "undefined"){
+                        if($(object).attr('data-dataLayerPushEvent') != "undefined")
+                            if($(object).attr('data-dataLayerPushEvent') != ""){
+                                dataLayer.push({"event": $(object).attr('data-dataLayerPushEvent')});
+                                dataLayer.push({"event": '"' + $(object).attr('data-dataLayerPushEvent') + '"'});
+                                console.log("event : " + $(object).attr('data-dataLayerPushEvent'));
+                            }
+                    }
+                }
+                else
+                    alert('Error while trying to add good in shopcart');
+            }
+        });
+    };
 
-
-	}
-
-	this.removeFromShopcart = function (object) {
-		var that = this;
-		that.loader.setLoader( object );
-		$.ajax({
-			url: that.ajax.removeFromShopcart,
-			type: 'POST',
-			data: {
-				'goodId' : $(object).attr('data-goodId'),
-				'goodClass' : $(object).attr('data-goodClass'),
-				'goodCode' : $(object).attr('data-goodCode'),
-			},
-			success: function(data){
-				that.loader.getElement();
-				if(data){
-					that.updateShopcartGoodsTable();
-					that.updateShopcartBar();
-				}
-				else
-					alert('Error while trying to delete good from shopcart');
-			}
-		});
-	};
-
-	this.updateShopcartGoodsTable = function (callback) {
-		var that = this;
-		$.ajax({
-			url: that.ajax.getShopcartGoodsTable,
-			type: 'POST',
-			data: {},
-			dataType: 'html',
-			success: function(data){
-				if(data){
-					$((new shopcartHandler()).sources.shopcartContent).replaceWith(data);
-					if($.isFunction(callback))
-						callback();
-				}
-				else
-					alert('Error while trying to get shopcart goods table');
-			}
-		});
-	};
-
-	this.changeQuantity = function (object) {
-		var that = this;
-		that.loader.setLoader( object );
-		$.ajax({
-			url: that.ajax.validateQuantity,
-			type: 'POST',
-			dataType: 'json',
-			data: {
-				'goodId' : $(object).attr('data-goodId'),
-				'goodClass' : $(object).attr('data-goodClass'),
-				'goodCode' : $(object).attr('data-goodCode'),
-				'quantity' : $(object).attr('data-quantity')
-			},
-			success: function(data){
-				that.loader.getElement();
-				if(data == 1){
-					that.errorsChangeQuantity.reset();
-					that.changeQuantityAction(object);
-				}
-				else
-					that.errorsChangeQuantity.show(data);
-			}
-		});
-	};
-
-	this.changeQuantityAction = function (object) {
-		var that = this;
-		$.ajax({
-			url: that.ajax.changeQuantity,
-			type: 'POST',
-			data: {
-				'goodId' : $(object).attr('data-goodId'),
-				'goodClass' : $(object).attr('data-goodClass'),
-				'goodCode' : $(object).attr('data-goodCode'),
-				'quantity' : $(object).attr('data-quantity')
-			},
-			success: function(data){
-				if(data == 1){
-					that.updateShopcartGoodsTable();
-					that.updateShopcartBar();
-				}
-				else
-					alert('Error while trying to change quantity in shopcart');
-
-			}
-		});
-	};
-
-	this.checkShopcartStatusAskSaving = function()
-	{
-		var that = this;
-		$.ajax({
-			url: that.ajax.checkShopcartStatusAskSaving,
-			type: 'POST',
-			dataType: 'json',
-			success: function(data){
-				if(data){
-					$('.modalAskBg').show();
-					$('.modalAskBg').after(data);
-				}
-				else
-					(new shopcartHandler()).showPersonalDataBlock();
-			}
-		});
-	}
-
-	this.checkPendingOrderExistAskSaving = function()
-	{
-		var that = this;
-		$.ajax({
-			url: that.ajax.checkPendingOrderExistAskSaving,
-			type: 'POST',
-			dataType: 'json',
-			success: function(data){
-				if(data){
-					$('.modalAskBg').show();
-					$('.modalAskBg').after(data);
-				}
-				else
-					(new shopcartHandler()).showPersonalDataBlock();
-			}
-		});
-	}
-
-	this.closeAskModal = function()
-	{
-		$('.modalAskBg').hide();
-		$('.modal2').remove();
-	}
-
-	this.shopcartAction = function(object)
-	{
-		var that = this;
-		$.ajax({
-			url: that.ajax.controller + object.attr('data-action') + '/',
-			type: 'POST',
-			dataType: 'json',
-			success: function(data){}
-		});
-
-		that.closeAskModal();
-		that.updateShopcartGoodsTable(that.showHideGoodsTableSlowly());
-	}
-
-	this.showHideGoodsTableSlowly = function()
-	{
-		$('.name-step').first().click();
-
-		$('.start-ordering').hide();
-		$('.block-step:eq(0)').delay( 2000 ).slideUp(5000);
-		window.setTimeout(function(){$('.name-step').first().parent().show().addClass('passed');}, 8000);
-
-		$('.reg-block').hide();
-		$('.enter-block').hide();
-		$('.personalInfo').show();
-		$('.name-step:eq(1)').parent().removeClass('passed').hide().delay( 5000 ).slideDown(5000);
-	}
-
-	this.updatePersonalDataBlock = function()
-	{
-		var that = this;
-		$.ajax({
-			url: that.ajax.getShopcartPersonalDataBlock,
-			type: 'POST',
-			dataType: 'html',
-			success: function(data){
-				if(data)
-					$('.personalInfo').html(data);
-			}
-		});
-	}
+    this.updateShopcartBar = function()
+    {
+        var that = this;
+        shopcartBar$ = $((new shopcartHandler()).sources.shopcartBar);
+        $.ajax({
+            url: that.ajax.getShopcartBar,
+            type: 'POST',
+            success: function(data){
+                if(data)
+                    shopcartBar$.replaceWith(data);
+                else
+                    alert('Error while trying to update shopcart bar');
+            }
+        });
 
 
+    }
+
+    this.updateByeMoreQuantityBlock = function(objectId)
+    {
+        $.ajax({
+            url: '/catalog/ajaxGetMinQuantity/',
+            type: 'POST',
+            data: {
+                'id' : objectId
+            },
+            dataType: 'json',
+            success: function(data){
+                if($.isNumeric((data))){
+                    $('[data-objectId=' + objectId + '].byeMoreQuantity').html(data);
+                    changeQuantity(objectId, data);
+                }
+                else
+                    alert('Error while trying to get min quantity in shopcart');
+            }
+        });
+    }
+
+    this.removeFromShopcart = function (object) {
+        var that = this;
+        that.loader.setLoader( object );
+        $.ajax({
+            url: that.ajax.removeFromShopcart,
+            type: 'POST',
+            data: {
+                'goodId' : $(object).attr('data-goodId'),
+                'goodClass' : $(object).attr('data-goodClass'),
+                'goodCode' : $(object).attr('data-goodCode'),
+            },
+            success: function(data){
+                that.loader.getElement();
+                if(data){
+                    that.updateShopcartGoodsTable();
+                    that.updateShopcartBar();
+                }
+                else
+                    alert('Error while trying to delete good from shopcart');
+            }
+        });
+    };
+
+    this.updateShopcartGoodsTable = function () {
+        var that = this;
+        $.ajax({
+            url: that.ajax.getShopcartGoodsTable,
+            type: 'POST',
+            data: {},
+            dataType: 'html',
+            success: function(data){
+                if(data){
+                    $((new shopcartHandler()).sources.shopcartContent).replaceWith(data);
+                }
+                else
+                    alert('Error while trying to get shopcart goods table');
+            }
+        });
+    };
+
+    this.sendOrderGetSuccessBlock = function(object){
+        var that = this;
+        that.loader.setLoader(object);
+
+        var shippingId = $('[name="shipping"]:checked').attr('id');
+        var liftId = $('[name="lift"]:checked:visible').attr('id');
+
+        var data = {
+            'shipping' : $("label[for='"+shippingId+"']").html(),
+            'name' : $('[name=name]').val(),
+            'family' : $('[name=family]').val(),
+            'parentName' : $('[name=parentName]').val(),
+            'phone' : $('[name=phone]').val(),
+            'addPhone' : $('[name=addPhone]').val(),
+            'email' : $('[name=email]').val(),
+
+            'lift' : $("label[for='"+liftId+"']").html(),
+            'index' : $('[name=index]:visible').val(),
+            'region' : $('[name=region]:visible').val(),
+            'city' : $('[name=city]:visible').val(),
+            'street' : $('[name=street]:visible').val(),
+            'block' : $('[name=block]:visible').val(),
+            'home' : $('[name=home]:visible').val(),
+            'flat' : $('[name=flat]:visible').val(),
+            'paymentType' : $('[name=paymentType]:visible').val(),
+
+        };
+
+        $.ajax({
+            url: that.ajax.sendOrder,
+            type: 'POST',
+            data: data,
+            dataType: 'json',
+            success: function(data){
+                that.loader.getElement();
+                if(data){
+                    if( $.isNumeric(data)  ||  $.isNumeric(data.orderSum) ){
+                        that.errorsSendOrder.reset();
+                        $((new shopcartHandler()).sources.shopcartContent).hide();
+
+                        if( $.isNumeric(data.orderSum) )
+                            that.fillYandexPayForm(data);
+                        else
+                            $('.successBlockHybrid').show();
+
+                        that.updateShopcartBar();
+                        if(typeof dataLayer != "undefined"){
+                            if(object.attr('data-dataLayerPushEvent') != "undefined")
+                                if(object.attr('data-dataLayerPushEvent') != ""){
+                                    dataLayer.push({"event": object.attr('data-dataLayerPushEvent')});
+                                    dataLayer.push({"event": '"' + object.attr('data-dataLayerPushEvent') + '"'});
+                                    console.log("event : " + object.attr('data-dataLayerPushEvent'));
+                                }
+                        }
+
+                    }
+                    else
+                        that.errorsSendOrder.show(data);
+                }
+                else
+                    alert('Error while trying to send order');
+            }
+        });
+    };
+
+    this.fillYandexPayForm = function (data) {
+        $('.yandex_s_p').find('input[name="sum"]').val(data.orderSum);
+        $('.yandex_s_p').find('.orderSum').html(data.orderSum);
+        $('.yandex_s_p').find('input[name="customerNumber"]').val(data.orderName);
+        $('.yandex_s_p').find('input[name="custName"]').val(data.orderPhone);
+        $('.yandex_s_p').find('input[name="custEmail"]').val(data.orderEmail);
+        $('.yandex_s_p').show();
+    };
+
+    this.changeQuantity = function (object) {
+        var that = this;
+        that.loader.setLoader( object );
+        $.ajax({
+            url: that.ajax.validateQuantity,
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                'goodId' : $(object).attr('data-goodId'),
+                'goodClass' : $(object).attr('data-goodClass'),
+                'goodCode' : $(object).attr('data-goodCode'),
+                'quantity' : $(object).attr('data-quantity')
+            },
+            success: function(data){
+                that.loader.getElement();
+                if(data == 1){
+                    that.errorsChangeQuantity.reset();
+                    that.changeQuantityAction(object);
+                }
+                else
+                    that.errorsChangeQuantity.show(data);
+            }
+        });
+    };
+
+    this.changeQuantityAction = function (object) {
+        var that = this;
+        $.ajax({
+            url: that.ajax.changeQuantity,
+            type: 'POST',
+            data: {
+                'goodId' : $(object).attr('data-goodId'),
+                'goodClass' : $(object).attr('data-goodClass'),
+                'goodCode' : $(object).attr('data-goodCode'),
+                'quantity' : $(object).attr('data-quantity')
+            },
+            success: function(data){
+                if(data == 1){
+                    that.updateShopcartGoodsTable();
+                    that.updateShopcartBar();
+                }
+                else
+                    alert('Error while trying to change quantity in shopcart');
+
+            }
+        });
+    };
 
 
 
@@ -283,27 +309,24 @@ var shopcart = function (sources) {
 
 
 
-//	this.getTemplateContent = function (object, template) {
-//		var that = this;
-//		that.loader.setLoader(object);
-//		$.ajax({
-//			url: that.ajax.getTemplateContent,
-//			type: 'POST',
-//			dataType: 'json',
-//			data: {
-//				'template' : template,
-//			},
-//			success: function(data){
-//				that.loader.getElement();
-//				if(data){
-//					$('.basket_box').html(data);
-//					that.errors.reset();
-//				}
-//				else
-//					alert('Error while trying to get Content in shopcart');
-//			}
-//		});
-//	};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //	this.showShopcartModal = function (elementToHide) {
 //		var that = this;
@@ -505,7 +528,7 @@ var shopcart = function (sources) {
 //				}
 //				else{
 //					if(data.name)
-//						data.name = 'Укажите Ваше имя';
+//						data.name = 'РЈРєР°Р¶РёС‚Рµ Р’Р°С€Рµ РёРјСЏ';
 //					that.errorsSavePersonalData.show(data);
 //				}
 //			}
@@ -526,7 +549,37 @@ var shopcart = function (sources) {
 //	}
 //
 //
+//	this.checkShopcartStatusAskSaving = function()
+//	{
+//		var that = this;
+//		$.ajax({
+//			url: that.ajax.checkShopcartStatusAskSaving,
+//			type: 'POST',
+//			dataType: 'json',
+//			success: function(data){
+//				if(data){
+//					$('.pop').show();
+//					$('.placeForShopcart').after(data);
+//				}
+//			}
+//		});
+//	}
 //
+//	this.shopcartAction = function(action)
+//	{
+//		var that = this;
+//		$.ajax({
+//			url: that.ajax.controller + action.attr('data-action') + '/',
+//			type: 'POST',
+//			dataType: 'json',
+//			success: function(data){}
+//		});
+//		that.closeAskModal();
+//	}
 //
-
+//	this.closeAskModal = function()
+//	{
+//		$('.pop').hide();
+//		$('.modal2').remove();
+//	}
 }
