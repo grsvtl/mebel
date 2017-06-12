@@ -1,6 +1,19 @@
 <?$this->includeTemplate('meta')?>
 <?$this->includeTemplate('header')?>
-        
+
+        <link rel="stylesheet" href="/css/<?=$this->getCurrentDomainAlias()?>/content/articles/showroomIndex.css">
+        <section id="showroom">
+            <div class="container">
+                <div class="showroom text-dark">
+                    <h2 class="text-uppercase">Наш Шоу-рум</h2>
+                    <p>У нас есть свой шоу-рум где представленно большое количество <br>моделей мебели.</p>
+                    <p>Ждем вас по адресу <strong>Каширское шоссе, дом 61, корпус 3А,</strong> каждый день <br>с 10 до 20 часов</p>
+                    <p>&nbsp;</p>
+                    <a href="/showroom-ug/" class="btn btn-default">Подробнее</a>
+                </div>
+            </div>
+        </section>
+
         <section id="aboutCompany">
             <div class="container text-center">
                 <h2>Фабрика "Юг Мебель" — уют в вашем доме</h2>

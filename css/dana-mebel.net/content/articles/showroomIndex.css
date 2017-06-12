@@ -1,0 +1,60 @@
+#showroom {
+    background-color: #FFEB66;
+    border-radius: 4px;
+    margin-top: 24px;
+}
+
+#sectionGallery .gallery {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.showroom {
+    background-image: url(/images/danaMebel/content/articles/showroom/showroom.png);
+    background-size: auto 100%;
+    background-position: right center;
+    background-repeat: no-repeat;
+    padding: 36px;
+}
+
+.showroom h2 {
+    font-size: 2em;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.showroom strong {
+    font-weight: bold;
+}
+
+.showroom p {
+    margin-bottom: 12px;
+}
+
+.showroom h2 {
+    margin-top: 0;
+}
+
+.margin-top-12 {
+    margin-top: 12px;
+}
+
+.btn-primary {
+    background-color: #ff590f;
+    padding: 12px 24px;
+    border-radius: 3px;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #ff6a1f;
+}
+
+@media (max-width: 992px) {
+    .showroom {
+        background-image: none;
+        text-align: center;
+    }
+}

@@ -75,6 +75,20 @@
                 </br>
             </div>
         </section>
+
+        <link rel="stylesheet" href="/css/meri-mebel.ru/content/articles/showroomIndex.css">
+        <section id="showroom">
+            <div class="container margin-top-12">
+                <div class="showroom bordered text-dark">
+                    <h2>Наш Шоу-рум</h2>
+                    <p>У нас есть свой шоу-рум где представленно большое количество <br>моделей мебели.</p>
+                    <p>Ждем вас по адресу <strong>Каширское шоссе, дом 61, корпус 3А,</strong> каждый день <br>с 10 до 20 часов</p>
+                    <p>&nbsp;</p>
+                    <a href="/showroom-meri/" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        </section>
+
         <section id="services">
             <div class="container">
                 <h2 class="text-center">Мы предлагаем</h2>
