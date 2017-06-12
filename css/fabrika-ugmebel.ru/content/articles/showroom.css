@@ -1,0 +1,80 @@
+section {
+    padding: 24px 0;
+}
+
+section h2 {
+    margin-top: 0;
+}
+
+#article-header {
+    padding-top: 0;
+}
+
+#how-to-get-there {
+    background-color: #f5f7fa;
+    padding: 24px;
+}
+
+#how-to-get-there h2 {
+    margin-top: 0;
+}
+
+ul>li>figure {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    justified-content: stretch;
+}
+
+article figure>img {
+    margin: 0 24px;
+}
+
+.about-list {
+    padding: 24px 0;
+}
+
+.about-list>li:not(:last-child) {
+    margin-bottom: 36px;
+}
+
+#how-to-get-there ul.row>li>figure {
+    background-color: #fff;
+    min-height: 150px;
+}
+
+#how-to-get-there ul.row>li>figure>img {
+    width: 55px;
+}
+
+#how-to-get-there ul.row>li>figure>figcaption {
+    padding: 24px;
+    padding-left: 0;
+}
+
+#driving-directions {
+    padding-bottom: 0;
+}
+
+iframe {
+    width: 100% !important;
+}
+
+@media (max-width: 767px) {
+    #how-to-get-there {
+        padding: 24px 0;
+        background-color: #fff;
+    }
+    section {
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    #driving-directions iframe {
+        height: 280px !important;
+    }
+}
