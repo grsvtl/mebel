@@ -1,0 +1,20 @@
+.showroom {
+    background-image: url(/images/meriMebel/articles/showroom/showroom.jpg);
+    background-size: auto 120%;
+    background-position: right center;
+    background-repeat: no-repeat;
+    padding: 36px;
+}
+.showroom h2 {
+    margin-top: 0;
+}
+
+.margin-top-12 {
+    margin-top: 12px;
+}
+
+@media (max-width: 1023px) {
+    .showroom {
+        background-image: none;
+    }
+}
