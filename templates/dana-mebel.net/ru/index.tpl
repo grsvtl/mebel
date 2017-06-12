@@ -59,6 +59,17 @@
 			</div>
 			<?endif?>
 
+            <link rel="stylesheet" type="text/css" href="/css/<?=$this->getCurrentDomainAlias()?>/content/articles/showroomIndex.css" />
+            <section id="showroom">
+                <div class="showroom">
+                    <h2 class="text-uppercase">Наш Шоу-рум</h2>
+                    <p>У нас есть свой шоу-рум где представленно большое<br> количество моделей мебели.</p>
+                    <p>Ждем вас по адресу <strong>Каширское шоссе, дом 61, корпус 3А,</strong><br> каждый день с 10 до 20 часов</p>
+                    <p>&nbsp;</p>
+                    <a href="/showroom-dana/" class="btn btn-primary">Подробнее</a>
+                </div>
+            </section>
+
 			<?$this->getSeriaBlock($series)?>
 
 			<?$newGoods = $this->getController('Catalog')->getNewObjects()?>
