@@ -8,14 +8,8 @@ $(function (){
         .setCallback(function (response) {
             if (typeof response == "number") {
                 modal.toggle();
-                if(typeof dataLayer != "undefined"){
-                    if($(this.settings.form).attr('data-dataLayerPushEvent') != "undefined")
-                        if($(this.settings.form).attr('data-dataLayerPushEvent') != ""){
-                            dataLayer.push({"event": $(this.settings.form).attr('data-dataLayerPushEvent')});
-                            dataLayer.push({"event": '"' + $(this.settings.form).attr('data-dataLayerPushEvent') + '"'});
-                            console.log("event : " + $(this.settings.form).attr('data-dataLayerPushEvent'));
-                        }
-                }
+                dataLayer.push({'event': 'event_oneclick'});
+                console.log('event_oneclick');
             }
             else
                 generateCapchaString();
