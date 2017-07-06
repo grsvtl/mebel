@@ -68,6 +68,23 @@
 								<td class="right">Текст:</td>
 								<td><textarea style="width: 171px" name="text" cols="60"><?=$this->getGET()['text']?></textarea></td>
 							</tr>
+                            <tr>
+                                <td class="right">Спец. метки:</td>
+                                <td>
+                                    <select class="filterInput" name="mark">
+                                        <option value="">&nbsp;</option>
+                                        <?foreach ($objects->getConfig()->getCheckboxFieldsArray() as $alias=>$name):?>
+                                        <option value="<?=$alias?>" <?= $this->getGET()['mark']==$alias ? 'selected' : ''?>><?=$name?></option>
+                                        <?php endforeach;?>
+                                    </select>
+                                </td>
+                                <td class="right"></td>
+                                <td></td>
+                                <td class="right"></td>
+                                <td></td>
+                                <td class="right"></td>
+                                <td></td>
+                            </tr>
 							<tr>
 								<td colspan="8">
 									<div class="action_buts">
