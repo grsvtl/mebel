@@ -150,6 +150,7 @@ class CatalogAdminController extends \controllers\base\Controller
 		$code = (empty($this->getGET()['code'])) ? '' : \core\utils\DataAdapt::textValid($this->getGET()['code']);
 		$description = (empty($this->getGET()['description'])) ? '' : \core\utils\DataAdapt::textValid($this->getGET()['description']);
 		$text = (empty($this->getGET()['text'])) ? '' : \core\utils\DataAdapt::textValid($this->getGET()['text']);
+        $mark = (empty($this->getGET()['mark'])) ? '' : \core\utils\DataAdapt::textValid($this->getGET()['mark']);
 		$itemsOnPage = (empty($this->getGET()['itemsOnPage'])) ? '' : \core\utils\DataAdapt::textValid($this->getGET()['itemsOnPage']);
 
 		if (!empty($this->getGET()['id']))
@@ -189,6 +190,9 @@ class CatalogAdminController extends \controllers\base\Controller
 		if (!empty($text))
 			$this->modelObject->setSubquery('AND `text` LIKE \'%?s%\'', $text);
 
+        if (!empty($mark))
+            $this->modelObject->setSubquery('AND `?s` = 1', $mark);
+
 		$this->modelObject->setOrderBy('`priority` ASC')->setPager($itemsOnPage);
 
 		$this->setContent('objects', $this->modelObject)
@@ -217,13 +221,12 @@ class CatalogAdminController extends \controllers\base\Controller
 		$this->checkUserRightAndBlock('construction_edit');
 
         $post = $this->getPOST();
-        foreach($this->_config->checkboxFields as $field)
+        foreach($this->_config->getCheckboxFieldsAliases() as $field)
             if(!isset($post[$field]))
                 $post[$field] = 0;
 
-        $this->setObject($this->_config->getObjectClass(), (int)$post['id'])//
+        $this->setObject($this->_config->getObjectClass(), (int)$post['id'])
             ->ajax($this->modelObject->edit($post));
-//            ->ajax($this->modelObject->edit($post, $this->_config->getObjectFields()));
 	}
 
 	protected function catalogItem()

@@ -216,7 +216,6 @@ class CatalogItem extends \modules\catalog\CatalogGood implements \interfaces\IO
 
 	public function getSeriaObject()
 	{
-		$this->seriaId;
 		return isset($this->seriaId) && !empty($this->seriaId)
 				?
 					$this->getObject('\modules\parameters\components\parametersValues\lib\ParameterValue', $this->seriaId)

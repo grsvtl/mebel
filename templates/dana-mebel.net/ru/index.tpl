@@ -18,6 +18,7 @@
 			<?if($mainSliderGoods->count()):?>
 			<div class="bannersBlock">
 				<div class="mainBanners">
+                    <script src="/js/plugins/glide/jquery.glide.js"></script>
 					<div class="slider">
 						<ul class="slides">
 
