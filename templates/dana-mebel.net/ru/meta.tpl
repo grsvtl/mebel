@@ -66,7 +66,6 @@
 			->add('shopcartHandler.js', '/js/shopcart/')
 			->add('shopcart.class.js', '/js/shopcart/')
 
-			->add('jquery.glide.js', '/js/danaMebel/')
 			->add('main.js', '/js/danaMebel/')
             ->add('shopcartBar.js', '/js/shopcart/')
             ->add('ajaxCapcha.js', '/js/feedback/')

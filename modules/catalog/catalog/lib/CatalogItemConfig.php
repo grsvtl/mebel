@@ -54,9 +54,10 @@ class CatalogItemConfig extends \core\modules\base\ModuleConfig
         'onMainMeriPage'
 	);
 
-    public $checkboxFields = array(
-        'card',
-		'onMainDanaPage'
+    private $checkboxFields = array(
+        'card' => 'оплата карточкой',
+		'onMainDanaPage' => 'главная Дана',
+        'onMainMeriPage' => 'главная Мери'
     );
 
 	public function rules()
@@ -115,4 +116,8 @@ class CatalogItemConfig extends \core\modules\base\ModuleConfig
     public function getMaterialParametersId(){return self::MATERIAL_PARAMETERS_ID;}
     public function getCorpusParametersId(){return self::CORPUS_PARMETERS_ID;}
     public function getFasadParametersId(){return self::FASAD_PARAMETERS_ID;}
+
+    public function getCheckboxFieldsArray(){return $this->checkboxFields;}
+    public function getCheckboxFieldsAliases(){return array_keys($this->checkboxFields);}
+    public function getCheckboxFieldsRuNames(){return array_values($this->checkboxFields);}
 }
