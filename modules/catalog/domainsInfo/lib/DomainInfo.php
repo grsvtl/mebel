@@ -76,8 +76,11 @@ class DomainInfo extends \core\modules\base\ModuleDecorator
 		return \core\utils\Params::getParamsArray($this->smallDescription);
 	}
 
-	public function getReviews()
+	public function getReviews($active = false)
     {
-        return (new Reviews())->filterByDomainInfoId($this->id);
+        $reviews = (new Reviews())->filterByDomainInfoId($this->id);
+        if($active && $active=='active')
+            $reviews->filterActive();
+        return $reviews;
     }
 }

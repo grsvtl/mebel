@@ -5,9 +5,12 @@ use modules\catalog\reviews\lib\ReviewConfig;
 
 class ReviewsAdminController extends \controllers\base\Controller
 {
-    use	\core\traits\controllers\Templates;
+    use	\core\traits\controllers\Rights,
+        \core\traits\controllers\Authorization,
+        \core\traits\controllers\Templates;
 
     protected $permissibleActions = array(
+        'edit',
         'getReviewsTable',
         'addReviewBlock'
     );
@@ -20,9 +23,26 @@ class ReviewsAdminController extends \controllers\base\Controller
         $this->objectsClass = $this->_config->getObjectsClass();
     }
 
-    protected function getReviewsTable()
+    protected function edit()
     {
-        $this->includeTemplate('reviewsTable');
+        $this->checkUserRightAndBlock('construction_edit');
+        $object = $this->setObject($this->_config->getObjectClass(), (int)$this->getPOST()['id']);
+        $edit = $this->modelObject->edit($this->getPOST());
+        $object->ajax($edit);
+    }
+
+    protected function delete()
+    {
+        $this->checkUserRightAndBlock('construction_edit');
+        $order = $this->getObject($this->objectClass, $this->getGET()->orderId);
+        $good  = $order->getGoods()->getObjectById($this->getGET()->goodId);
+        $this->ajaxResponse($good->delete());
+    }
+
+    protected function getReviewsTable($domainInfo)
+    {
+        $this->setContent('reviews', $domainInfo->getReviews())
+            ->includeTemplate('reviewsTable');
     }
 
     protected function addReviewBlock()

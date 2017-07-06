@@ -9,8 +9,8 @@ class ReviewConfig extends \core\modules\base\ModuleConfig
 	const ACTIVE_STATUS_ID = 1;
 	const BLOCKED_STATUS_ID = 2;
 
-	protected $objectClass  = '\modules\review\lib\Review';
-	protected $objectsClass = '\modules\reviews\lib\Reviews';
+	protected $objectClass  = '\modules\catalog\reviews\lib\Review';
+	protected $objectsClass = '\modules\catalog\reviews\lib\Reviews';
 
 	public $templates  = 'modules/catalog/reviews/tpl/';
 
@@ -23,6 +23,7 @@ class ReviewConfig extends \core\modules\base\ModuleConfig
 		'name',
 		'date',
 		'email',
+        'statusId',
 		'adventages',
 		'disadventages',
 		'estimate',

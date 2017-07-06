@@ -73,4 +73,9 @@ var errors = function (sources) {
 
 		return this;
 	}
+
+    this.setForm = function (form$) {
+        this.settings.form = form$;
+        return this;
+    };
 }

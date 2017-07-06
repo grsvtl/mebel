@@ -1,66 +1,92 @@
 <!--<script type="text/javascript" src="/modules/orders/js/transformerEditMode.js"></script>-->
 <!--<script type="text/javascript" src="/modules/catalog/subGoods/js/subGoodsTableFunctions.js"></script>-->
-<!---->
-<!---->
+
+
+
+
+<script src="/admin/js/base/actions/inputToggler.class.js"></script>
+<script src="/modules/catalog/reviews/js/reviews.js"></script>
+
+
 <link rel="stylesheet" type="text/css" href="/modules/catalog/subGoods/css/style.css">
 
-
-
 <div class="goodsTable">
-    <p class="title">Список подтоваров:</p>
-<!--    --><?//if ($subGoods->count()):?>
+    <p class="title">Список отзывов:</p>
+    <?if ($reviews->count()):?>
         <table class="goodsList">
             <tr class="top">
                 <td>&nbsp;#&nbsp;</td>
-                <td class="borderLeft">Подтовар</td>
-                <td class="borderLeft">Цена / <span class="grayText">Себестоимость</span> <span class="normalWeight">(руб.)</span></td>
-                <td class="borderLeft">Количество <span class="normalWeight">(шт.)</span></td>
-                <td class="borderLeft">Стоимость / <span class="grayText">Себестоимость</span> <span class="normalWeight">(руб.)</span></td>
-                <td class="borderLeft">Прибыль <span class="normalWeight">(руб.)</span></td>
+                <td class="borderLeft">Имя</td>
+                <td class="borderLeft">Достоинства</td>
+                <td class="borderLeft">Недостатки</td>
+                <td class="borderLeft">Комментарий</td>
+                <td class="borderLeft">Оценка</td>
+                <td class="borderLeft">Статус</td>
                 <td class="borderLeft"><img src="/admin/images/bg/trash.png" alt="Удалить" /></td>
             </tr>
-<!--            --><?// $i=1; foreach($subGoods as $subGood):?>
-<!--                <tr class="line">-->
-<!--                    <td class="center">--><?//=$i?><!--</td>-->
-<!--                    <td>-->
-<!--                        <a href="--><?//=$subGood->getGood()->getAdminUrl()?><!--" target="blank">-->
-<!--                            --><?//=$subGood->getGood()->getName()?><!-- (--><?//=$subGood->getGood()->getCode()?><!--)-->
-<!--                        </a>-->
-<!--                    </td>-->
-<!--                    <td  class="center">-->
-<!--                        --><?//= $subGood->getGood()->getPriceByQuantity($subGood->subGoodQuantity)?>
-<!--                        /-->
-<!--                        <span class="grayText">--><?//= $subGood->getGood()->getBasePriceByQuantity($subGood->subGoodQuantity)?><!--</span>-->
-<!--                    </td>-->
-<!--                    <td class="center">-->
-<!--                        <input-->
-<!--                            type="text"-->
-<!--                            class="editDelivery transformer"-->
-<!--                            name="subGoodQuantity"-->
-<!--                            value="--><?//=$subGood->subGoodQuantity?><!--"-->
-<!--                            data-action="/admin/subGoods/ajaxEditSubgood/"-->
-<!--                            data-post="&id=--><?//=$subGood->id?><!--"-->
-<!--                        />-->
-<!--                    </td>-->
-<!--                    <td  class="center">-->
-<!--                        --><?//= $subGood->getCost()?><!-- / <span class="grayText">--><?//= $subGood->getBaseCost()?><!--</span>-->
-<!--                    </td>-->
-<!--                    <td  class="center">--><?//=$subGood->getIncome()?><!--</td>-->
-<!--                    <td  class="center">-->
-<!--                        <div><a class="pointer delete deleteSubGood" data-id="--><?//=$subGood->id?><!--"  title="Удалить подтовар"></a></div>-->
-<!--                    </td>-->
-<!--                </tr>-->
-<!--                --><?// $i++; endforeach?>
-            <tr class="line">
-<!--                <td class="right" colspan="3">Итого:</td>-->
-<!--                <td class="center">--><?//=$subGoods->getQuantity()?><!--</td>-->
-<!--                <td class="center">--><?//=$subGoods->getCost()?><!--  / <span class="grayText">--><?//=$subGoods->getBaseCost()?><!--</span></td>-->
-<!--                <td class="center">--><?//=$subGoods->getIncome()?><!--</td>-->
-                <td></td>
+            <? $i=1; foreach($reviews as $review):?>
+            <tr class="line currentReviews">
+                <td class="center"><?=$i?></td>
+                <td class="center toInput" data-reviewId="<?=$review->id?>" name="name"><?=$review->getName()?></td>
+                <td class="center">
+                    <textarea name="adventages" data-reviewId="<?=$review->id?>"><?=$review->getAdventages()?></textarea>
+                </td>
+                <td class="center">
+                    <textarea name="disadventages" data-reviewId="<?=$review->id?>"><?=$review->getDisadventages()?></textarea>
+                </td>
+                <td class="center">
+                    <textarea name="text" data-reviewId="<?=$review->id?>"><?=$review->getText()?></textarea>
+                </td>
+                <td class="center">
+                    <select name="estimate" data-reviewId="<?=$review->id?>">
+                        <option></option>
+                        <?for($i=1; $i<=5; $i++):?>
+                        <option value="<?=$i?>" <?= $i==$review->getEstimate() ? 'selected' : ''?>><?=$i?></option>
+                        <?endfor;?>
+                    </select>
+                </td>
+                <td class="center">
+                    <select name="statusId" data-reviewId="<?=$review->id?>">
+                        <?foreach($review->getStatuses() as $status):?>
+                        <option value="<?=$status->id?>" <?= $status->id==$review->statusId ? 'selected' : ''?>>
+                            <?=$status->name?>
+                        </option>
+                        <?endforeach;?>
+                    </select>
+                </td>
+                <td class="center">
+                    <a class="pointer delete deleteReview" data-reviewId="<?=$review->id?>" title="Удалить отзыв"></a>
+                </td>
+            </tr>
+            <? $i++; endforeach?>
+            <tr class="line addReviewForm">
+                <td class="center"></td>
+                <td class="center"><input type="text" name="name"></td>
+                <td class="center"><textarea name="adventages"></textarea></td>
+                <td class="center"><textarea name="disadventages"></textarea></td>
+                <td class="center"><textarea name="text"></textarea></td>
+                <td class="center">
+                    <select name="estimate">
+                        <option></option>
+                        <?for($i=1; $i<=5; $i++):?>
+                        <option value="<?=$i?>"><?=$i?></option>
+                        <?endfor;?>
+                    </select>
+                </td>
+                <td class="center">
+                    <select name="statusId">
+                        <?foreach($review->getStatuses() as $status):?>
+                        <option value="<?=$status->id?>"><?=$status->name?></option>
+                        <?endforeach;?>
+                    </select>
+                </td>
+                <td class="center">
+                    <img class="pointer addReview" src="/admin/images/buttons/add.png" alt="Добавить отзыв">
+                </td>
             </tr>
         </table>
-    <?//else:?>
-        <i>Нет отзывов.</i>
-    <?// endif;?>
+    <?else:?>
+        <i>Нет отзывов</i>
+    <? endif;?>
     <br /><br />
 </div>
