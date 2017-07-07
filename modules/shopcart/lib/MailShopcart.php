@@ -9,15 +9,15 @@ class MailShopcart extends \core\mail\MailBase
 	private $shopcart;
 
 	private $rules = array(
-			'name, family, parentName, phone, paymentType' => array(
+			'name, phone, paymentType' => array(
 				'validation' => array('_validNotEmpty'),
 			),
 			'email' => array(
-				'validation' => array('_validEmail', array('key'=>'email', 'notEmpty'=>true)),
+				'validation' => array('_validEmail', array('key'=>'email', 'notEmpty'=>false)),
 			)
 	);
 	private $shippingRules = array(
-			'region, city, street, home' => array(
+			'region, street, home' => array(
 				'validation' => array('_validNotEmpty'),
 			)
 	);
@@ -66,17 +66,17 @@ class MailShopcart extends \core\mail\MailBase
 		return $res;
 	}
 
-	public function MailShopcartToClient()
-	{
-		$res = $this->From($this->noreplyEmail)
-				->To($this->data['email'])
-				->Subject('Заказ с сайта  '.SEND_FROM)
-				->Content('data', $this->data)
-				->Content('shopcart', $this->shopcart)
-				->BodyFromFile('shopcartMailToClient.tpl')
-				->Send();
-		if($res)
-			return 1;
-		throw new \Exception('Error mail() in '.get_class($this).'!');
-	}
+//	public function MailShopcartToClient()
+//	{
+//		$res = $this->From($this->noreplyEmail)
+//				->To($this->data['email'])
+//				->Subject('Заказ с сайта  '.SEND_FROM)
+//				->Content('data', $this->data)
+//				->Content('shopcart', $this->shopcart)
+//				->BodyFromFile('shopcartMailToClient.tpl')
+//				->Send();
+//		if($res)
+//			return 1;
+//		throw new \Exception('Error mail() in '.get_class($this).'!');
+//	}
 }

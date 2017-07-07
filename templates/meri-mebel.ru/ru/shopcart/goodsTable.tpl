@@ -208,6 +208,12 @@
                                     <input type="email" class="form-control" name="email">
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-sm-3 is-label">Другая информация</div>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" name="email"></textarea>
+                                </div>
+                            </div>
                         </div>
                         <br>
                         <div class="collapse delivery-block">

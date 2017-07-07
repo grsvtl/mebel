@@ -549,7 +549,7 @@
     padding: 0px 2%;
 }
 
-.yandex_s_p textarea{
+.right-order textarea, .yandex_s_p textarea{
     color: #5a5a5a;
     font-size: 12px;
     font-weight: normal;
@@ -559,6 +559,11 @@
     /*height: 29px;*/
     border-radius: 2px;
     padding: 0px 2%;
+}
+
+.right-order textarea {
+    height: 53px;
+    padding: 1% 2%;
 }
 
 .address-order span {
