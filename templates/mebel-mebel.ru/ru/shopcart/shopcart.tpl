@@ -46,7 +46,7 @@
                 <!-- Кнопку "Оплатить", можно назвать по своему, например value="Оплатить за курсы вождения"
                      или value="Оплатить подписку на журнал" и т.д.                                        -->
                 <input type="submit" onclick="dataLayer.push({'event': 'event_zakaz_paynow'});" value="Оплатить">
-                <button type="button" class="payAfter">Я оплачу позже</button>
+                <button type="button" onclick="dataLayer.push({'event': 'event_pay_late'});" class="payAfter">Я оплачу позже</button>
             </form>
         </div>
 
