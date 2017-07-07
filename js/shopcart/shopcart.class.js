@@ -187,6 +187,7 @@ var shopcart = function (sources) {
             'phone' : $('[name=phone]').val(),
             'addPhone' : $('[name=addPhone]').val(),
             'email' : $('[name=email]').val(),
+            'info' : $('[name=info]').val(),
 
             'lift' : $("label[for='"+liftId+"']").html(),
             'index' : $('[name=index]:visible').val(),

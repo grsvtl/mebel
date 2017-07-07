@@ -272,6 +272,8 @@
 				<input type="text" name="addPhone" placeholder="+7 (400) 45 85 692">
 				<label>E-mail</label>
 				<input type="text" name="email">
+                <label>Другая информация</label>
+                <textarea name="email"></textarea>
 				<div class="address-order adresOrderBlock hide">
 					<label>Адрес доставки:</label>
 					<ul>

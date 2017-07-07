@@ -161,6 +161,10 @@
                         <label for="">E-mail</label>
                         <input type="text" class="form-control" id="" placeholder="" name="email">
                     </div>
+                    <div class="form-group">
+                        <label for="">Другая информация</label>
+                        <textarea class="form-control" name="info"></textarea>
+                    </div>
                 </div>
 
                 <div role="tabpanel" class="tab-pane active" id="pickup"></div>
