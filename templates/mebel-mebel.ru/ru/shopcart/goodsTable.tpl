@@ -273,7 +273,7 @@
 				<label>E-mail</label>
 				<input type="text" name="email">
                 <label>Другая информация</label>
-                <textarea name="email"></textarea>
+                <textarea name="info"></textarea>
 				<div class="address-order adresOrderBlock hide">
 					<label>Адрес доставки:</label>
 					<ul>
