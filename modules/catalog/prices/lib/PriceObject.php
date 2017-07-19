@@ -12,10 +12,16 @@ class PriceObject extends \core\modules\base\ModuleObject
 	public function getOldPrice()
 	{
 		$this->loadObjectInfo();
-		$price = empty($this->objectInfo['oldPrice']) ? round($this->price*1.05,-2) : $this->objectInfo['oldPrice'];
+		$price = empty($this->objectInfo['oldPrice']) ? $this->getDefaultOldPrice() : $this->objectInfo['oldPrice'];
 		return $price;
 	}
-	
+
+	public function getDefaultOldPrice()
+    {
+        $config = $this->getConfig();
+        return round($this->price * $config::OLD_PRICE_COEFFICIENT, $config::PRICE_ROUND_PRECISION);
+    }
+
 	public function getDiscount()
 	{
 		return ($this->getOldPrice() - $this->price);

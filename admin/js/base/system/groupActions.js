@@ -59,8 +59,9 @@ var onElementSelected = function(){
 			$('.groupActionSelect').show();
 		}
 		else{
-			$('.groupActionSelect').hide();
+			$('.groupActionSelect').hide().val($(".groupActionSelect option:first").val());
 			$('.groupAction').hide();
+            $('.groupAction select').val($(".groupAction select option:first").val());
 		}
 		if(getAction() === 'groupRemove'){
 			groupReset();
@@ -87,7 +88,8 @@ var onActionSelected = function(){
 };
 
 var groupReset = function(){
-	$('.group').remove();
+	// $('.group').remove();
+    $('#groupArray').find('input[type=hidden][name^=group].group').remove();
 };
 
 var getAction = function(){
@@ -99,10 +101,10 @@ var onOkPressed = function(){
 };
 
 var okPressedFunc = function(){
-		var action = getAction();
-		if( saveValidate(action) ){
-			createGroupBloks();
-		}
+    var action = getAction();
+    if( saveValidate(action) ){
+        createGroupBloks();
+    }
 };
 
 var saveValidate = function(action){

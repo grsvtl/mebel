@@ -2,6 +2,8 @@
 namespace core\db;
 class Db
 {
+    const TEMP_DB_PATH = 'tmp/db/';
+
 	static private $db;
 	static private $instance = NULL;
 	static public $query_count;
@@ -9,23 +11,20 @@ class Db
 	private $query;
 	private $data;
 	private $database;
+    private $dbConfig;
 
 	private function __construct()
 	{
-		$db_config = \core\Configurator::getInstance()->db->getArrayByKey('settings');
-		$this->database = $db_config['database'];
-		$this->connect($db_config['host'],$db_config['login'],$db_config['pass'],$db_config['database']);
-		$this->setErrorMode($db_config['error_mode']);
+		$this->dbConfig = \core\Configurator::getInstance()->db->getArrayByKey('settings');
+		$this->database = $this->dbConfig['database'];
+		$this->connect($this->dbConfig['host'],$this->dbConfig['login'],$this->dbConfig['pass'],$this->dbConfig['database']);
+		$this->setErrorMode($this->dbConfig['error_mode']);
 	}
 
 	private function connect ($host,$login,$pass,$database)
 	{
 		self::$db = mysqli_connect($host, $login, $pass, $database) or $this->errorAction('error mysql connection');
-
 		mysqli_query(self::$db, "set names 'utf8'");
-
-
-
 		/*
 		mysqli_query ("set character_set_client='utf-8'");
 		mysqli_query ("set character_set_results='utf-8'");
@@ -45,22 +44,39 @@ class Db
 	// return MySQL query result
 	public function query($query, $data = array())
 	{
-		if (!empty($data)) {
-			$this->data = array_map(array(self::getMysql(), 'escapeString'),array_values($data));
-			$this->data_num = 0;
-			//$query = vsprintf($query,$data);
-			$query = preg_replace_callback("/(\?s)|(\?d)/",array($this,'convertPlaceholders'),$query);
-		}
-		$this->query = $query;
-
-//		if(strpos($query, '999999999999'))
-//			var_dump($query);
-
-		$result = mysqli_query(self::$db, $query) or $this->errorAction();
-
+		$this->setVariables($query, $data);
+//		if(strpos($this->query, '999999999999')){
+//            var_dump($this->query);
+//            die();
+//        }
+		$result = mysqli_query(self::$db, $this->query) or $this->errorAction();
 		self::$query_count++;
 		return $result;
 	}
+
+	private function setVariables($query, $data)
+    {
+        if (!empty($data)) {
+            $this->data = array_map(array(self::getMysql(), 'escapeString'),array_values($data));
+            $this->data_num = 0;
+            //$query = vsprintf($query,$data);
+            $query = preg_replace_callback("/(\?s)|(\?d)/",array($this,'convertPlaceholders'),$query);
+        }
+        $this->query = $query;
+        return $this;
+    }
+
+	public function multiQuery($query, $data = array())
+    {
+        $this->setVariables($query, $data);
+//		if(strpos($this->query, '999999999999')){
+//            var_dump($this->query);
+//            die();
+//        }
+        $result = mysqli_multi_query (self::$db, $query) or $this->errorAction();
+        self::$query_count++;
+        return $result;
+    }
 
 	static private function escapeString($array)
 	{
@@ -260,5 +276,40 @@ class Db
 
 		return implode(',',$result);
 	}
+
+	public function export($fileName, $tablesString)
+    {
+        $command = '/usr/bin/mysqldump'.
+                        ' -u'.$this->dbConfig['login'].
+                        ' -p'.$this->dbConfig['pass'].
+                        ' '.$this->dbConfig['database'].
+                        ' '.$tablesString.
+                        ' > '.DIR.self::TEMP_DB_PATH.$fileName;
+        exec($command, $output, $return_var);
+        return $return_var===0 ? true : false;
+    }
+
+    public function import($fileName)
+    {
+        $command = '/usr/bin/mysql'.
+                        ' -u'.$this->dbConfig['login'].
+                        ' -p'.$this->dbConfig['pass'].
+                        ' '.$this->dbConfig['database'].
+                        ' < '.DIR.self::TEMP_DB_PATH.$fileName;
+        exec($command, $output, $return_var);
+        return $return_var===0 ? true : false;
+    }
+
+    public function isDumpFileExists($fileName)
+    {
+        return file_exists(DIR.self::TEMP_DB_PATH.$fileName);
+    }
+
+    public function deleteDumpFile($fileName)
+    {
+        if($this->isDumpFileExists($fileName))
+            return unlink(DIR.self::TEMP_DB_PATH.$fileName);
+        throw new \Exception ('Error while trying to delete dump file in '.__CLASS__.'!');
+    }
 }
 ?>
