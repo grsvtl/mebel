@@ -291,6 +291,7 @@ class CatalogItem extends \modules\catalog\CatalogGood implements \interfaces\IO
                 $price += $subGood->getGood()->getShowOldPrice() * $subGood->subGoodQuantity;
             return $price;
         }
-        return (new PricesObject($this))->getPriceByMinQuantity()->getOldPrice();
+        $oldPrice = (new PricesObject($this))->getPriceByMinQuantity()->getOldPrice();
+        return $this->isNoop($oldPrice) ? 0 : $oldPrice;
     }
 }

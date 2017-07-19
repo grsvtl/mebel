@@ -69,6 +69,14 @@
 								<td><textarea style="width: 171px" name="text" cols="60"><?=$this->getGET()['text']?></textarea></td>
 							</tr>
                             <tr>
+                                <td class="right">Подтовары:</td>
+                                <td>
+                                    <select class="filterInput" name="subGoods">
+                                        <option value=""> </option>
+                                        <option value="with" <?= $this->getGET()['subGoods']=='with' ? 'selected' : ''?>>С подтоварами</option>
+                                        <option value="without" <?= $this->getGET()['subGoods']=='without' ? 'selected' : ''?>>Без подтоваров</option>
+                                    </select>
+                                </td>
                                 <td class="right">Спец. метки:</td>
                                 <td>
                                     <select class="filterInput" name="mark">
@@ -78,8 +86,6 @@
                                         <?php endforeach;?>
                                     </select>
                                 </td>
-                                <td class="right"></td>
-                                <td></td>
                                 <td class="right"></td>
                                 <td></td>
                                 <td class="right"></td>
@@ -104,7 +110,9 @@
 							<th colspan="2" class="first">#</th>
 							<th>Фото</th>
 							<th>id</th>
-							<th>Название</th>
+							<th>
+                                Название<br>(цена / <font color="#a9a9a9">старая цена</font>)
+                                <i><font color="#4b0082">наличие подтоваров</font></i></th>
 							<th>Производитель</th>
 							<th>Категория</th>
 							<th>Статус</th>
@@ -120,7 +128,17 @@
 									</a>
 								</td>
 								<td><?=$object->id?></td>
-								<td><p class="name"><b><?=$object->getName()?></b></p></td>
+								<td>
+                                    <p class="name">
+                                        <b><?=$object->getName()?></b>
+                                        <br><br>
+                                        (
+                                            <?=number_format( $object->getShowPrice(), 0, ',', ' ' )?>
+                                            /
+                                            <font color="#a9a9a9"><?=number_format( $object->getShowOldPrice(), 0, ',', ' ' )?></font>
+                                        ) <?= $object->isSubGoodsExists() ? '<i><font color="#4b0082">есть подтовары</font></i>' : ''?>
+                                    </p>
+                                </td>
 								<td><p class="name"><i><?=$object->getFabricator()->getName()?></i></p></td>
 								<td><p class="name"><?=$object->getCategory()->name?></p></td>
 								<td><p class="status on"><font color="<?=$object->getStatus()->color?>"><?=$object->getStatus()->name?></font></p></td>
@@ -146,6 +164,7 @@
 										<option value="statusId">Назначить статус</option>
 										<option value="categoryId">Назначить категорию</option>
 										<option value="groupRemove">Удалить</option>
+                                        <option value="changePrice">Изменить цены</option>
 									</select>
 								</td>
 							</tr>
@@ -192,6 +211,57 @@
 									<button class="remove button confirm active" data-confirm="Удалить объекты?" data-action="/admin/catalog/groupRemove/" data-data="input[name*=group]" data-callback="reloadPage">ок</button>
 								</td>
 							</tr>
+
+                            <tr class="groupAction changePrice">
+                                <script src="/modules/catalog/catalog/js/changePrices.js"></script>
+                                <td class="first"></td>
+                                <td style="border: 2px dotted #009AFF; padding: 10px; margin-bottom: 10px;">
+                                    <div style="float:left;">
+                                        <label><input type="checkbox" name="prices[price]"> текущая цена</label>
+                                        <br>
+                                        <label><input type="checkbox" name="prices[oldPrice]"> старая цена</label>
+                                    </div>
+
+                                    <select name="changePriceSign" style="float:left; margin: 8px; width: 85px;">
+                                        <option></option>
+                                        <option value="+">повысить</option>
+                                        <option value="-">понизить</option>
+                                    </select>
+
+                                    <div style="float:left; margin: 8px;">на</div>
+
+                                    <input type="text" name="changePriceValue" style="float: left;margin: 8px;width: 60px;padding: 1px 4px;">
+
+                                    <select name="changePriceCurrency" style="float:left; margin: 8px; width: 37px;">
+                                        <option></option>
+                                        <option value="р">р</option>
+                                        <option value="%">%</option>
+                                    </select>
+
+                                    <div class="action_buts" style="float:left;">
+                                        <a class="changePriceTrigger"><img src="/admin/images/buttons/but_apply.png"> Изменить</a>
+                                    </div>
+
+                                    <div class="changePriceErrorMessage hide" style="float: left; margin: 8px; padding: 1px 4px; color: red">
+                                        Проверьте все данные!
+                                    </div>
+                                </td>
+                                <div id="changePricesOkDialog" class="hide" title="Подтверждение изменения цен">
+                                    <style>
+                                        .ui-change-price-ok-dialog{border: 1px solid gray;}
+                                        .ui-change-price-ok-dialog .ui-dialog-titlebar-close{display: none}
+                                        #changePricesOkDialog p{margin: 10px;font-size: 15px;text-align: justify}
+                                        #changePricesOkDialog button{margin: 20px;height: 35px;font-size: 15px;}
+                                    </style>
+                                    <p>Цены были изменены.</p>
+                                    <p>Ознакомиться с новыми ценами вы можете в <strong><a href="<?="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"?>" target="_blank">новой вкладке</a></strong>.</p>
+                                    <p>Вы можете отменить изменения или согласиться с изменениями.</p>
+                                    <button id="roolBackPricesButton">Отменить изменения</button>
+                                    <button id="deleteDumpFileButton">Согласиться с изменениями</button>
+                                </div>
+                            </tr>
+
+
 						</table>
 					</form>
 				</div>
