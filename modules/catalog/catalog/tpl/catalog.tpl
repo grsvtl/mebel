@@ -112,7 +112,10 @@
 							<th>id</th>
 							<th>
                                 Название<br>(цена / <font color="#a9a9a9">старая цена</font>)
-                                <i><font color="#4b0082">наличие подтоваров</font></i></th>
+                                <i><font color="#4b0082">наличие подтоваров</font></i>
+                                ,
+                                <i><font color="#ff00ff">акции</font></i>
+                            </th>
 							<th>Производитель</th>
 							<th>Категория</th>
 							<th>Статус</th>
@@ -136,7 +139,9 @@
                                             <?=number_format( $object->getShowPrice(), 0, ',', ' ' )?>
                                             /
                                             <font color="#a9a9a9"><?=number_format( $object->getShowOldPrice(), 0, ',', ' ' )?></font>
-                                        ) <?= $object->isSubGoodsExists() ? '<i><font color="#4b0082">есть подтовары</font></i>' : ''?>
+                                        )
+                                        <?= $object->isSubGoodsExists() ? '<i><font color="#4b0082">есть подтовары</font></i>' : ''?>
+                                        <?= $object->getOffer() ? '<i><font color="#ff00ff">акция</font></i>' : ''?>
                                     </p>
                                 </td>
 								<td><p class="name"><i><?=$object->getFabricator()->getName()?></i></p></td>
