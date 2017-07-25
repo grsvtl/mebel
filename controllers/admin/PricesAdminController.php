@@ -1,5 +1,9 @@
 <?php
 namespace controllers\admin;
+use core\db\Db;
+use modules\catalog\prices\lib\PricesChanger;
+use modules\catalog\prices\lib\PricesUpdater;
+
 class PricesAdminController extends \controllers\base\Controller
 {
 	use	\core\traits\controllers\Templates,
@@ -16,7 +20,10 @@ class PricesAdminController extends \controllers\base\Controller
 		'ajaxRemovePrice',
 		'ajaxGetBasePricesBlock',
 		'saveBasePrices',
-		'savePrice'
+		'savePrice',
+        'changePrices',
+        'roolBackPrices',
+        'deleteDumpFile'
 	);
 
 	protected function getPricesTemplate($objectId)
@@ -139,4 +146,21 @@ class PricesAdminController extends \controllers\base\Controller
 		$price->edit($data, array('id', 'price', 'oldPrice'));
 		$this->ajaxResponse(true);
 	}
+
+	protected function changePrices()
+    {
+        $res = (new PricesChanger())->saveDump()
+                                    ->execute($this->getPOST());
+        $this->ajaxResponse($res);
+    }
+
+    protected function roolBackPrices()
+    {
+        $this->ajaxResponse( (new PricesChanger())->rollback() );
+    }
+
+    protected function deleteDumpFile()
+    {
+        $this->ajaxResponse( (new PricesChanger())->deleteDumpFile() );
+    }
 }

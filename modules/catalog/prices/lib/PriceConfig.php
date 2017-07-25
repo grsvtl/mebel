@@ -5,6 +5,9 @@ class PriceConfig extends \core\modules\base\ModuleConfig
 	use \core\traits\validators\Base,
 		\core\traits\adapters\Base;
 
+    const OLD_PRICE_COEFFICIENT = 1.05;
+    const PRICE_ROUND_PRECISION = -2;
+
 	protected $objectClass  = '\modules\catalog\prices\lib\Price';
 	protected $objectsClass = '\modules\catalog\prices\lib\Prices';
 

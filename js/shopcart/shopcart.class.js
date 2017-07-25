@@ -187,6 +187,7 @@ var shopcart = function (sources) {
             'phone' : $('[name=phone]').val(),
             'addPhone' : $('[name=addPhone]').val(),
             'email' : $('[name=email]').val(),
+            'info' : $('[name=info]').val(),
 
             'lift' : $("label[for='"+liftId+"']").html(),
             'index' : $('[name=index]:visible').val(),
@@ -214,8 +215,10 @@ var shopcart = function (sources) {
 
                         if( $.isNumeric(data.orderSum) )
                             that.fillYandexPayForm(data);
-                        else
+                        else{
+                            dataLayer.push({'event':'event_zakaz_finish'});
                             $('.successBlockHybrid').show();
+                        }
 
                         that.updateShopcartBar();
                         if(typeof dataLayer != "undefined"){
@@ -223,6 +226,7 @@ var shopcart = function (sources) {
                                 if(object.attr('data-dataLayerPushEvent') != ""){
                                     dataLayer.push({"event": object.attr('data-dataLayerPushEvent')});
                                     dataLayer.push({"event": '"' + object.attr('data-dataLayerPushEvent') + '"'});
+                                    dataLayer.push({'event': 'event_zakaz_done'});
                                     console.log("event : " + object.attr('data-dataLayerPushEvent'));
                                 }
                         }

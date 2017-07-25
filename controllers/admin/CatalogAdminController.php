@@ -150,6 +150,7 @@ class CatalogAdminController extends \controllers\base\Controller
 		$code = (empty($this->getGET()['code'])) ? '' : \core\utils\DataAdapt::textValid($this->getGET()['code']);
 		$description = (empty($this->getGET()['description'])) ? '' : \core\utils\DataAdapt::textValid($this->getGET()['description']);
 		$text = (empty($this->getGET()['text'])) ? '' : \core\utils\DataAdapt::textValid($this->getGET()['text']);
+        $subGoods = (empty($this->getGET()['subGoods'])) ? '' : \core\utils\DataAdapt::textValid($this->getGET()['subGoods']);
         $mark = (empty($this->getGET()['mark'])) ? '' : \core\utils\DataAdapt::textValid($this->getGET()['mark']);
 		$itemsOnPage = (empty($this->getGET()['itemsOnPage'])) ? '' : \core\utils\DataAdapt::textValid($this->getGET()['itemsOnPage']);
 
@@ -189,6 +190,13 @@ class CatalogAdminController extends \controllers\base\Controller
 
 		if (!empty($text))
 			$this->modelObject->setSubquery('AND `text` LIKE \'%?s%\'', $text);
+
+        if (!empty($subGoods)){
+            if($subGoods == 'with')
+                $this->modelObject->setSubquery('AND `id` IN (SELECT `goodId` FROM `tbl_catalog_subgoods`)');
+            if($subGoods == 'without')
+                $this->modelObject->setSubquery('AND `id` NOT IN (SELECT `goodId` FROM `tbl_catalog_subgoods`)');
+        }
 
         if (!empty($mark))
             $this->modelObject->setSubquery('AND `?s` = 1', $mark);

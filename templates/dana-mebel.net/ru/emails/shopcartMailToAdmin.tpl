@@ -8,16 +8,26 @@
     С сайта <?=SEND_FROM?> был отправлен новый заказ.
     <br /><br />
     Данные заказа:
+    <?if($data['family']):?>
     <br />
     Фамилия: <strong><?=$data['family']?></strong>
+    <?endif;?>
     <br />
     Имя: <strong><?=$data['name']?></strong>
+    <?if($data['parentName']):?>
     <br />
     Отчество: <strong><?=$data['parentName']?></strong>
+    <?endif;?>
     <br />
     Телефон: <strong><?=$data['phone']?></strong>
+    <?if($data['email']):?>
     <br />
     Email: <strong><?=$data['email']?></strong>
+    <?endif;?>
+    <?if($data['info']):?>
+    <br />
+    Другая информация: <strong><?=$data['info']?></strong>
+    <?endif;?>
     <br /><br />
 
 <?if(isset($data['lift'])  &&  !empty($data['lift'])):?>
@@ -30,8 +40,10 @@
         <br />
         Область: <strong><?=$data['region']?></strong>
     <?endif?>
+    <?if($data['city']):?>
     <br />
     Город: <strong><?=$data['city']?></strong>
+    <?endif;?>
     <br />
     Улица: <strong><?=$data['street']?></strong>
     <?if($data['block']):?>

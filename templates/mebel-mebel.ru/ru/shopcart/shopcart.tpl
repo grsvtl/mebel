@@ -45,8 +45,8 @@
                 <textarea name="orderDetails" value="" rows="5" cols="68" wrap="soft"></textarea>
                 <!-- Кнопку "Оплатить", можно назвать по своему, например value="Оплатить за курсы вождения"
                      или value="Оплатить подписку на журнал" и т.д.                                        -->
-                <input type="submit" value="Оплатить">
-                <button type="button" class="payAfter">Я оплачу позже</button>
+                <input type="submit" onclick="dataLayer.push({'event': 'event_zakaz_paynow'});" value="Оплатить">
+                <button type="button" onclick="dataLayer.push({'event': 'event_pay_late'});" class="payAfter">Я оплачу позже</button>
             </form>
         </div>
 
