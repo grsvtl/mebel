@@ -211,7 +211,7 @@
                             <div class="row">
                                 <div class="col-sm-3 is-label">Другая информация</div>
                                 <div class="col-sm-9">
-                                    <textarea class="form-control" name="email"></textarea>
+                                    <textarea class="form-control" name="info"></textarea>
                                 </div>
                             </div>
                         </div>
