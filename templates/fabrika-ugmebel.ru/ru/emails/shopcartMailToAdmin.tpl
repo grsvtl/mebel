@@ -24,7 +24,7 @@
 						<br />
 						Email: <strong><?=$data['email']?></strong>
                         <?endif;?>
-                        <?if($data['info']):?>
+                        <?if(isset($data['info']) && $data['info']):?>
                             <br />
                             Другая информация: <strong><?=$data['info']?></strong>
                         <?endif;?>
