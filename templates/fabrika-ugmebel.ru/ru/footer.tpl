@@ -20,7 +20,7 @@
             </div>
             <?endif?>
 
-            <?$mainCategories = $this->getController('Catalog')->getMainCategoriesWhichHasChildren($this->getUgFabricatorId())?>
+            <?$mainCategories = $this->getController('Catalog')->getMainCategoriesWhichHasChildren($this->getController('Catalog')->getUgFabricatorId())?>
             <?if(count($mainCategories)):?>
             <div class="col-sm-3">
                 <h5>Каталог</h5>
