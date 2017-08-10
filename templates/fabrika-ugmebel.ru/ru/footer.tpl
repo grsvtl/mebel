@@ -7,24 +7,31 @@
                     <p class="copyright">Ставропольская мебельная фабрика — "Юг мебель"</p>
                 </div>
             </div>
+
+            <?$topMenu = $this->getController('Article')->getTopMenuData()?>
+            <?if(count($topMenu)):?>
             <div class="col-sm-3">
                 <h5>О нас</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#">Фабрика Юг Мебель</a></li>
-                    <li><a href="#">Пресс-центр</a></li>
-                    <li><a href="#">Карта сайта</a></li>
-                    <li><a href="#">Контакты</a></li>
+                    <?foreach($topMenu as $item):?>
+                    <li><a href="<?=$item->getPath()?>"><?=$item->getName()?></a></li>
+                    <?endforeach;?>
                 </ul>
             </div>
+            <?endif?>
+
+            <?$mainCategories = $this->getController('Catalog')->getMainCategoriesWhichHasChildren($this->getController('Catalog')->getUgFabricatorId())?>
+            <?if(count($mainCategories)):?>
             <div class="col-sm-3">
-                <h5>Сервис</h5>
+                <h5>Каталог</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#">Доставка и подъем</a></li>
-                    <li><a href="#">Сборка</a></li>
-                    <li><a href="#">Гарантия от производителя</a></li>
-                    <li><a href="#">Галерея интерьеров</a></li>
+                    <?foreach($mainCategories as $mainCategory):?>
+                    <li><a href="<?=$mainCategory->getPath()?>"><?=$mainCategory->getName()?></a></li>
+                    <?endforeach;?>
                 </ul>
             </div>
+            <?endif?>
+
             <div class="col-sm-3">
                 <h5>Наши контакты</h5>
 

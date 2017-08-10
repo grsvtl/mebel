@@ -14,7 +14,7 @@
         <?endif?>
         <div class="row">
             <div class="col-lg-8 col-md-7">
-                <div id="productCarousel" class="carousel slide" data-ride="carousel">
+                <div id="productCarousel" class="slide">
                     <?$images = $object->getImagesByCategoryAndStatus('1,2', 1);?>
 
 
