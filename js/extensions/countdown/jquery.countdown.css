@@ -38,7 +38,7 @@
 	text-align:center;
 	line-height:30px;
 	font-family: Arial;
-	background: url(/images/viewGood/timer.png) repeat center top; box-shadow:0 0 10px #999;
+	background: url(/images/bg/timer.png) repeat center top; box-shadow:0 0 10px #999;
 	background-color: #E8EDF1;
 }
 .countdown_descr {
@@ -66,7 +66,7 @@ display: block;
 text-align: center;
 line-height: 34px;
 font-family: Arial;
-background: url(/images/viewGood/timer.png) repeat center top;
+background: url(/images/bg/timer.png) repeat center top;
 box-shadow: 0 0 10px #999;
 background-color: #E8EDF1;
 }
