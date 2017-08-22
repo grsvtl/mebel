@@ -90,7 +90,6 @@
 
                             <div id="reviews">
                                 <?$this->getController('Reviews')->getReviewsTable($object)?>
-                                <?$this->getController('Reviews')->addReviewBlock()?>
                             </div>
 
                         </div>

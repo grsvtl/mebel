@@ -25,7 +25,7 @@ $(function(){
     }
 
     function ajaxEdit(data, successCallback, errorCallback) {
-        var loader = (new loaderLight()).start();
+        var myLoader = (new loader()).start();
         (new errors()).reset();
         $.ajax({
             url: '/admin/reviews/edit/',
@@ -37,7 +37,7 @@ $(function(){
                     successCallback();
                 else
                     errorCallback(res);
-                loader.stop();
+                myLoader.stop();
             }
         });
     }
@@ -64,64 +64,61 @@ $(function(){
         ajaxEdit(data, successCallback, errorCallback);
     });
     
-    // $('.deleteReview').on('click', function () {
-    //     var loader = (new loaderLight()).start();
-    //     $.ajax({
-    //         url: '/admin/reviews/delete/',
-    //         type: 'POST',
-    //         data: {'id' : $(this).attr('data-reviewId')},
-    //         dataType : 'json',
-    //         success: function(res){
-    //             if($.isNumeric(res))
-    //
-    //
-    //
-    //                 console.log('ok');
-    //
-    //
-    //
-    //
-    //             else
-    //                 alert('Error while try to delete review. Please contact developers.');
-    //             loader.stop();
-    //         }
-    //     });
-    // });
-
-    $('.addReview').on('click', function () {
-
-        console.log('ssssssss');
-
-        var that = this;
-        var margin = $(this).css('margin');
-        $(this).css('margin', '5px 0px 0px 0px');
-        setTimeout(function() { $(that).css('margin', '0px') }, 100);
-
-        var data;
-        $('.addReviewForm').find('*').each(function (i, el) {
-            if(el.hasAttribute('name')){
-                if($(this)[0].hasAttribute('val'))
-                    data[$(this).attr('name')] = $(this).val();
+    $('.deleteReview').on('click', function () {
+        var myLoader = (new loader()).start();
+        $.ajax({
+            url: '/admin/reviews/delete/',
+            type: 'POST',
+            data: {'id' : $(this).attr('data-reviewId')},
+            dataType : 'json',
+            success: function(res){
+                if($.isNumeric(res))
+                    ajaxGetReviewsTableContent();
                 else
-                    data[$(this).attr('name')] = $(this).html;
+                    alert('Error while try to delete review. Please contact developers.');
+                myLoader.stop();
             }
         });
-        console.log( 'ddddddddddd', data );
-
-        // var loader = (new loaderLight()).start();
-        // $.ajax({
-        //     url: '/admin/reviews/add/',
-        //     type: 'POST',
-        //     data: {'id' : $(this).attr('data-reviewId')},
-        //     dataType : 'json',
-        //     success: function(res){
-        //         if($.isNumeric(res))
-        //             console.log('ok');
-        //         else
-        //             alert('Error while try to delete review. Please contact developers.');
-        //         loader.stop();
-        //
-        //     }
-        // });
     });
+
+    $('.addReview').on('click', function () {
+        var that = this;
+        var myLoader = (new loader()).start();
+        $.ajax({
+            url: '/admin/reviews/add/',
+            type: 'POST',
+            data: (function () {
+                var data = {};
+                $('.addReviewForm').find('*').each(function(i, el) {
+                    if(el.hasAttribute('name') && $(el).prop("type") != "button" && $(el).prop("type") != "submit"){
+                        if ( ( $(el).prop("type") == "checkbox" || $(el).prop("type") == "radio" ) )
+                            el.checked   ?   data[$(el).attr('name')] = 1   :   '';
+                        else
+                            data[$(el).attr('name')] = $(el).val();
+                    }
+                });
+                return data;
+            })(),
+            dataType : 'json',
+            success: function(res){
+                if($.isNumeric(res))
+                    ajaxGetReviewsTableContent();
+                else
+                    (new errors()).setForm($('.addReviewForm')).show(res);
+                myLoader.stop();
+            }
+        });
+    });
+    
+    function ajaxGetReviewsTableContent() {
+        $.ajax({
+            url: '/admin/reviews/ajaxGetReviewsTableContent/',
+            type: 'POST',
+            data: {'domainInfoId' : $('input[name=domainInfoId]').val()},
+            dataType : 'html',
+            success: function(res){
+                $('.placeForReviewsTableContent').html(res);
+            }
+        });
+    }
 });

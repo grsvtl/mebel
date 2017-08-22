@@ -20,7 +20,7 @@ class ReviewConfig extends \core\modules\base\ModuleConfig
 		'id',
 		'statusId',
 		'domainInfoId',
-		'name',
+		'firstname',
 		'date',
 		'email',
         'statusId',
@@ -33,8 +33,9 @@ class ReviewConfig extends \core\modules\base\ModuleConfig
 	public function rules()
 	{
 		return array(
-			'name' => array(
+			'firstname' => array(
 				'validation' => array('_validNotEmpty'),
+                'adapt' => '_adaptHtml',
 			),
 			'statusId, estimate, domainInfoId' => array(
 				'validation' => array('_validInt', array('notEmpty'=>true)),
@@ -42,7 +43,6 @@ class ReviewConfig extends \core\modules\base\ModuleConfig
 			'date' => array(
 				'adapt' => '_adaptRegDate',
 			),
-//            'email'
 		);
 	}
 

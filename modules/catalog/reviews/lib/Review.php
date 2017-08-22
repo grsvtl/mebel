@@ -10,7 +10,7 @@ class Review extends \core\modules\base\ModuleDecorator
 		parent::__construct($object);
 	}
 
-    public function getName(){return $this->name;}
+    public function getFirstName(){return $this->firstname;}
     public function getAdventages(){return $this->adventages;}
     public function getDisadventages(){return $this->disadventages;}
     public function getText(){return $this->text;}

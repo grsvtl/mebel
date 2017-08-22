@@ -1,6 +1,8 @@
 <?php
 namespace controllers\admin;
 
+use modules\catalog\domainsInfo\lib\DomainInfo;
+use modules\catalog\reviews\lib\Review;
 use modules\catalog\reviews\lib\ReviewConfig;
 
 class ReviewsAdminController extends \controllers\base\Controller
@@ -10,9 +12,11 @@ class ReviewsAdminController extends \controllers\base\Controller
         \core\traits\controllers\Templates;
 
     protected $permissibleActions = array(
+        'add',
         'edit',
+        'delete',
         'getReviewsTable',
-        'addReviewBlock'
+        'ajaxGetReviewsTableContent'
     );
 
     public function  __construct()
@@ -21,6 +25,13 @@ class ReviewsAdminController extends \controllers\base\Controller
         $this->_config = new ReviewConfig();
         $this->objectClass = $this->_config->getObjectClass();
         $this->objectsClass = $this->_config->getObjectsClass();
+    }
+
+    protected function add()
+    {
+        $this->checkUserRightAndBlock('construction_edit');
+        $objectId =  $this->setObject($this->_config->getObjectsClass())->modelObject->add($this->getPOST(), $this->modelObject->getConfig()->getObjectFields());
+        $this->ajax($objectId);
     }
 
     protected function edit()
@@ -34,21 +45,23 @@ class ReviewsAdminController extends \controllers\base\Controller
     protected function delete()
     {
         $this->checkUserRightAndBlock('construction_edit');
-        $order = $this->getObject($this->objectClass, $this->getGET()->orderId);
-        $good  = $order->getGoods()->getObjectById($this->getGET()->goodId);
-        $this->ajaxResponse($good->delete());
+        $this->ajaxResponse( (new Review($this->getPOST()['id']))->delete() );
     }
 
     protected function getReviewsTable($domainInfo)
     {
-        $this->setContent('reviews', $domainInfo->getReviews())
+        $this->setContent('domainInfo', $domainInfo)
             ->includeTemplate('reviewsTable');
     }
 
-    protected function addReviewBlock()
+    protected function getReviewsTableContent($domainInfo)
     {
-        $this->includeTemplate('addReviewBlock');
+        $this->setContent('domainInfo', $domainInfo)
+            ->includeTemplate('reviewsTableContent');
     }
 
-
+    protected function ajaxGetReviewsTableContent()
+    {
+        echo $this->getReviewsTableContent( (new DomainInfo( $this->getPost()['domainInfoId'] )) );
+    }
 }

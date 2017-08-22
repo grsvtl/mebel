@@ -63,7 +63,8 @@ class DomainInfo extends \core\modules\base\ModuleDecorator
 	
 	public function getGood()
 	{
-		return \modules\catalog\CatalogFactory::getInstance()->getGoodById($this->catalogId);
+		return \modules\catalog\CatalogFactory::getInstance()
+            ->getGoodById( $this->getField('objectId', $this->id) );
 	}
 	
 	public function getParams()

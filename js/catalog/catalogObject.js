@@ -2,6 +2,7 @@ $(function(){
 	initTabs();
 	initTouchslider();
 	initFeedback();
+    initReviewAdd();
 });
 
 var initTabs = function()
@@ -74,7 +75,7 @@ var initTouchslider = function()
 		}
 		return this;
 	};
-}
+};
 
 var initFeedback = function()
 {
@@ -90,4 +91,23 @@ var initFeedback = function()
 				$('.okFeedback').hide();
 		})
 		.init();
+};
+
+var initReviewAdd = function()
+{
+    var reviewAddErrors = new errors({'form' : '.reviewAdd'});
+    var reviewAdd = new form;
+    reviewAdd.setSettings({'form' : '.reviewAdd'})
+        .setCallback(function (response) {
+            if(response == 1){
+                reviewAddErrors.reset();
+                $('.okReviewAdd').show();
+                $('.reviewAdd').find("input:visible,textarea,select").val('');
+            }
+            else{
+                reviewAddErrors.show(response);
+                $('.okReviewAdd').hide();
+            }
+        })
+        .init();
 }

@@ -56,42 +56,16 @@
 					<span>Задать вопрос</span>
 				</span>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <?//if($object->getInfo()->getReviews(true)->count()):?>
                 <span class="tabs" data-target="reviews-v">
-					<span>Отзывы (10)</span>
+					<span>
+                        Отзывы
+                        <?if($object->getInfo()->getReviews(true)->count()):?>
+                        (<?=$object->getInfo()->getReviews(true)->count()?>)
+                        <?endif?>
+                    </span>
 				</span>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <?//endif?>
 
 				<div class="clear"></div>
 			</section>

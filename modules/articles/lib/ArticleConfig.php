@@ -74,6 +74,7 @@ class ArticleConfig extends \core\modules\base\ModuleConfig
 		return array(
 			'name' => array(
 				'validation' => array('_validNotEmpty'),
+                'adapt' => '_adaptHtml',
 			),
 			'alias' => array(
 				'adapt' => '_adaptAlias',
