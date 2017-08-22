@@ -56,21 +56,16 @@
 					<span>Задать вопрос</span>
 				</span>
 
-
-
-
-
-
-
-
-<!--                <span class="tabs" data-target="reviews-v">-->
-<!--					<span>Отзывы 10</span>-->
-<!--<!--                    <strong>10</strong>-->
-<!--				</span>-->
-
-
-
-
+                <?//if($object->getInfo()->getReviews(true)->count()):?>
+                <span class="tabs" data-target="reviews-v">
+					<span>
+                        Отзывы
+                        <?if($object->getInfo()->getReviews(true)->count()):?>
+                        (<?=$object->getInfo()->getReviews(true)->count()?>)
+                        <?endif?>
+                    </span>
+				</span>
+                <?//endif?>
 
 				<div class="clear"></div>
 			</section>
@@ -131,8 +126,6 @@
 								</div>
 							</div>
 						</div>
-
-
 
 					</div>
 					<div class="info">
@@ -286,9 +279,6 @@
 						</section>
 						<a class="more pointer tabs" data-target="grade-v">Изменить комплектацию</a>
 						<?endif?>
-
-
-
 
 					</section>
 					<!--Конец блока левой колонки-->
@@ -542,19 +532,9 @@
 			</section>
 			<?endif?>
 
-
-
-
-<!--			<section class="reviews-v target">-->
-				<?//include('catalogObjectByeBlock.tpl')?>
-<!--				<section class="info-text-reviews">-->
-<!--					<h2>Отзывы покупателей</h2>-->
-<!--                    <img src="/images/bg/otzyvy.png">-->
-<!--				</section>-->
-<!--			</section>-->
-
-
-
+			<section class="reviews-v target">
+                <?include('reviews.tpl')?>
+			</section>
 
 			<?if($object->getFabricator()->getFiles()->count()):?>
 			<section class="files-v target">
@@ -616,27 +596,7 @@
 						<?foreach($seriaObjects as $item):?>
 						<li>
 
-
-
-
-
-
-
-
-
-
-
                             <?$this->setContent('object', $item)->includeTemplate('catalog/bands/bandBlock')?>
-
-
-
-
-
-
-
-
-
-
 
 							<a href="<?=$item->getPath()?>" class="linck-block" title="<?=$item->getName()?>">
 								<img src="<?=$item->getFirstPrimaryImage()->getUserImage('231x176', 'watermarkPng')?>">

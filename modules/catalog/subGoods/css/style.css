@@ -47,7 +47,7 @@
 .goodsList .top {
 	background-color: #EAEAEA;
 }
-#subGoods .goodsList td {
+#subGoods .goodsList td, #reviews .goodsList td {
 	padding-top: 5px;
 	padding-bottom: 5px;
 	vertical-align:middle;

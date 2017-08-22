@@ -2071,11 +2071,15 @@ footer {
     padding-bottom: 2px;
 }
 
-.line1 input {
+.line1 input, .line1 select {
     border: 1px solid #d3d4d7;
     padding: 5px 10px;
     width: 322px;
     color: #666;
+}
+
+.line1 select {
+    width: auto;
 }
 
 .block-input {
@@ -2087,7 +2091,7 @@ footer {
     border: 1px solid #d3d4d7;
     padding: 5px 10px;
     width: 685px;
-    height: 120px;
+    height: 80px;
     color: #666;
 }
 
@@ -3934,4 +3938,43 @@ width: 257px;
     margin: 0px 0px 0px 114px !important;
     font-size: 19px !important;
 
+}
+
+.reviewWrapper{
+    color:#444444;
+    margin-bottom: 30px;
+}
+
+
+.reviewWrapper .reviewInner{
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.reviewWrapper .reviewInner .title{
+    width: auto;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.reviewWrapper .reviewInner .name{
+    font-weight: bold;
+}
+
+.reviewWrapper .reviewInner .name img{
+    float: left;
+    margin: -2px 8px 0px 0px;
+}
+
+.reviewWrapper .reviewInner p{
+
+}
+
+.okReviewAdd{
+    color: green;
+}
+
+.reviewAddSubmit:hover{
+    opacity: 0.8;
 }

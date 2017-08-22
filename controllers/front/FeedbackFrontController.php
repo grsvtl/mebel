@@ -39,16 +39,18 @@ class FeedbackFrontController extends \controllers\base\Controller
 	protected function ajaxModalAsk()
 	{
 		$post = $this->getPOST();
+        $result = array();
 		if ( $post->phoneNumberAsk ) {
 			if ( !strripos($post->phoneNumberAsk, '_') &&  $this->_validCorrectCapcha($this->getPOST()['capcha']) === true) {
-				$modalAsk = new \modules\mailers\ModalAskMail();
-				$result = $modalAsk->sendModalAskToManagers($post->phoneNumberAsk);
-			} else {
-				$result = array( 'phoneNumberAsk' => 'Вы ввели неверный номер телефона, попытайтесь пожалуйста еще раз' );
-			}
-		} else {
-			$result = array( 'phoneNumberAsk' => 'Пожалуйста введите свой номер телефона' );
+                $modalAsk = new \modules\mailers\ModalAskMail();
+                $result = $modalAsk->sendModalAskToManagers($post->phoneNumberAsk);
+            }
 		}
+		else
+            $result['phoneNumberAsk'] = 'Пожалуйста введите свой номер телефона';
+
+        if( strripos($post->phoneNumberAsk, '_' ))
+            $result['phoneNumberAsk'] = 'Вы ввели неверный номер телефона, попытайтесь пожалуйста еще раз';
 
 		if( $this->_validCorrectCapcha($this->getPOST()['capcha']) !== true )
             $result['capcha'] = 'Укажите верный результат';

@@ -89,11 +89,7 @@
                             </div><!--main-->
 
                             <div id="reviews">
-
-                                <?var_dump($object->getReviews())?>
-
-                                <?$this->getController('Reviews')->getReviewsTable()?>
-                                <?$this->getController('Reviews')->addReviewBlock()?>
+                                <?$this->getController('Reviews')->getReviewsTable($object)?>
                             </div>
 
                         </div>

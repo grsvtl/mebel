@@ -9,10 +9,16 @@ class Reviews extends \core\modules\base\ModuleDecorator
 		parent::__construct($object);
 	}
 
-	public function getReviews($domainInfoId)
+	public function filterActive()
     {
-        return $this
-//            ->setSubquery('AND `domainInfoId`=?d', $domainInfoId)
-            ;
+        $config = $this->getObjectConfig();
+        $this->setSubquery('AND `statusId`=?d', $config::ACTIVE_STATUS_ID);
+        return $this;
+    }
+
+	public function filterByDomainInfoId($domainInfoId)
+    {
+        $this->setSubquery('AND `domainInfoId`=?d', $domainInfoId);
+        return $this;
     }
 }
