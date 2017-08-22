@@ -8,9 +8,11 @@
 									<li>
 										<a href="#main">Параметры</a>
 									</li>
+                                    <?if($domainAlias == 'mebel-mebel.ru'):?>
                                     <li>
                                         <a href="#reviews">Отзывы</a>
                                     </li>
+                                    <?endif?>
 								</ul>
 							</div>
                             <div id="main">
