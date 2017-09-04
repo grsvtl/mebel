@@ -20,30 +20,35 @@
                     $objectsCount = $objects->count();
                     if($objectsCount):
                     ?>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="product-item">
-                            <a
-                                href="<?=$category->getPath().$seria->alias.'/'?>"
-                                class="img-cover <?= $seria->description ? 'background-size-contain' : ''?>"
-                                style="background-image: url(<?=
-                                    $seria->description ?
-                                    $seria->description :
-                                    $objects->current()->getFirstPrimaryImage()->getFocusImage('0x200')
-                                ?>);"
-                            ></a>
-                            <div class="product-item-details">
-                                <h4><a href="<?=$category->getPath().$seria->alias.'/'?>" class="product--name">Серия <?=$seria->getValue()?></a></h4>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="product--price"><var>от <?=number_format( $this->getController('Catalog')->getMinPriceByObjects($objects), 0, ',', ' ' )?></var> руб.</div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <a href="<?=$category->getPath().$seria->alias.'/'?>" class="btn btn-default pull-right">Подробнее</a>
+                        <?foreach($objects as $object):?>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="product-item">
+                                <a
+                                    href="<?=$object->getPath()?>"
+                                    class="img-cover"
+                                    style="background-image: url(<?=$object->getFirstPrimaryImage()->getImage('0x200')?>);"
+                                ></a>
+                                <div class="product-item-details">
+                                    <h4><a href="<?=$object->getPath()?>" class="product--name"><?=$object->getName()?></a></h4>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <?if ($object->getOffer()):?>
+                                            <div class="product--old-price"><var><?=number_format( $object->getShowOldPrice(), 0, ',', ' ' )?></var> руб.</div>
+                                            <?endif?>
+                                            <div class="product--price"><var><?=number_format( $object->getShowPrice(), 0, ',', ' ' )?></var> руб.</div>
+                                        </div>
+                                        <div class="col-sm-8 list-buying-block">
+                                            <button
+                                                    type="button" class="btn btn-primary addToShopcart"
+                                                    data-objectId="<?=$object->id?>" data-objectClass="<?=$object->getClass()?>"
+                                            ><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Купить</button>
+                                            <a href="<?=$object->getPath()?>" class="btn btn-default pull-right">Подробнее</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <?endforeach?>
                     <?endif?>
                     <?endforeach?>
 
