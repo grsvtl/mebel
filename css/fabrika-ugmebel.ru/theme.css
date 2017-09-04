@@ -1537,3 +1537,21 @@ section#productComplect {
     margin-top: 15px;
 }
 /*slick add style end*/
+
+
+
+
+
+/* 1 september fixes */
+
+.list-buying-block button.addToShopcart {
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.list-buying-block a.btn-default {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* 1 september fixes */
