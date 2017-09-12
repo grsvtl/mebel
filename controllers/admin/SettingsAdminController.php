@@ -57,5 +57,11 @@ class SettingsAdminController extends \controllers\base\Controller
 
 //		$this->ajaxResponse(\core\cache\Cacher::getInstance()->removeAll());
 	}
+
+	public function clearPageCache()
+	{
+		$run = "find /var/www/vnm/data/www/mebel-mebel.ru/cache/CacheLite/ -name 'cache_*' -type f -print -delete;";
+		return exec($run);
+	}
 }
 ?>

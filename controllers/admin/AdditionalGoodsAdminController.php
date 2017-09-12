@@ -2,7 +2,8 @@
 namespace controllers\admin;
 class AdditionalGoodsAdminController extends \controllers\base\Controller
 {
-    use \core\traits\controllers\Templates;
+    use \core\traits\controllers\Templates,
+        \core\traits\controllers\ControllersHandler;
 
     protected $permissibleActions = array(
         'getAdditionalGoodsTable',
@@ -37,12 +38,14 @@ class AdditionalGoodsAdminController extends \controllers\base\Controller
     protected function ajaxAddAdditionalGood()
     {
         $objectId =  $this->setObject($this->_config->getObjectsClass())->modelObject->add($this->getPOST(), $this->modelObject->getConfig()->getObjectFields());
+        $this->getController('Settings')->clearPageCache();
         $this->ajax($objectId, 'ajax', true);
     }
 
     protected function ajaxDeleteAdditionalGood()
     {
         $additionalGood = $this->getObject($this->objectClass, $this->getPost()->additionalGoodId);
+        $this->getController('Settings')->clearPageCache();
         $this->ajaxResponse($additionalGood->remove());
     }
 }
