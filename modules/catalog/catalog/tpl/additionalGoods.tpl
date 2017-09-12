@@ -1,0 +1,1 @@
+<?$this->getController('AdditionalGoods')->getAdditionalGoodsTable($object->id)?>

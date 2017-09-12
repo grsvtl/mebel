@@ -1,0 +1,42 @@
+#addAdditionalGood{
+    width: 120px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    padding: 2px 4px;
+    margin: 10px 40px 10px auto;
+    border: solid 1px #007fb9;
+    background: #16a2d3; /* Old browsers */
+    background: -moz-linear-gradient(top,  #16a2d3 0%, #0087c3 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#16a2d3), color-stop(100%,#0087c3)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #16a2d3 0%,#0087c3 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #16a2d3 0%,#0087c3 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #16a2d3 0%,#0087c3 100%); /* IE10+ */
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    behavior: url(PIE.htc);
+}
+
+
+#additionalGoods {
+    margin-right: 10px;
+}
+#additionalGoods .title{padding-bottom:15px; font-size:17px; font-weight: bold;}
+#additionalGoods input[type=text]{
+    padding:0 5px;
+    height:25px;
+    line-height:24px;
+    width:40px;
+}
+#additionalGoods td{ padding-bottom:15px; line-height:24px; font-weight:bold;}
+#additionalGoods td.first{ text-align:right; padding-right:10px;}
+#additionalGoods select{ width:502px; height:25px; line-height:24px; border:1px solid #999999;}
+#additionalGoods textarea{width:490px; overflow: auto; max-width:490px; padding:5px; height:105px; font-family: Arial, Helvetica, sans-serif; line-height:125%; border:1px solid #999999;}
+
+#additionalGoods .goodsList td, #reviews .goodsList td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    vertical-align:middle;
+}

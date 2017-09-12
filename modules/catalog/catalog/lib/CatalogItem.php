@@ -23,6 +23,7 @@ class CatalogItem extends \modules\catalog\CatalogGood implements \interfaces\IO
 		$object = new \modules\properties\components\propertiesValues\lib\RelationsDecorator($object);
 		$object = new \modules\catalog\subGoods\lib\SubGoodsDecorator($object);
 		$object = new \modules\fabricators\lib\FabricatorDecorator($object);
+		$object = new \modules\catalog\additionalGoods\lib\AdditionalGoodsDecorator($object);
 		parent::__construct($object);
 	}
 
@@ -267,6 +268,14 @@ class CatalogItem extends \modules\catalog\CatalogGood implements \interfaces\IO
     {
         if(!empty($this->fabricatorId))
             if($this->fabricatorId == (new \modules\fabricators\lib\FabricatorConfig())->getMeriFabricatorId())
+                return true;
+        return false;
+    }
+
+    public function isUgMebel()
+    {
+        if($this->fabricatorId)
+            if($this->fabricatorId == (new \modules\fabricators\lib\FabricatorConfig())->getUgFabricatorId())
                 return true;
         return false;
     }

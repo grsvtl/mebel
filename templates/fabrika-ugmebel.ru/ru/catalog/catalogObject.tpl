@@ -288,6 +288,81 @@
         </section>
         <?endif?>
 
+        <?if ($object->isAdditionalGoodsExists()):?>
+
+        <section id="productComplect">
+            <div role="tabpanel">
+                <ul class="nav nav-tabs" role="tablist">
+                    <?$i = 0;?>
+                    <?if($object->isAdditionalGoodsExists()):?>
+                    <li role="presentation" class="active" <?$i = 1;?>>
+                    <a href="#theKitIncludes" aria-controls="tab" role="tab" data-toggle="tab">Другие товары</a>
+                    </li>
+                    <?endif?>
+                    <?if($object->getText()):?>
+                    <li role="presentation" class="<?= $i==0 ? 'active' : ''?>">
+                        <a href="#productDescription" aria-controls="tab" role="tab" data-toggle="tab">Описание</a>
+                    </li>
+                    <?endif?>
+                </ul>
+
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="theKitIncludes">
+                        <div class="row complect products">
+                            <?foreach ($object->getAdditionalGoods() as $additionalGood):?>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="complect-item product-item">
+                                    <a href="<?=$additionalGood->getGood()->getPath()?>" class="img-cover" style="background-image: url(<?=$additionalGood->getGood()->getFirstPrimaryImage()->getImage('260x150')?>);"></a>
+                                    <div class="product-item-details">
+                                        <div class="product-name row">
+                                            <div class="col-xs-10">
+                                                <h4><a href="<?=$additionalGood->getGood()->getPath()?>"><?=$additionalGood->getGood()->getName()?></a></h4>
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <span class="pull-right product-count"><?=$additionalGood->getQuantity()?> шт</span>
+                                            </div>
+                                        </div>
+
+                                        <table class="table-options"><tbody>
+                                            <? foreach( $sizesAndWeight as $size ): ?>
+                                            <? if($additionalGood->getGood()->getPropertyValueById($size->id)->value): ?>
+                                            <tr>
+                                                <td><label><?=$size->getValue()?>:</label></td>
+                                                <td>
+                                            <span>
+                                                <?=$additionalGood->getGood()->getPropertyValueById($size->id)->value?>
+                                                <?=$additionalGood->getGood()->getPropertyValueById($size->id)->getMeasure()->shortName?>
+                                            </span>
+                                                </td>
+                                            </tr>
+                                            <? endif; ?>
+                                            <? endforeach; ?>
+                                            </tbody></table>
+
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-12 col-sm-6 col-xs-6">
+                                                <div class="product--price">
+                                                    <var>
+                                                        <?=number_format( $additionalGood->getGood()->getShowPrice(), 0, ',', ' ' )?>
+                                                    </var>
+                                                    руб.
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-6 col-xs-6">
+                                                <button
+                                                        type="button" class="btn btn-primary addToShopcart"
+                                                        data-objectId="<?=$additionalGood->getGood()->id?>" data-objectClass="<?=$additionalGood->getGood()->getClass()?>"
+                                                ><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Купить</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?endforeach?>
+                        </div>
+                    </div>
+                    <?endif?>
+
         <?if($otherGoodsOfSeriaAndCategory->count()):?>
         <section class="product-catalog">
             <h3 class="text-center">Похожие товары</h3>
