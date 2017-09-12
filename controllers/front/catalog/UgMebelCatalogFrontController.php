@@ -3,6 +3,9 @@ namespace controllers\front\catalog;
 class UgMebelCatalogFrontController extends \controllers\front\catalog\CatalogFrontController
 {
 	const QUANTITY_OF_OTHER_GOODS_OF_SERIA_AND_CATEGORY = 3;
+    const MODULNYIE_SPALNI_CATEGORY_ID = 122;
+    const MODULNYIE_GOSTINYIE_CATEGORY_ID = 119;
+
 
 	protected $permissibleActions = array(
         'getMinPriceByObjects',
@@ -200,5 +203,15 @@ class UgMebelCatalogFrontController extends \controllers\front\catalog\CatalogFr
             $objects->setLimit($limit);
         return $objects;
 
+    }
+
+    public function filterObjectsExcludeSubCategories($objects, $category)
+    {
+        if ($category->alias == 'spalni') {
+            return $objects->setSubquery('AND `categoryId` = (?d)', (int)self::MODULNYIE_SPALNI_CATEGORY_ID);
+        } elseif ($category->alias == 'gostinnye') {
+            return $objects->setSubquery('AND `categoryId` = (?d)', (int)self::MODULNYIE_GOSTINYIE_CATEGORY_ID);
+        }
+        return $objects;
     }
 }

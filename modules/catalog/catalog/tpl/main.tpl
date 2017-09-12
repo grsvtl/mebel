@@ -7,6 +7,10 @@
 					<script type="text/javascript" src="/modules/catalog/subGoods/js/subGoodsHandler.js"></script>
 					<script type="text/javascript" src="/modules/catalog/subGoods/js/subGoods.class.js"></script>
 
+					<link rel="stylesheet" type="text/css" href="/modules/catalog/additionalGoods/css/style.css">
+					<script type="text/javascript" src="/modules/catalog/additionalGoods/js/additionalGoodsHandler.js"></script>
+					<script type="text/javascript" src="/modules/catalog/additionalGoods/js/additionalGoods.class.js"></script>
+
 					<script type="text/javascript" src="/js/ajaxLoader.class.js"></script>
 					<script type="text/javascript" src="/modules/orders/js/autosuggest/autosuggest.js"></script>
 					<script type="text/javascript" src="/modules/orders/js/autosuggest/jquery.autoSuggest.js"></script>

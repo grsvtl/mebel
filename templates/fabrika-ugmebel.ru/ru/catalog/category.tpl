@@ -17,6 +17,7 @@
                     <?foreach($series as $seria):?>
                     <?
                     $objects = $this->getController('Catalog')->getObjectsByFabricatorAndSeria($fabricator->id, $seria->getValue());
+                    $objects = $this->getController('Catalog')->filterObjectsExcludeSubCategories($objects, $category);
                     $objectsCount = $objects->count();
                     if($objectsCount):
                     ?>

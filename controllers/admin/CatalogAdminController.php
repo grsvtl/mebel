@@ -273,6 +273,11 @@ class CatalogAdminController extends \controllers\base\Controller
 				'prices'     => 'Цены',
 				'services'     => 'Услуги'
 			));
+
+            if ( $object->isUgMebel() )
+                $tabs = array_merge($tabs, [
+                    'additionalGoods' => 'Дополнительные товары'
+                ]);
 		}
 
 		$this->setContent('object', $object)
