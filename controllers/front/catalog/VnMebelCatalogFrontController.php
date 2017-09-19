@@ -160,8 +160,8 @@ class VnMebelCatalogFrontController extends \controllers\front\catalog\CatalogFr
 			$this->setLevel($category->getParent()->name, $category->getParent()->getPath())
 				 ->setLevel($category->getName());
 
-			if(isset($this->designedCategories[$category->id]))
-				$this->setContent ('mainCategoryContentInclude', $this->designedCategories[$category->id]);
+			//if(isset($this->designedCategories[$category->id]))
+				//$this->setContent ('mainCategoryContentInclude', $this->designedCategories[$category->id]);
 
 			$this->setContent('category', $category)
 				 ->setMetaFromObject($category)

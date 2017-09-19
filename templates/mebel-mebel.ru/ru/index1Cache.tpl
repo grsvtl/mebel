@@ -57,16 +57,16 @@
 	</div>
 </div>
 
-<div class="title">
+<!--<div class="title">
 	<h1>Интернет-магазин мебели для дома</h1>
-</div>
+</div>-->
 
 <?//$fabricators = $this->getObject('\modules\fabricators\lib\Fabricators')->getActiveFabricators()?>
 
 <!--<section class="filter">
 	<section class="center-filter">-->
-<div class="filter">
-	<div class="center-filter">
+<!--<div class="filter">
+	<div class="center-filter">-->
 
 <!--			<select class="fabricator">
 				<option value>-- все фабрики --</option>
@@ -74,23 +74,23 @@
 				<option value="<?//=$fabricator->id?>"><?//=$fabricator->name?></option>
 				<?//endforeach?>
 			</select>-->
-			<select class="mainCategory">
-				<option value>-- все типы мебели --</option>
-				<?foreach ($this->getController('Catalog')->getMainCategoriesWhichHasChildren() as $mainCategory):?>
-				<option value="<?=$mainCategory->id?>"><?=$mainCategory->name?></option>
-				<?endforeach?>
-			</select>
-			<span>Цена от</span>
-			<input class="minPrice" value="<?=$this->getController('Catalog')->getMinPrice()?>">
-			<div class="strongArrow"></div>
-			<span>До</span>
-			<input class="maxPrice" value="<?=$this->getController('Catalog')->getMaxPrice()?>">
-			<button class="indexSearchButton">искать товар</button>
-			<div class="clear"></div>
+<!--<select class="mainCategory">
+    <option value>-- все типы мебели --</option>
+    <?foreach ($this->getController('Catalog')->getMainCategoriesWhichHasChildren() as $mainCategory):?>
+    <option value="<?=$mainCategory->id?>"><?=$mainCategory->name?></option>
+    <?endforeach?>
+</select>
+<span>Цена от</span>
+<input class="minPrice" value="<?=$this->getController('Catalog')->getMinPrice()?>">
+<div class="strongArrow"></div>
+<span>До</span>
+<input class="maxPrice" value="<?=$this->getController('Catalog')->getMaxPrice()?>">
+<button class="indexSearchButton">искать товар</button>
+<div class="clear"></div>-->
 <!--	</section>
 </section>-->
-	</div>
-</div>
+<!--</div>
+</div>-->
 <!--Начало основного контента-->
 <!--<article>-->
 <div>

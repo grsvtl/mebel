@@ -1,15 +1,15 @@
-		<?$fabricators = $this->getObject('\modules\fabricators\lib\Fabricators')->getActiveFabricators()?>
+		<?//$fabricators = $this->getObject('\modules\fabricators\lib\Fabricators')->getActiveFabricators()?>
 
-		<div class="factory">
+		<!--<div class="factory">
 			<h2>У нас товары мебельных фабрик:</h2>
 			<?foreach ($fabricators as $fabricator):?>
 				<div class="fabricatorBlock"><a href="<?=$fabricator->getPath()?>"><?=$fabricator->name?></a></div>
 			<?endforeach?>
 			<div class="clear"></div>
-		</div>
+		</div>-->
 
 
-		<div class="rubrics">
+		<!--<div class="rubrics">
 			<h2>Популярные рубрики:</h2>
 			<div class="d1">
 				<a href="/spalni/modulnyie_spalni/">
@@ -95,7 +95,7 @@
 					<?endif?>
 				</a>
 			</div>
-		</div>
+		</div>-->
 		<div class="info-block">
 		<!--<section class="info-block">-->
 			<div class="clear"></div>
