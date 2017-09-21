@@ -41,7 +41,7 @@
                     <div class="col-sm-6">
                         <?$category = $this->getCategoryById($categoriesConfig::GOSTINNYE_CATEGORY_ID);?>
                         <a href="<?=$category->getPath()?>" class="img-cover-big img-bordered" style="background-image: url(/images/meriMebel/bg/living_rooms.png);"></a>
-                        <h5><a href="<?=$category->getPath()?>" class="text-dark">Гостинные</a></h5>
+                        <h5><a href="<?=$category->getPath()?>" class="text-dark">Гостиные</a></h5>
 <!--                        <a href="#" class="text-orange pull-right catalog-models-count">Моделей — <span class="count-models">11</span></a>-->
                     </div>
                     <div class="col-sm-6">
@@ -111,7 +111,7 @@
                             <br>
                             <h4 class="text-uppercase">Доставка 1-2 дня</h4>
                             <br>
-                            <p class="text-left">Доставим в кротчайшие сроки, в зависимости от того в каком районе вы живете.</p>
+                            <p class="text-left">Доставим в кратчайшие сроки, в зависимости от того в каком районе вы живете.</p>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6">

@@ -28,7 +28,7 @@
                                 <div class="col-md-4 col-sm-4">
                                     <h5>Каталог</h5>
                                     <ul class="list-unstyled">
-                                        <li><a href="/gostinnye/">Гостинные</a></li>
+                                        <li><a href="/gostinnye/">Гостиные</a></li>
                                         <li><a href="/detskie/">Детские</a></li>
                                         <li><a href="/spalni/">Спальни</a></li>
                                     </ul>
