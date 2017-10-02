@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21px" height="28px" viewBox="0 0 21 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>card</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M19.5,6.5 L15,6.5 L15,5 L15,5 L15,5 C15,2.5 13,0.5 10.5,0.5 C8,0.5 6,2.5 6,5 L6,5 L6,5 L6,6.5 L1.5,6.5 C0.7,6.5 0,7.2 0,8 L0,26 C0,26.8 0.7,27.5 1.5,27.5 L19.5,27.5 C20.3,27.5 21,26.8 21,26 L21,8 C21,7.2 20.3,6.5 19.5,6.5 Z M7.5,5 C7.5,3.3 8.8,2 10.5,2 C12.2,2 13.5,3.3 13.5,5 L13.5,6.5 L7.5,6.5 L7.5,5 Z" id="path-1"></path>
+    </defs>
+    <g id="pages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="home" transform="translate(-1114.000000, -20.000000)">
+            <g id="card" transform="translate(1114.000000, 20.000000)">
+                <g id="Shape">
+                    <use fill="#D8D8D8" xlink:href="#path-1"></use>
+                    <use fill="#004583" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

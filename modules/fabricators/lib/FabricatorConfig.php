@@ -15,6 +15,7 @@ class FabricatorConfig extends \core\modules\base\ModuleConfig
 	const DANA_FABRICATOR_ID = 12;
     const MERI_FABRICATOR_ID = 32;
     const UG_FABRICATOR_ID = 31;
+    const LEROM_FABRICATOR_ID = 38;
 
 	protected $removedStatus = self::REMOVED_STATUS_ID;
 
@@ -79,4 +80,5 @@ class FabricatorConfig extends \core\modules\base\ModuleConfig
 	public function getDanaFabricatorId(){return self::DANA_FABRICATOR_ID;}
     public function getMeriFabricatorId(){return self::MERI_FABRICATOR_ID;}
     public function getUgFabricatorId(){return self::UG_FABRICATOR_ID;}
+    public function getLeromFabricatorId(){return self::LEROM_FABRICATOR_ID;}
 }

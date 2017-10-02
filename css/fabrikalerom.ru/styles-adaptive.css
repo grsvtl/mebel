@@ -1,0 +1,580 @@
+@media screen and (max-width: 1199px) {
+	.content-m-h a {
+		font-size: 13px;
+	}
+
+	.phone-head p {
+	    color: #333;
+	    font-size: 17px;
+	    font-weight: 700;
+	    padding-top: 18px;
+	    position: relative;
+	}
+
+	.phone-head p span {
+    font-size: 13px;
+    color: #777777;
+    font-weight: 300;
+    display: block;
+    width: 100%;
+    position: relative;
+    right: auto;
+    top: auto;
+}
+
+.head-c-l h4 {
+    font-size: 15px;
+    color: #FFFFFF;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+}
+
+@media screen and (max-width: 1030px) {
+	.content-f-b {
+		-webkit-box-flex: 1 50%;
+    	-ms-flex: 1 50%;
+    	flex: 1 50%;
+	    max-width: 50%;
+	}
+    
+}
+
+@media screen and (max-width: 991px)  {
+	.content-m-h {
+		display: none;
+	}
+
+	.button-m-h {
+		display: block;
+		font-size: 18px;
+		color: #fff;
+		font-weight: 700;
+		padding-top: 12px;
+		cursor: pointer;
+	}
+
+	.logo {
+		padding-top: 16px;
+	}
+
+	.logo-head-line {
+	    border-bottom: 1px solid rgba(0, 69, 131, 0.24);
+	    padding-top: 0px;
+	    padding-bottom: 0px;
+	}
+
+	.main-list-c-l  img {
+		display: none;
+	}
+
+	.main-list-c-l {
+	    padding-left: 15px;
+	}
+
+	.main-list-c-l  a {
+		font-size: 14px;
+	}
+
+	.main-list-c-l .inset-list-c-l a {
+    color: #004583;
+    font-size: 14px;
+    padding-left: 20px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-weight: 400;
+	}
+
+	.banner-h1 {
+		font-size: 25px;
+	}
+
+	.slide-banner {
+	    height: 315px;
+	    background-color: #333;
+	}
+
+	.main-content h2 {
+		font-size: 22px;
+	}
+
+	.name-cat {
+		font-size: 16px;
+	}
+
+	.col-com {
+	    font-size: 12px;
+	}
+
+	.benefist h2 {
+		font-size: 22px;
+	}
+
+	.beny-list img{
+		width: 100px;
+		height: 100px;
+	}
+
+	.benefist p {
+	    font-size: 14px;
+	    text-align: center;
+	    color: #fff;
+	    padding-top: 10px;
+	    padding-left: 10px;
+	    padding-right: 10px;
+	}
+.copy-f {
+		text-align: center;
+	}
+
+	.menu-head.active {
+		display: block;
+		left: 0px;
+		top: 0px;
+		position: fixed;
+		overflow-y: scroll;
+		bottom: 0px;
+		right: 0px;
+		background: rgba(255, 255, 255, 0.94);
+		z-index: 10;
+
+	}
+
+	.menu-head.active .content-m-h {
+		display: block;
+		margin-top: 40px;
+	}
+
+	.menu-head.active .content-m-h a {
+    display: block;
+    color: #555;
+    padding: 14px 10px;
+    font-weight: 300;
+    font-size: 20px;
+    text-align: center;
+}
+
+.active .button-m-h {
+	display: none;
+}
+
+.active .close-block {
+	display: block;
+	position: fixed;
+	right: 20px;
+	top: 20px;
+	color: #BB2823;
+	cursor: pointer;
+	font-weight: 700;
+	font-size: 18px;
+}
+
+.modal-dialog.good-block {
+	width: auto;
+}
+
+.tab-catalog .nav-tabs>li.active>a, .tab-catalog .nav-tabs>li.active>a:focus, .tab-catalog .nav-tabs>li.active>a:hover {
+    border: 1px solid #004583;
+    border-bottom-color: transparent;
+    font-size: 14px;
+    color: #004583;
+    border-radius: 12px 12px 0px 0px;
+    background: #fff;
+}
+
+.tab-catalog .nav-tabs>li>a {
+    border: 1px solid #EFEFEF;
+    border-bottom-color: #004583;
+    font-size: 14px;
+    color: #8D8D8D;
+    background: #EFEFEF;
+    border-radius: 15px 15px 0px 0px;
+    margin-left: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.tab-catalog .nav-tabs>li>a {
+	margin-left: 5px;
+}
+
+.card tbody tr td {
+	display: block;
+}
+
+.card tbody tr  {
+	display: block;
+	border: 1px solid #E4E4E4;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.card-inset-2 strong, .card-inset-2 span {
+	display: none;
+}
+
+.card tbody tr td:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.card-inset-2 div {
+	float: right;
+	
+}
+
+.card-inset-6 div {
+	float: right;
+	
+}
+
+.card-inset-3 div, .card-inset-5 div {
+	float: right;
+}
+
+.card-inset-4 div {
+	float: right;
+	width: 100px;
+	
+}
+
+.card-inset-2 img {
+	display: none;
+}
+
+.card tbody tr td {
+	padding-left: 150px;
+	position: relative;
+}
+
+
+.card tbody tr .card-inset-1 {
+	padding-left: 15px;
+	text-align: center;
+}
+
+.card thead {
+	display: none;
+}
+
+.card tbody tr .card-inset-2:before {
+	content: "Название";
+}
+
+.card tbody tr .card-inset-3:before {
+	content: "Стоимость";
+}
+
+.card tbody tr .card-inset-4:before {
+	content: "Кол-во";
+}
+
+.card tbody tr .card-inset-5:before {
+	content: "Сумма";
+}
+
+
+.card tbody tr .card-inset-6:before {
+	content: "Удалить";
+}
+
+.card tbody tr td:before {
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    margin-top: -10px;
+    display: block;
+    left: 18px;
+}
+
+.card-inset-2 a {
+	font-size: 16px;
+}
+
+
+.card-inset-3 div, .card-inset-5 div {
+	    font-size: 16px;
+}
+
+
+.card tbody tr .card-inset-9 {
+	display: none;
+}
+
+
+.card tbody tr .card-inset-7 {
+text-align: right;
+}
+
+.card tbody tr .card-inset-8 {
+text-align: right;
+}
+
+}
+
+
+
+@media screen and (max-width: 767px) {
+	.logo img {
+    width: 93px;
+}
+
+.catalog-left {
+    float: left;
+    width: 100%;
+}
+
+.ul-main-list-c-l {
+	display: none;
+}
+
+.overlow-c-l {
+	margin-bottom: 30px;
+}
+
+.right-block {
+    float: left;
+    width: 100%;
+    padding-left: 0px;
+}
+
+.catalog-list {
+	width: 50%;
+	float: left;
+}
+
+.beny-list {
+	width: 50%;
+	float: left;
+	padding-bottom: 30px;
+}
+
+.img-a-b {
+	width: 100px;
+    height: 100px;
+}
+
+.content-block-w {
+	margin-left: 130px;
+}
+
+.content-block-w h3 {
+	font-size: 16px;
+}
+.copy-f {
+		text-align: center;
+	}
+
+.list-cl {
+	position: fixed;
+	top: 0px;
+	left: -500px;
+	bottom: 0px;
+	width: 250px;
+	background: #fff;
+	z-index: 22;
+	padding-top: 20px;
+	overflow-y: scroll;
+	padding-bottom: 20px;
+}
+
+ .active .list-cl {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	width: 250px;
+	background: #fff;
+	z-index: 22;
+	padding-top: 20px;
+	overflow-y: scroll;
+	padding-bottom: 20px;
+}
+
+.ul-main-list-c-l {
+	display: block;
+}
+
+.active .bg-left-menu {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	background: rgba(0, 0, 0, 0.39);
+	z-index: 20;
+}
+
+.active .close-left-menu {
+	display: block;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 18px;
+    z-index: 21;
+}
+
+.close-left-menu { 
+display: none;
+}
+
+.overlow-c-l {
+	cursor: pointer;
+}
+
+}
+
+
+@media screen and (max-width: 600px) {
+	.address-sam {
+		padding: 20px;
+	}
+
+	.address-sam p {
+		font-size: 14px;
+	}
+
+	.address-sam p span {
+		font-size: 14px;
+	}
+}
+
+
+@media screen and (max-width: 520px) {
+	.menu-top-b, .logo {
+		width: 33%;
+		float: left;
+	}
+
+	.card-b-b, .phone-head {
+		width: 67%;
+		float: left;
+	}
+
+	.benefist {
+		display: none;
+	}
+
+	.main-content h1 {
+		font-size: 30px;
+	}
+
+	.content-f-b {
+    -webkit-box-flex: 1 100%;
+    -ms-flex: 1 100%;
+    flex: 1 100%;
+    max-width: 100%;
+}
+
+
+.main-content .nav-tabs>li {
+	    width: 50%;
+	    margin-bottom: 3px; 
+}
+
+.tab-catalog .nav-tabs>li.active>a, .tab-catalog .nav-tabs>li.active>a:focus, .tab-catalog .nav-tabs>li.active>a:hover {
+	border: 1px solid #004583;
+	border-radius: 12px;
+}
+
+.tab-catalog .nav-tabs>li>a {
+	border: 1px solid #EFEFEF;
+	border-radius: 12px;
+}
+
+}
+
+
+@media screen and (max-width: 470px) {
+	.catalog-list {
+		    width: 100%;
+		    float: none;
+	}
+
+	#hot-offer .col-md-3.col-sm-6.col-xs-6{
+		width: 100%;
+	}
+
+	.img-a-b {
+	    width: 100px;
+	    height: 100px;
+	    float: none;
+	    margin-left: auto;
+	    margin-right: auto;
+	    margin-bottom: 30px;
+	}
+
+	.img-a-b {
+	    width: 100px;
+	    height: 100px;
+	    float: none;
+	    margin-left: auto;
+	    margin-right: auto;
+	    margin-bottom: 30px;
+	}
+
+	.content-block-w:before {
+		display: none;
+	}
+
+	.content-block-w {
+    margin-left: 0px;
+}
+
+
+.card-block {
+	background: #fff;
+	padding: 16px 10px 4px 14px;
+}
+
+
+.complect-block .col-md-4.col-sm-6.col-xs-6 {
+	width: 100%;
+}
+
+.tab-content .col-md-4.col-sm-6.col-xs-6 {
+	width: 100%;
+}
+
+
+.button-block .nav li {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.of-order {
+	display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.ot-order {
+	display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-left: 0;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
