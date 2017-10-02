@@ -1,6 +1,8 @@
 <?$this->includeTemplate('meta')?>
 <?$this->includeTemplate('header')?>
 
+<script type="text/javascript" src="/js/fabrikaLerom/main.js"></script>
+
 <!--body-->
 <main>
     <div class="container main-content">
@@ -90,5 +92,7 @@
     <?$this->includeTemplate('topSales')?>
     <?$this->includeTemplate('reviews')?>
     <?$this->includeTemplate('indexMap')?>
+
+    <div class="modalsBlock"></div>
 </main>
 <?$this->includeTemplate('footer')?>
