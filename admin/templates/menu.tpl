@@ -26,6 +26,9 @@
 	<?if($this->checkUserRight('promoCodes_controller')):?>
 		<a href="/admin/promoCodes/" <?= $this->getREQUEST()['controller']=='promoCodes' ? 'class="underline" ' : ''?>>Промо-коды</a>
 	<?endif?>
+	<?if($this->checkUserRight('constructions')):?>
+	<a href="/admin/searchParameters/" <?= $this->getREQUEST()['controller']=='searchParameters' ? 'class="underline" ' : ''?>>Фильтрация по корпусу</a>
+	<?endif?>
 	<?if($this->checkUserRight('seo')):?>
 		<a href="/admin/seo/" <?= $this->getREQUEST()['controller']=='seo' ? 'class="underline" ' : ''?>>SEO</a>
 	<?endif?>

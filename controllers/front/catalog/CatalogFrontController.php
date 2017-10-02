@@ -146,6 +146,35 @@ class CatalogFrontController extends \controllers\base\Controller
 		return $objects;
 	}
 
+    protected function getObjectsExceptCategory($excludedCategory, $butInParentCategoryId, $fabricatorId = null)
+    {
+        $objects = $this->getActiveObjects()
+            ->excludeCategories([$excludedCategory->id])
+            ->setSubquery('AND `categoryId` IN (SELECT `id` FROM `tbl_catalog_catalog_categories` WHERE `parentId` = ?d)', $butInParentCategoryId);
+        if(isset($fabricatorId))
+            $objects->setSubquery('AND `fabricatorId` = ?d', $fabricatorId);
+        return $objects;
+    }
+
+    protected function getCategoriesTreeByFabricatorId($fabricatorId = null)
+    {
+        $categories = [];
+        $unsorted = $this->getCategoriesByFabricatorId($fabricatorId);
+
+        foreach ($unsorted as $category)
+            if ($category->isMain())
+                $categories[$category->alias] = $category;
+            else
+                if (in_array($category->getParent()->alias, array_keys($categories)))
+                    $categories[$category->getParent()->alias][] = $category;
+                else {
+                    $categories[$category->getParent()->alias] = [];
+                    $categories[$category->getParent()->alias][] = $category;
+                }
+
+        return $categories;
+    }
+
 	public function getPropertiesListByAlias($alias)
 	{
 		$properties = new \modules\properties\lib\Properties;

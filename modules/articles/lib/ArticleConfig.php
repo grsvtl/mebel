@@ -33,6 +33,8 @@ class ArticleConfig extends \core\modules\base\ModuleConfig
     const META_UG_CATEGORY_ID = 114;
     const NEWS_UG_CATEGORY_ID = 120;
 
+    const TOP_MENU_LEROM_CATEGORY_ID = 124;
+
     const IMAGES_SMALL_MAIN_MEBEL = 757;
     const IMAGES_BIG_MAIN_MEBEL = 758;
 

@@ -1,0 +1,14 @@
+span.itemQuantity {
+    display: none;
+}
+
+.shopcartItemQnt {
+    font-weight: bold;
+    margin: 0px 5px 0px 5px;
+    font-size: 17px;
+}
+
+button.changeQuantity {
+    font-size: 15px;
+    font-weight: bold;
+}
