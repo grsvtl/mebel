@@ -1,5 +1,6 @@
 <?include(TEMPLATES_ADMIN.'top.tpl');?>
-		<script type="text/javascript" src="/admin/js/base/system/sorting.js"></script>
+		<script type="text/javascript" src="/modules/catalog/catalog/js/sorting.js"></script>
+		<script type="text/javascript" src="/modules/catalog/catalog/js/groupSort.js"></script>
 		<script type="text/javascript" src="/admin/js/base/system/groupActions.js"></script>
 		<div class="main single">
 			<div class="max_width">
@@ -22,6 +23,7 @@
 				<div id="filter-form"  style="<?=(isset($_REQUEST['form_in_use'])?'display:block;':'display:none;')?>">
 					<form id="search" action="" method="get">
 						<input type="hidden" name="form_in_use" value="true" />
+						<input type="hidden" name="domainAlias" class="domainAlias" value="<?=$this->getGET()['domainAlias']?>" />
 						<table>
 							<tr>
 								<td class="right">Категория:</td>
@@ -97,6 +99,7 @@
 										<a class="pointer" onclick="$('#search').submit()"><img src="/admin/images/buttons/search.png" /> Поиск</a>
 										<a class="resetFilters" href="/admin/<?=$_REQUEST['controller']?>/"><img src="/admin/images/buttons/delete.png" /> Сбросить фильтры</a>
 									</div>
+                                    <p class="domain-sorting">Внимание! Включена сортировка по домену <strong><?=$this->getGET()['domainAlias']?></strong></p>
 								</td>
 							<tr>
 						</table>
@@ -119,7 +122,13 @@
 							<th>Производитель</th>
 							<th>Категория</th>
 							<th>Статус</th>
-							<th class="last" colspan="4">Приоритет</th>
+							<th class="last" colspan="4">
+                                <select name="priority" id="domainPriority">
+                                    <? foreach ( $domains->getObjects() as $domain ): ?>
+                                    <option <?=$this->getGET()['domainAlias']==$domain->domainName?'selected':''?> value="<?=$domain->domainName?>">Приоритет <?=$domain->domainName?></option>
+                                    <? endforeach; ?>
+                                </select>
+                            </th>
 						</tr>
 						<? $counter = 0; foreach ($objects as $object): ?>
 							<tr id="id<?=$object->id?>" class="dblclick" data-url="/admin/catalog/catalogItem/<?= $object->id?>" data-id="<?= $object->id?>" data-priority="<?= $object->priority?>">

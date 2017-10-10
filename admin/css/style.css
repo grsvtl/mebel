@@ -1572,3 +1572,11 @@ a.buttonInContent img {
 .blue{
 	color: blue;
 }
+
+.domain-sorting {
+	float: right;
+	font-size: 14px;
+	color: #8f1900;
+	margin-top: 8px;
+	margin-right: 8px;
+}

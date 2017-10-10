@@ -2,6 +2,8 @@
 namespace controllers\admin;
 use core\Configurator;
 use modules\catalog\categories\CatalogCategoryConfig;
+use modules\modulesDomain\components\domains\lib\Domains;
+use modules\modulesDomain\lib\ModulesDomain;
 
 class CatalogAdminController extends \controllers\base\Controller
 {
@@ -204,6 +206,7 @@ class CatalogAdminController extends \controllers\base\Controller
 		$this->modelObject->setOrderBy('`priority` ASC')->setPager($itemsOnPage);
 
 		$this->setContent('objects', $this->modelObject)
+             ->setContent('domains', new Domains())
 			 ->setContent('pager', $this->modelObject->getPager())
 			 ->setContent('pagesList', $this->modelObject->getQuantityItemsOnSubpageListArray())
 			 ->includeTemplate($this->_config->getAdminTemplateDir().'catalog');
