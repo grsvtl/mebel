@@ -1,6 +1,7 @@
 <?php
 namespace modules\catalog\catalog\lib;
 use modules\catalog\prices\lib\PricesObject;
+use modules\catalog\priority\lib\CatalogItemPriority;
 
 class CatalogItem extends \modules\catalog\CatalogGood implements \interfaces\IObjectToFrontend, \interfaces\IGoodForShopcart
 {
@@ -302,5 +303,22 @@ class CatalogItem extends \modules\catalog\CatalogGood implements \interfaces\IO
         }
         $oldPrice = (new PricesObject($this))->getPriceByMinQuantity()->getOldPrice();
         return $this->isNoop($oldPrice) ? 0 : $oldPrice;
+    }
+
+    /**
+     * @param $domainAlias
+     * @param $categoryId
+     *
+     * @return mixed
+     */
+    public function getPriority($domainAlias, $categoryId)
+    {
+        $priority = new CatalogItemPriority($this, $domainAlias, $categoryId);
+
+        if ( $priority->getPriority()!==false ) {
+            return $priority->getPriority();
+        } else {
+            return $this;
+        }
     }
 }
