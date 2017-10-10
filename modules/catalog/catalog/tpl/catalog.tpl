@@ -157,7 +157,7 @@
 								<td><p class="name"><?=$object->getCategory()->name?></p></td>
 								<td><p class="status on"><font color="<?=$object->getStatus()->color?>"><?=$object->getStatus()->name?></font></p></td>
 								<td class="td_bord sortHandle header">
-                                    <?= $object->getPriority( $this->getCurrentDomainAlias(), $this->getGET()['categoryId'] )->priority?>
+                                    <?= $object->getPriority( $this->getGET()['domainAlias'], $this->getGET()['categoryId'] )->priority?>
                                 </td>
 								<td><a href="/admin/catalog/catalogItem/<?=$object->id?>/" class="pen"></a></td>
 								<td><a class="del pointer button confirm" data-confirm="Remove the item?" data-action="/admin/catalog/remove/<?=$object->id?>/" data-callback="postRemoveArticle"></a></td>
