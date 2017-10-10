@@ -19,38 +19,45 @@ var groupSorting = function (settings) {
 			axis: this.settings.axys,
 			start: $.proxy(this.start, this),
 			update: $.proxy(this.update, this)
-		})
+		});
 
 		return this;
-	}
+	};
 
 	this.stylize = function () {
 		this.settings.element$.find('.sortHandle')
 			.append('<span class="ui-icon ui-icon-arrowthick-2-n-s">');
 		return this;
-	}
+	};
 
 	this.start = function(event, ui) {
 		var colspan = $('.ui-sortable-placeholder').parent().children('tr').children('td:last').index() + 1 ;
 		$('.ui-sortable-placeholder').append('<td colspan="'+colspan+'"></td>');
 
 		return this;
-	}
+	};
 
 	this.update = function(event, ui) {
 		var query = '';
 		var that = this;
 		this.settings.element$.children( "tr" ).each(function (i){
 				if ($(this).data('id') !== undefined && $(this).data('priority') !== undefined) {
-					query += '&data['+$(this).data('id')+']='+$(this).data('priority');
+					query += '&data['+$(this).data('id')+']='+i;
 					$(this).find(that.settings.handle).text(i);
 				}
 			});
+		if ( $('.domainAlias').val() ) {
+            query += '&domainAlias='+$('.domainAlias').val();
+		}
+		if ( $('.categoryId').val() ) {
+            query += '&categoryId='+$('.categoryId').val();
+		}
+
 		this.stylize()
 			.savePriority(query);
 
 		return this;
-	}
+	};
 
 	this.savePriority = function (query) {
 		var that = this;
@@ -65,5 +72,5 @@ var groupSorting = function (settings) {
 		});
 
 		return this;
-	}
-}
+	};
+};

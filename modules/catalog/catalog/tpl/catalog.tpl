@@ -28,7 +28,7 @@
 							<tr>
 								<td class="right">Категория:</td>
 								<td>
-									<select class="filterInput" name="categoryId">
+									<select class="filterInput categoryId" name="categoryId">
 										<option></option>
 										<?php if ($objects->getMainCategories()->count() != 0): foreach($objects->getMainCategories() as $categoryObject):?>
 										<option value="<?=$categoryObject->id?>" <?=($categoryObject->id==$this->getGET()['categoryId']) ? 'selected' : ''; ?>><?=$categoryObject->name?></option>
@@ -108,7 +108,7 @@
 				<!-- End: Filters Block -->
 				<? if (!count($objects)): echo 'No Data'; else: ?>
 				<div class="table_edit">
-					<table  id="objects-tbl" data-sortUrlAction="/admin/catalog/changePriority/?" width="100%">
+					<table  id="objects-tbl" data-sortUrlAction="/admin/catalogPriority/setGroupPriority/?" width="100%">
 						<tr>
 							<th colspan="2" class="first">#</th>
 							<th>Фото</th>
