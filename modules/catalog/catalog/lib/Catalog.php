@@ -1,8 +1,11 @@
 <?php
 namespace modules\catalog\catalog\lib;
+use core\traits\RequestHandler;
+
 class Catalog extends \core\modules\base\ModuleDecorator implements \Countable
 {
 	use \modules\catalog\traits\filterCategoryAlias;
+	use RequestHandler;
 
 	function __construct()
 	{
@@ -48,4 +51,30 @@ class Catalog extends \core\modules\base\ModuleDecorator implements \Countable
 				->setSubquery('AND `id` IN (?s)', implode(',', $fabricatorsIdArray));
 
 	}
+
+    /**
+     * @param null   $domainAlias
+     * @param int    $categoryId
+     * @param string $type
+     *
+     * @return mixed
+     */
+	public function orderByDomainAlias($domainAlias = null, $categoryId = 0, $type = 'ASC')
+    {
+        if ( $domainAlias === null ) {
+            $domainAlias = $this->getCurrentDomainAlias();
+        }
+
+        if ( (string)$categoryId == '' ) {
+            $categoryId = '0';
+        }
+
+        return $this->setOrderBy(' (
+            SELECT priority 
+            FROM tbl_catalog_catalog_priorities 
+            WHERE goodId    = mt.id 
+            AND domainAlias = "'.$domainAlias.'" 
+            AND categoryId  = '.$categoryId.' 
+        ) '.$type );
+    }
 }

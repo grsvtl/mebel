@@ -313,6 +313,9 @@ class CatalogItem extends \modules\catalog\CatalogGood implements \interfaces\IO
      */
     public function getPriority($domainAlias, $categoryId)
     {
+        if ( $categoryId === NULL ) {
+            $categoryId = 0;
+        }
         $priority = new CatalogItemPriority($this, $domainAlias, $categoryId);
 
         if ( $priority->getPriority()!==false ) {
