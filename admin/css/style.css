@@ -1580,3 +1580,25 @@ a.buttonInContent img {
 	margin-top: 8px;
 	margin-right: 8px;
 }
+
+.btn {
+	color: #ffffff;
+	background: #2fa9dd;
+	text-decoration: none;
+	display: inline-block;
+	width: 100px;
+	height: 35px;
+	padding-top: 5px;
+	-webkit-transition: 200ms;
+	-moz-transition: 200ms;
+	-ms-transition: 200ms;
+	-o-transition: 200ms;
+	transition: 200ms;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+.btn:hover {
+	color: #ffffff;
+	background: #0098dd;
+}

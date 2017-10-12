@@ -1,0 +1,57 @@
+.ui-sortable-placeholder {
+    display: block;
+    opacity: 1;
+    visibility: visible!important;
+    -webkit-animation: backgroundChange 1.75s infinite;
+    -o-animation: backgroundChange 1.75s infinite;
+    animation: backgroundChange 1.75s infinite;
+}
+
+.caption {
+    overflow: hidden;
+    height: 85px;
+}
+
+@keyframes backgroundChange {
+    50% {
+        background: #2ab6cc;
+    }
+}
+
+.item {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: -webkit-grab;
+}
+
+.item.current {
+    cursor: -webkit-grabbing;
+}
+
+.priority {
+    display: block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    padding-top: 2px;
+}
+
+.pulsate {
+    -webkit-animation: pulsateBg 0.75s infinite;
+    -o-animation: pulsateBg 0.75s infinite;
+    animation: pulsateBg 0.75s infinite;
+}
+
+@keyframes pulsateBg {
+    50% {
+        background: #bff3ff;
+        -webkit-box-shadow: 0 0 0px 10px rgba(191, 243, 255, 0.59);
+        -moz-box-shadow: 0 0 0px 10px rgba(191, 243, 255, 0.59);
+        box-shadow: 0 0 0px 10px rgba(191, 243, 255, 0.59);
+    }
+}

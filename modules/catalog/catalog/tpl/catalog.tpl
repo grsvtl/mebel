@@ -23,7 +23,6 @@
 				<div id="filter-form"  style="<?=(isset($_REQUEST['form_in_use'])?'display:block;':'display:none;')?>">
 					<form id="search" action="" method="get">
 						<input type="hidden" name="form_in_use" value="true" />
-						<input type="hidden" name="domainAlias" class="domainAlias" value="<?=$domainAlias?>" />
 						<table>
 							<tr>
 								<td class="right">Категория:</td>
@@ -99,7 +98,6 @@
 										<a class="pointer" onclick="$('#search').submit()"><img src="/admin/images/buttons/search.png" /> Поиск</a>
 										<a class="resetFilters" href="/admin/<?=$_REQUEST['controller']?>/"><img src="/admin/images/buttons/delete.png" /> Сбросить фильтры</a>
 									</div>
-                                    <p class="domain-sorting">Внимание! Включена сортировка по домену <strong><?=$this->getGET()['domainAlias']?></strong></p>
 								</td>
 							<tr>
 						</table>
@@ -108,7 +106,7 @@
 				<!-- End: Filters Block -->
 				<? if (!count($objects)): echo 'No Data'; else: ?>
 				<div class="table_edit">
-					<table  id="objects-tbl" data-sortUrlAction="/admin/catalogPriority/setGroupPriority/?" width="100%">
+					<table  id="objects-tbl" width="100%">
 						<tr>
 							<th colspan="2" class="first">#</th>
 							<th>Фото</th>
@@ -123,11 +121,7 @@
 							<th>Категория</th>
 							<th>Статус</th>
 							<th class="last" colspan="4">
-                                <select name="priority" id="domainPriority">
-                                    <? foreach ( $domains->getObjects() as $domain ): ?>
-                                    <option <?=$this->getGET()['domainAlias']==$domain->domainName?'selected':''?> value="<?=$domain->domainName?>">Приоритет <?=$domain->domainName?></option>
-                                    <? endforeach; ?>
-                                </select>
+                                <a href="/admin/catalogPriority/catalog" class="btn">Редактировать приоритет</a>
                             </th>
 						</tr>
 						<? $counter = 0; foreach ($objects as $object): ?>
@@ -156,8 +150,7 @@
 								<td><p class="name"><i><?=$object->getFabricator()->getName()?></i></p></td>
 								<td><p class="name"><?=$object->getCategory()->name?></p></td>
 								<td><p class="status on"><font color="<?=$object->getStatus()->color?>"><?=$object->getStatus()->name?></font></p></td>
-								<td class="td_bord sortHandle header">
-                                    <?= $object->getPriority( $domainAlias, $this->getGET()['categoryId'] )->priority?>
+								<td class="td_bord header">
                                 </td>
 								<td><a href="/admin/catalog/catalogItem/<?=$object->id?>/" class="pen"></a></td>
 								<td><a class="del pointer button confirm" data-confirm="Remove the item?" data-action="/admin/catalog/remove/<?=$object->id?>/" data-callback="postRemoveArticle"></a></td>

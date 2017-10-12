@@ -10,7 +10,7 @@ class CatalogPriorityConfig extends \core\modules\base\ModuleConfig
 	protected $objectClass  = '\modules\catalog\priority\lib\CatalogPriority';
 	protected $objectsClass = '\modules\catalog\priority\lib\CatalogPriorities';
 
-	public $templates  = '';
+	public $templates  = 'modules/catalog/priority/tpl/';
 
 	protected $table = 'catalog_catalog_priorities'; // set value without preffix!
 	protected $idField = 'id';
