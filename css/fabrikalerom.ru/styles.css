@@ -1451,3 +1451,20 @@ a:hover, a:focus {
 	font-size: 20px;
 }
 
+.adminShow{
+    height: 25px;
+    width: 170px;
+    line-height: 25px;
+    background: white;
+    border-radius: 3px;
+    border: 1px solid #AEE1F2;
+    font-size: 12px;
+    color: #88D0EA;
+    float: right;
+    text-align: center;
+    position: absolute;
+}
+
+.main-content .right-block .offer-block .info-offer .adminShow{
+    margin: -30px 0px 0px 50px;
+}
