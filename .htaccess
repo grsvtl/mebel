@@ -25,5 +25,7 @@ RewriteCond %{REQUEST_FILENAME} !/templates/node_modules/bootstrap/dist/fonts/(.
 RewriteCond %{REQUEST_FILENAME} !/PIE.htc
 RewriteCond %{REQUEST_FILENAME} !/live-cbea7ffc.txt
 RewriteCond %{REQUEST_FILENAME} !/yandex_6f91eaf6f6d4f7ba.txt
+RewriteCond %{REQUEST_FILENAME} !/node_modules/bootstrap/dist/fonts/(.*)
+
 
 RewriteRule !\.(js|ico|css)$ index.php [L]

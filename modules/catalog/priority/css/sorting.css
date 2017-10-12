@@ -26,6 +26,11 @@
     cursor: -webkit-grab;
 }
 
+.item .thumbnail:active {
+    transition: 200ms;
+    border: 1px solid #2ab6cc;
+}
+
 .item.current {
     cursor: -webkit-grabbing;
 }
