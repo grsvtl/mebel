@@ -1,7 +1,9 @@
 <?$this->includeTemplate('meta')?>
 <?$this->includeTemplate('header')?>
+
 <link href="/css/fabrikalerom.ru/content/catalogObject.css" rel="stylesheet">
 <script type="text/javascript" src="/js/fabrikaLerom/catalogObject.js"></script>
+
 <main>
     <div class="container main-content">
         <?$this->getController('Catalog')->getLeftMenu()?>
