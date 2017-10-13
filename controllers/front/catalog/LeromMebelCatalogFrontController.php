@@ -345,9 +345,9 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
     {
         $objects = $this->getActiveObjects();
         $objects->setSubquery('AND `statusId` = (?d)', (int)CatalogItemConfig::TOP_SELL_ID)
-            //->setSubquery('AND `fabricatorId` = (?d)', $this->getLeromFabricatorId())
-            ->setLimit(35)
-            ->setOrderBy('`priority` ASC');
+                ->setSubquery('AND `fabricatorId` = (?d)', $this->getLeromFabricatorId())
+                ->setLimit(35)
+                ->setOrderBy('`priority` ASC');
         return $objects;
     }
 
