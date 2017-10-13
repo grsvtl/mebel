@@ -22,7 +22,7 @@
                         <li class="active" data-tab="composition"><a href="#composition" data-toggle="tab"><?=$seria->getValue()?></a></li>
                         <?endif?>
                         <?if($subGoods->count()):?>
-                        <li data-tab="modules"><a href="#modules" data-toggle="tab">Мoдули</a></li>
+                        <li class="<?= $objects->count() ? '' : 'active'?>" data-tab="modules"><a href="#modules" data-toggle="tab">Мoдули</a></li>
                         <?endif?>
                     </ul>
                     <div class="tab-content">
@@ -38,7 +38,7 @@
                         </div>
                         <?endif?>
                         <?if($subGoods->count()):?>
-                            <div class="tab-pane" id="modules">
+                            <div class="tab-pane <?= $objects->count() ? '' : 'active'?>" id="modules">
                                 <div class="row">
                                     <?foreach ($subGoods as $subGood):?>
                                         <div class="col-md-4 col-sm-6 col-xs-6 productItemSingle">
@@ -50,7 +50,7 @@
                         <?endif?>
                     </div>
                     <div class="navigation text-center">
-                        <span class="see-more-offers btn loadMoreButton">Показать еще 9 шт. </span>
+                        <span class="see-more-offers btn loadMoreButton">Показать еще</span>
                     </div>
                 </div>
                 <?endif?>
