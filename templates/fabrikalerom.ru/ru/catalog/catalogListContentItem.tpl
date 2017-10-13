@@ -8,7 +8,7 @@
 
     <div class="container-offer">
         <a href="<?=$object->getPath()?>" class="img-c-o">
-            <img src="<?=$object->getFirstPrimaryImage()->getImage('174x174')?>" alt="">
+            <img src="<?=$object->getFirstPrimaryImage()->getImage('254x170')?>" alt=""
         </a>
         <div class="body-offer">
             <a href="<?=$object->getPath()?>" class="link-c-o"><?=$object->getName()?></a>
