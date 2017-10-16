@@ -3,7 +3,7 @@
 									<tr class="top">
 										<td class="number-price">Кол-во</td>
 										<td class="oline-price">Цена на сайте / Старая цена</td>
-										<td class="supply-price">Цена поставки</td>
+<!--										<td class="supply-price">Цена поставки</td>-->
 										<td class="trash-price"><img src="/admin/images/bg/trash.png" alt="Удалить" /></td>
 									</tr><!--top - end-->
 <?foreach($object->getPrices() as $key => $price):?>
@@ -25,19 +25,19 @@
 												<a class="save-oline-price pointer savePriceButton" data-priceid="<?=$price->id?>"></a>
 											</div>
 										</td>
-										<td class="supply-price">
-											<?$minBasePrice = $price->getBasePrices()->getMinBasePrice();?>
-											<?if ($this->isNoop($minBasePrice)):?>
-											<b>Нет предложений...</b>
-											<?else:?>
-											<i><?=$price->getBasePrices()->getMinBasePrice()->getBasePrice()?></i>
-											<span>руб.</span>
-											<b><?=$price->getBasePrices()->getMinBasePrice()->getPartner()->name?></b>
-											<?endif;?>
-											<a class="pointer roster viewBasePriceLink" data-id="<?=$price->id?>" title="Показать цены поставщиков"></a>
-<!--											<a class="pointer edit"></a>
-											<a class="pointer add"></a>-->
-										</td>
+<!--										<td class="supply-price">-->
+<!--											--><?//$minBasePrice = $price->getBasePrices()->getMinBasePrice();?>
+<!--											--><?//if ($this->isNoop($minBasePrice)):?>
+<!--											<b>Нет предложений...</b>-->
+<!--											--><?//else:?>
+<!--											<i>--><?//=$price->getBasePrices()->getMinBasePrice()->getBasePrice()?><!--</i>-->
+<!--											<span>руб.</span>-->
+<!--											<b>--><?//=$price->getBasePrices()->getMinBasePrice()->getPartner()->name?><!--</b>-->
+<!--											--><?//endif;?>
+<!--											<a class="pointer roster viewBasePriceLink" data-id="--><?//=$price->id?><!--" title="Показать цены поставщиков"></a>-->
+<!--<!--											<a class="pointer edit"></a>-->
+<!--											<a class="pointer add"></a>-->
+<!--										</td>-->
 										<td class="delete">
 											<a class="pointer deletePriceLink" data-id="<?=$price->id?>" title="Удалить цену"></a>
 										</td>
