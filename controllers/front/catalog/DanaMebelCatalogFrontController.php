@@ -236,7 +236,7 @@ class DanaMebelCatalogFrontController extends \controllers\front\catalog\Catalog
 			$seria = $good->getSeriaObject();
 
 			$this->setLevel($category->getName(), $category->getPath())
-				->setLevel($seria->getValue(), $good->getDanaSeriaPath())
+				->setLevel($seria->getValue(), $good->getPathBySeria())
 				->setLevel($good->getName());
 
 			$this->setContent('bodyClass', 'insetPage')

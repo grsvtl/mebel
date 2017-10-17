@@ -62,8 +62,8 @@ class CatalogItem extends \modules\catalog\CatalogGood implements \interfaces\IO
 	public function getPath($domainAlias = false)
 	{
 		$currentDomainAlias = $domainAlias ? $domainAlias : $this->getCurrentDomainAlias();
-        if(in_array($currentDomainAlias, array('dana-mebel.net', 'meri-mebel.ru', 'fabrika-ugmebel.ru')))
-			return $this->getDanaSeriaPath().$this->getDomainInfoByDomainAlias($currentDomainAlias)->alias.'/';
+        if(in_array($currentDomainAlias, array('dana-mebel.net', 'meri-mebel.ru', 'fabrika-ugmebel.ru', 'fabrikalerom.ru')))
+			return $this->getPathBySeria().$this->getDomainInfoByDomainAlias($currentDomainAlias)->alias.'/';
 		return $this->getCategory()->getPath().$this->getDomainInfoByDomainAlias($currentDomainAlias)->alias.'/';
 	}
 	public function getGoodDomain()
@@ -72,7 +72,7 @@ class CatalogItem extends \modules\catalog\CatalogGood implements \interfaces\IO
 	}
 	/*   End: URL Methods */
 
-	public function getDanaSeriaPath()
+	public function getPathBySeria()
 	{
 		$category = $this->getCategory();
 		$seria = $this->getSeriaObject();

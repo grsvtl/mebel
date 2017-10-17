@@ -176,7 +176,7 @@ class UgMebelCatalogFrontController extends \controllers\front\catalog\CatalogFr
 			$seria = $good->getSeriaObject();
 
 			$this->setLevel($category->getName(), $category->getPath())
-				->setLevel($seria->getValue(), $good->getDanaSeriaPath())
+				->setLevel($seria->getValue(), $good->getPathBySeria())
 				->setLevel($good->getName());
 
 			$this->setMetaFromObject($good)

@@ -5,6 +5,7 @@ class ParametersValuesRelationDecorator extends \core\modules\base\ModuleDecorat
 	private $parametersValues;
 	private $parametersValuesArray = array();
 	private $parametersValuesForAlias;
+	private $useCache = true;
 	
 	function __construct($object)
 	{
@@ -13,16 +14,14 @@ class ParametersValuesRelationDecorator extends \core\modules\base\ModuleDecorat
 	
 	function getParameters()
 	{
-		if(empty($this->parametersValues))
-			$this->parametersValues = new ParametersValuesRelation($this->id, $this->_object);
+        if(!$this->useCache  ||  empty($this->parametersValues))
+            $this->parametersValues = new ParametersValuesRelation($this->id, $this->_object);
 		return $this->parametersValues;
-
 	}
 	
 	function getParametersArray() 
 	{
-		
-		if (!$this->parametersValuesArray)
+		if (!$this->useCache  ||  !$this->parametersValuesArray)
 			foreach($this->getParameters() as $value) {
 				$this->parametersValuesArray[] = $value->id;
 			}
@@ -31,8 +30,14 @@ class ParametersValuesRelationDecorator extends \core\modules\base\ModuleDecorat
 	
 	function getParameter($alias) 
 	{
-		if(empty($this->parametersValuesForAlias))
+		if(!$this->useCache  ||  empty($this->parametersValuesForAlias))
 			$this->parametersValuesForAlias = new ParametersValuesRelation($this->id, $this->_object);
 		return $this->parametersValuesForAlias->getParameterByAlias($alias);
 	}
+
+	function disableParameterCache()
+    {
+        $this->useCache = false;
+        return $this;
+    }
 }

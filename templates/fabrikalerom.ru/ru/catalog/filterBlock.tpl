@@ -19,7 +19,15 @@
     </div>
     <div class="button-block-filter text-center">
         <button class="btn red-btn paramFilterButton">Фильтровать</button>
-        <a href="<?=isset($category) ? $category->getPath() : '/search/query='.$_GET['query']?>" class="btn white-btn">Сбросить фильр</a>
+        <a
+            href="<?= isset($category)
+                ?
+                $category->getPath().( isset($seria) ? $seria->getAlias().'/' : '')
+                :
+                '/search/query='.$_GET['query']?>" class="btn white-btn"
+            >
+            Сбросить фильр
+        </a>
     </div>
 </div>
 </form>

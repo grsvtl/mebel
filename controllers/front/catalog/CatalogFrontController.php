@@ -385,11 +385,13 @@ class CatalogFrontController extends \controllers\base\Controller
     {
         if(!$fabricator->getParameters()->count()) return false;
 
-        return $fabricator->getParameters()
+        return $fabricator
+            ->disableParameterCache()
+            ->getParameters()
             ->setSubquery(
                 'AND `objectId` IN ('
-                . 'SELECT `seriaId` FROM `'.$this->getCatalogObject()->mainTable().'` WHERE `categoryId` IN ('
-                . 'SELECT `id` FROM `'.$this->getCatalogObject()->mainTable().'_categories`  WHERE (`parentId` = '.$category->id.' OR `id` = '.$category->id.'))
+                . 'SELECT DISTINCT `seriaId` FROM `'.$this->getCatalogObject()->mainTable().'` WHERE `categoryId` IN ('
+                . 'SELECT DISTINCT `id` FROM `'.$this->getCatalogObject()->mainTable().'_categories`  WHERE (`parentId` = '.$category->id.' OR `id` = '.$category->id.'))
                         )'
             );
     }
