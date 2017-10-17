@@ -32,6 +32,13 @@
                     </div>
                 </div>
                 <div class="col-md-4 info-offer">
+
+                    <?if($this->getController('Authorization')->isAdminAuthorizated()):?>
+                        <a class="adminShow" href="<?=$object->getAdminPath()?>" target="_blank" title="Эта ссылка видна только авторизованному в админской части пользователю">
+                            Редактировать [id = <?=$object->id?>]
+                        </a>
+                    <?endif?>
+
                     <div class="price-main">
                         <div class="price-inset">
                             <span>Цена</span>

@@ -15,4 +15,6 @@ var loaderLight = function () {
         $('[style*="' + this.bgElementStyle + '"]').remove();
 		return this;
 	};
+
+    this.init = function () {};
 };

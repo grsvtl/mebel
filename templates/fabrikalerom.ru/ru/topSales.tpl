@@ -1,8 +1,10 @@
 <div class="container main-content">
+
+    <?$topSales = $this->getController('Catalog')->getTopSalesProducts()?>
+    <?$topSalesCount = $topSales->count()?>
+    <?if($topSalesCount):?>
     <h2>Хиты продаж</h2>
     <div id="hot-offer" class="carousel slide" data-ride="carousel">
-        <?$topSales = $this->getController('Catalog')->getTopSalesProducts()?>
-        <?$topSalesCount = $topSales->count()?>
         <ol class="carousel-indicators">
             <?for ($i = 0; $i <= ceil($topSalesCount / 4) - 1; $i++):?>
             <li data-target="#hot-offer" data-slide-to="<?=$i?>" <?=$i == 0 ? 'class="active"' : ''?>></li>
@@ -30,6 +32,8 @@
             <?endforeach?>
         </div>
     </div>
+    <?endif?>
+
     <div class="text-content">
         <h2>Фирменный Интернет-Магазин
             Мебельной компании ЛЕРОМ В МОСКВЕ</h2>

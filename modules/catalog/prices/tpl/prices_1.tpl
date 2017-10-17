@@ -13,7 +13,7 @@
 							<div class="clear"></div>
 						</div>
 						<div class="numbers-price" id="availablePrices">
-<?$this->getController('availability')->printAvailabilityBlock($object->id);?>
+<?//$this->getController('availability')->printAvailabilityBlock($object->id);?>
 						</div>
 						<div class="clear"></div>
                     </div><!--price - end-->

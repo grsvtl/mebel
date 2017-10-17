@@ -12,6 +12,7 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
 
     const SECOND_SERIA_PARAMETER_ID = 67;
     const LOAD_MORE_GOODS_QUANTITY = 9;
+    const QUANTITY_OBJECTS_ON_FIRST_LOAD = 12;
 
     protected $permissibleActions = [
         'getLeftMenu',
@@ -22,7 +23,8 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
         'ajaxFetchMoreGoods',
         'ajaxCheckMoreGoodsAvailable',
         'search',
-        'test'
+        'test',
+        'getSeriesByCategory'
     ];
 
     protected $compositionsCategories = [
@@ -61,6 +63,13 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
         if ($category){
             if ($this->checkObjectPath($category))
                 return $this->viewCategory($alias);
+        }
+        else{
+            $seria = $this->getParameterValuesObject()->getObjectByAlias($this->getLastElementFromRequest());
+            $category = $this->getCatalogObject()->getCategories()->getObjectByAlias($this->getElementFromTheEndOfRequest(2));
+            if($seria  &&  $category)
+                if($this->checkSeriaCategoryPath($seria, $category, $this->getLeromFabricatorId()))
+                    return $this->viewSeria($seria, $category);
         }
 
         $this->sendRequestToArticlesController();
@@ -123,7 +132,7 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             $objects = $this->filterObjectsByQuery($objects, $this->getGET()['query']);
         }
 
-        $objects->setLimit(12);
+        $objects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
 
         $this->setTitle('Поиск')
             ->setDescription('Поиск')
@@ -148,7 +157,7 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             $category = $this->getCatalogObject()->getCategories()->getObjectByAlias($alias);
             $this->setLevel($category->getParent()->name, $category->getParent()->getPath())
                  ->setLevel($category->getName());
-            $fabricator = $this->getFabricatorById($this->getLeromFabricatorId());
+            $fabricator = $this->getFabricator();
 
             if ($this->isCategoryCompositional($alias)) {
                 if ($category->isMain()) {
@@ -168,11 +177,11 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             if (isset($restObjects)) {
                 if ($this->isFilteringCategory())
                     $this->filterByUserSelection($restObjects);
-                $restObjects->setLimit(12);
+                $restObjects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
                 $this->setContent('restObjects', $restObjects);
             }
 
-            $mainObjects->setLimit(12);
+            $mainObjects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
 
             $this->setContent('mainObjects', $mainObjects)
                 ->setContent('activeSearchParameters', $this->getActiveSearchParameters())
@@ -268,7 +277,7 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
         $contents = \core\cache\Cacher::getInstance()->get($cacheKey);
         if ($contents === false){
             ob_start();
-            $this->setContent('topMenu', $this->getMainCategories())
+            $this->setContent('leftMenu', $this->getMainCategories())
                 ->includeTemplate('catalog/leftMenu');
             $contents = ob_get_contents();
             ob_end_clean();
@@ -336,9 +345,9 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
     {
         $objects = $this->getActiveObjects();
         $objects->setSubquery('AND `statusId` = (?d)', (int)CatalogItemConfig::TOP_SELL_ID)
-            //->setSubquery('AND `fabricatorId` = (?d)', $this->getLeromFabricatorId())
-            ->setLimit(35)
-            ->setOrderBy('`priority` ASC');
+                ->setSubquery('AND `fabricatorId` = (?d)', $this->getLeromFabricatorId())
+                ->setLimit(35)
+                ->setOrderBy('`priority` ASC');
         return $objects;
     }
 
@@ -384,7 +393,7 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
     protected function ajaxFetchMoreGoods()
     {
         $post = $this->getPOST();
-        $fabricator = $this->getFabricatorById($this->getLeromFabricatorId());
+        $fabricator = $this->getFabricator();
 
         if (  (isset($post['loadedGoods']) && !empty($post['loadedGoods']))  ) {
             $loadedGoods = $post['loadedGoods'];
@@ -435,7 +444,7 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
     protected function ajaxCheckMoreGoodsAvailable()
     {
         $post = $this->getPOST();
-        $fabricator = $this->getFabricatorById($this->getLeromFabricatorId());
+        $fabricator = $this->getFabricator();
 
         if (  (isset($post['loadedGoods']) && !empty($post['loadedGoods']))  ) {
             $loadedGoods = $post['loadedGoods'];
@@ -465,5 +474,62 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             }
             $this->ajaxResponse( boolval($objectsCount - $loadedGoods > 0) );
         }
+    }
+
+    protected function getSeriesByCategory($category)
+    {
+        return $this->getSeriesByCategoryAndFabricator($category, $this->getFabricator());
+    }
+
+    private function getFabricator()
+    {
+        return $this->getFabricatorById($this->getLeromFabricatorId());
+    }
+
+    private function viewSeria($seria, $category)
+    {
+        $cacheKey = md5($this->getCurrentDomainAlias().'-'.__METHOD__.serialize($this->getREQUEST()->getArray()));
+        $contents = \core\cache\Cacher::getInstance()->get($cacheKey);
+        if ($contents === false){
+            ob_start();
+
+            $objects = $this->getActiveObjectsBySeriaAndCategory($seria, $category, $this->getLeromFabricatorId())
+                    ->setSubquery('AND `id` IN (SELECT DISTINCT `goodId` FROM `tbl_catalog_subgoods`)');
+            if ($this->isFilteringCategory())
+                $this->filterByUserSelection($objects);
+               $objects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD)
+            ;
+
+            $subGoods = $this->getActiveObjectsBySeriaAndCategory($seria, $category, $this->getLeromFabricatorId())
+                            ->setSubquery('AND `id` NOT IN (SELECT DISTINCT `goodId` FROM `tbl_catalog_subgoods`)');
+            if ($subGoods->count()) {
+                if ($this->isFilteringCategory())
+                    $this->filterByUserSelection($subGoods);
+                $subGoods->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
+            }
+
+            if(!$this->isNoop($category->getParent()))
+                $this->setLevel($category->getParent()->getName(), $category->getParent()->getPath());
+
+            $this->setLevel($category->getName(), $category->getPath())
+                ->setLevel($seria->getValue())
+                ->setContent('h1', $seria->getValue())
+                ->setContent('seria', $seria)
+                ->setContent('objects', $objects)
+                ->setContent('subGoods', $subGoods)
+                ->setMetaFromObject($seria)
+
+                ->setContent('level', 'category')
+                ->setContent('category', $category)
+                ->setContent('activeSearchParameters', $this->getActiveSearchParameters())
+                ->setContent('isParameterSearchActive', $this->isFilteringCategory())
+
+                ->includeTemplate('catalog/seria');
+
+            $contents = ob_get_contents();
+            ob_end_clean();
+            \core\cache\Cacher::getInstance()->set($contents, $cacheKey);
+        }
+        echo $contents;
     }
 }

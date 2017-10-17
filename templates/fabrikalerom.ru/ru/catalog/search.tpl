@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="navigation text-center">
-                    <span class="see-more-offers btn loadMoreButton">Показать еще 9 шт. </span>
+                    <span class="see-more-offers btn loadMoreButton">Показать еще </span>
                 </div>
                 <div class="text-content-inset">
                     <h3>Заголовок сео текса</h3>

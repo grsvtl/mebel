@@ -9,17 +9,20 @@
         </div>
         <div class="list-cl">
             <div class="block-catalog-c-l">
-                <?$i = 0; foreach($topMenu as $category):?>
+                <?$i = 0; foreach($leftMenu as $category):?>
                 <ul class="ul-main-list-c-l">
                     <li class="main-list-c-l">
+                        <?
+                            $categ = $this->getCategoryByAlias(array_keys($leftMenu)[$i]);
+                            $series = $this->getSeriesByCategory($categ);
+                        ?>
+                        <?if($series):?>
                         <img src="/images/fabrikaLerom/decorating.svg" alt="">
-                        <?$categ = $this->getCategoryByAlias(array_keys($topMenu)[$i])?>
                         <a href="<?=$categ->getPath()?>"><?=$categ->getName()?></a>
-                        <?if (is_array($category)):?>
                         <ul class="inset-list-c-l">
-                            <?foreach($category as $subCategory):?>
+                            <?foreach($series as $seria):?>
                             <li>
-                                <a href="<?=$subCategory->getPath()?>"><?=$subCategory->getName()?></a>
+                                <a href="<?=$categ->getPath().$seria->alias.'/'?>"><?=$seria->getValue()?></a>
                             </li>
                             <?endforeach?>
                         </ul>
