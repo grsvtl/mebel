@@ -277,7 +277,7 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
         $contents = \core\cache\Cacher::getInstance()->get($cacheKey);
         if ($contents === false){
             ob_start();
-            $this->setContent('leftMenu', $this->getMainCategories())
+            $this->setContent('leftMenuCategories', $this->getMainCategoriesWhichHasChildren($this->getLeromFabricatorId()))
                 ->includeTemplate('catalog/leftMenu');
             $contents = ob_get_contents();
             ob_end_clean();
@@ -322,10 +322,10 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
         return mb_strtoupper($firstChar, $encoding) . $then;
     }
 
-    protected function getMainCategories()
-    {
-        return $this->getCategoriesTreeByFabricatorId($this->getLeromFabricatorId());
-    }
+//    protected function getMainCategories()
+//    {
+//        return $this->getCategoriesTreeByFabricatorId($this->getLeromFabricatorId());
+//    }
 
     protected function getCategoryByAlias($categoryAlias)
     {
