@@ -275,7 +275,6 @@ class CatalogFrontController extends \controllers\base\Controller
                 $array[] = $category;
         }
 
-
         usort($array, function($a, $b){
             if ($a->priority == $b->priority) return 0;
             return ($a->priority < $b->priority) ? -1 : 1;
