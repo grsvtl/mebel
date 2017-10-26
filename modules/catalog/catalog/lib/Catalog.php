@@ -1,8 +1,11 @@
 <?php
 namespace modules\catalog\catalog\lib;
+use core\traits\RequestHandler;
+
 class Catalog extends \core\modules\base\ModuleDecorator implements \Countable
 {
 	use \modules\catalog\traits\filterCategoryAlias;
+	use RequestHandler;
 
 	function __construct()
 	{
@@ -48,4 +51,51 @@ class Catalog extends \core\modules\base\ModuleDecorator implements \Countable
 				->setSubquery('AND `id` IN (?s)', implode(',', $fabricatorsIdArray));
 
 	}
+
+    /**
+     * @param null   $domainAlias
+     * @param int    $categoryId
+     * @param string $type
+     *
+     * @return mixed
+     */
+	public function orderByDomainAlias($domainAlias = null, $categoryId = 0, $type = 'ASC')
+    {
+        if ( $domainAlias === null ) {
+            $domainAlias = $this->getCurrentDomainAlias();
+        }
+
+        if ( (string)$categoryId == '' ) {
+            $categoryId = '0';
+        }
+
+        return $this->setOrderBy(
+            $this->getOrderByDomainAliasString($domainAlias, $categoryId, $type)
+        );
+    }
+
+    public function getOrderByDomainAliasString($domainAlias, $categoryId, $type)
+    {
+        $category = $this->getCategories()->getObjectById($categoryId);
+        $childrenIdString = $category ? $category->getChildrenIdString() : false;
+        return ' (
+            SELECT priority 
+            FROM `'.$this->mainTable().'_priorities` 
+            WHERE goodId    = mt.id 
+            AND domainAlias = "'.$domainAlias.'"          
+            AND (
+                categoryId  = '.$categoryId.'
+                OR 
+                `id` IN (SELECT `ownerId` FROM `'.$this->mainTable().'_additional_categories` WHERE `objectId` = '.$categoryId.')
+                OR 
+                `categoryId` IN ('.($childrenIdString ? $childrenIdString : '-1').')
+            )
+        ) '.$type;
+    }
+
+    public function setCatalogSubquery($subquery, $data = null)
+    {
+        $this->getParentObject()->setSubquery($subquery, $data);
+        return $this;
+    }
 }

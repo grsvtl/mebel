@@ -2,6 +2,8 @@
 namespace controllers\admin;
 use core\Configurator;
 use modules\catalog\categories\CatalogCategoryConfig;
+use modules\modulesDomain\components\domains\lib\Domains;
+use modules\modulesDomain\lib\ModulesDomain;
 
 class CatalogAdminController extends \controllers\base\Controller
 {
@@ -138,6 +140,10 @@ class CatalogAdminController extends \controllers\base\Controller
 		$this->checkUserRightAndBlock('constructions');
 		$this->rememberPastPageList($_REQUEST['controller']);
 
+        $domainAlias = $this->getGET()['domainAlias']
+            ? $this->getGET()['domainAlias']
+            : $this->getCurrentDomainAlias();
+
 		$this->setObject($this->objectsClass);
 
 		$start_date = (empty($this->getGET()['start_date'])) ? '' : \core\utils\DataAdapt::textValid($this->getGET()['start_date']);
@@ -201,9 +207,13 @@ class CatalogAdminController extends \controllers\base\Controller
         if (!empty($mark))
             $this->modelObject->setSubquery('AND `?s` = 1', $mark);
 
-		$this->modelObject->setOrderBy('`priority` ASC')->setPager($itemsOnPage);
+        $this->modelObject->orderByDomainAlias($domainAlias, $category);
+
+        $this->modelObject->setPager($itemsOnPage);
 
 		$this->setContent('objects', $this->modelObject)
+             ->setContent('domains', new Domains())
+             ->setContent('domainAlias', $domainAlias)
 			 ->setContent('pager', $this->modelObject->getPager())
 			 ->setContent('pagesList', $this->modelObject->getQuantityItemsOnSubpageListArray())
 			 ->includeTemplate($this->_config->getAdminTemplateDir().'catalog');

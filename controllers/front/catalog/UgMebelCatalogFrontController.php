@@ -139,7 +139,8 @@ class UgMebelCatalogFrontController extends \controllers\front\catalog\CatalogFr
 
 		if ($contents === false){
 			ob_start();
-			$objects = $this->getActiveObjectsBySeriaAndCategory($seria, $category, $this->getUgFabricatorId());
+			$objects = $this->getActiveObjectsBySeriaAndCategory($seria, $category, $this->getUgFabricatorId())
+                            ->orderByDomainAlias($this->getCurrentDomainAlias(), $category->id);
 
             $sorting = $this->getSorting($category);
 

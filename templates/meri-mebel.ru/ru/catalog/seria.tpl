@@ -11,7 +11,7 @@
                 <?if(count($objects)):?>
                     <div class="filter-container">
                         <div class="sortBy">
-                            <span class="span filter-label">Сортировать по цене:</span>&nbsp;&nbsp;
+                            <span class="span filter-label">Сортировать:</span>&nbsp;&nbsp;
                             <a
                                 <?if($sorting['current']=='price' && $sorting['direction']=='up'):?>
                                     class="active"
@@ -29,6 +29,15 @@
                                 <?endif?>
                             >
                                 от дорогого к дешевому
+                            </a>
+                            <a
+                                <?if($sorting['current']=='priority'):?>
+                                    class="active"
+                                <?else:?>
+                                    href="<?=\core\utils\Utils::ragp($_SERVER['REQUEST_URI']);?>"
+                                <?endif?>
+                            >
+                                по популярности
                             </a>
                         </div>
                     </div>
