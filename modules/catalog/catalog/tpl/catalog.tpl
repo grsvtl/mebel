@@ -1,4 +1,7 @@
 <?include(TEMPLATES_ADMIN.'top.tpl');?>
+
+<!--        <script type="text/javascript" src="/admin/js/base/system/sorting.js"></script>-->
+
 		<script type="text/javascript" src="/modules/catalog/catalog/js/sorting.js"></script>
 		<script type="text/javascript" src="/modules/catalog/catalog/js/groupSort.js"></script>
 		<script type="text/javascript" src="/admin/js/base/system/groupActions.js"></script>
@@ -106,7 +109,10 @@
 				<!-- End: Filters Block -->
 				<? if (!count($objects)): echo 'No Data'; else: ?>
 				<div class="table_edit">
-					<table  id="objects-tbl" width="100%">
+					<table
+                            id="objects-tbl"
+<!--                            data-sortUrlAction="/admin/catalog/changePriority/?"-->
+                            width="100%">
 						<tr>
 							<th colspan="2" class="first">#</th>
 							<th>Фото</th>
@@ -120,6 +126,14 @@
 							<th>Производитель</th>
 							<th>Категория</th>
 							<th>Статус</th>
+
+
+
+<!--                            <th class="last" colspan="4">Приоритет</th>-->
+
+
+
+
 							<th class="last" colspan="4">
                                 <a href="/admin/catalogPriority/catalog" class="btn">Редактировать приоритет</a>
                             </th>
@@ -150,7 +164,13 @@
 								<td><p class="name"><i><?=$object->getFabricator()->getName()?></i></p></td>
 								<td><p class="name"><?=$object->getCategory()->name?></p></td>
 								<td><p class="status on"><font color="<?=$object->getStatus()->color?>"><?=$object->getStatus()->name?></font></p></td>
-								<td class="td_bord header">
+
+
+<!--                                <td class="td_bord sortHandle header">--><?//= $object->priority?><!--</td>-->
+
+
+
+                                <td class="td_bord header">
                                 </td>
 								<td><a href="/admin/catalog/catalogItem/<?=$object->id?>/" class="pen"></a></td>
 								<td><a class="del pointer button confirm" data-confirm="Remove the item?" data-action="/admin/catalog/remove/<?=$object->id?>/" data-callback="postRemoveArticle"></a></td>

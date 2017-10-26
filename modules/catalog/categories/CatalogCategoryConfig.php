@@ -1,5 +1,7 @@
 <?php
 namespace modules\catalog\categories;
+use modules\catalog\catalog\lib\Catalog;
+
 class CatalogCategoryConfig extends \core\modules\base\ModuleConfig
 {
 	use \core\traits\adapters\Alias,
@@ -59,11 +61,6 @@ class CatalogCategoryConfig extends \core\modules\base\ModuleConfig
             'up' => '(SELECT getPriceById(mt.`id`)) ASC',
             'down' => '(SELECT getPriceById(mt.`id`)) DESC'
         ),
-
-        'popularity' => array(
-            'up' => '`priority` ASC',
-            'down' => '`priority` DESC'
-        ),
         'priority' => array(
             'up' => '`priority` ASC',
             'down' => '`priority` DESC'
@@ -80,7 +77,7 @@ class CatalogCategoryConfig extends \core\modules\base\ModuleConfig
         'novelty'=>'новизне'
     );
 
-	public function rules()
+    public function rules()
 	{
 		return array(
 			'name' => array(
@@ -141,6 +138,15 @@ class CatalogCategoryConfig extends \core\modules\base\ModuleConfig
 		$this->data[$key] = (!empty($this->data[$key])) ? \core\utils\Dates::convertDate($this->data[$key], 'mysql') : time() ;
 	}
 
-	public function getSortingValues(){return $this->sortingValues;}
+	public function getSortingValues($domainAlias = null, $category = null)
+    {
+        if(isset($domainAlias) && isset($category))
+           $this->sortingValues['priority'] = array(
+               'up'   => (new Catalog())->getOrderByDomainAliasString($domainAlias, $category->id, 'DESC'),
+               'down' => (new Catalog())->getOrderByDomainAliasString($domainAlias, $category->id, 'ASC')
+           );
+        return $this->sortingValues;
+	}
+
 	public function getSortingValuesTranslate(){return $this->sortingValuesTranslate;}
 }

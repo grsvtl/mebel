@@ -64,11 +64,17 @@
                             <select name="categoryId" id="categoryId" style="width: 100%;">
                                 <option value="0">Выберите категорию</option>
                                 <?php if ($objects->getMainCategories()->count() != 0): foreach($objects->getMainCategories() as $categoryObject):?>
-                                    <option value="<?=$categoryObject->id?>" <?=($categoryObject->id==$this->getGET()['categoryId']) ? 'selected' : ''; ?>><?=$categoryObject->name?></option>
+                                    <option value="<?=$categoryObject->id?>" <?=($categoryObject->id==$this->getGET()['categoryId']) ? 'selected' : ''; ?>>
+                                        <?=$categoryObject->name?> (<?=$categoryObject->alias?> - <?=$categoryObject->id?>)
+                                    </option>
                                     <?php if ($categoryObject->getChildren()): foreach($categoryObject->getChildren() as $children):?>
-                                        <option value="<?=$children->id?>" <?=($children->id==$this->getGET()['categoryId']) ? 'selected' : ''; ?>>&nbsp;&nbsp;|-&nbsp;<?=$children->name?></option>
+                                        <option value="<?=$children->id?>" <?=($children->id==$this->getGET()['categoryId']) ? 'selected' : ''; ?>>
+                                            &nbsp;&nbsp;|-&nbsp;<?=$children->name?> (<?=$children->alias?> - <?=$children->id?>)
+                                        </option>
                                         <?php if ($children->getChildren() != NULL): foreach($children->getChildren() as $children2):?>
-                                            <option value="<?=$children2->id?>" <?=($children2->id==$this->getGET()['categoryId']) ? 'selected' : ''; ?>>&nbsp;&nbsp;&nbsp;&nbsp;|-&nbsp;<?=$children2->name?></option>
+                                            <option value="<?=$children2->id?>" <?=($children2->id==$this->getGET()['categoryId']) ? 'selected' : ''; ?>>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;|-&nbsp;<?=$children2->name?> (<?=$children2->alias?> - <?=$children2->id?>)
+                                            </option>
                                         <?php endforeach; endif;?>
                                     <?php endforeach; endif;?>
                                 <?php endforeach; endif;?>
@@ -79,7 +85,9 @@
                             <select name="seriaId" id="seria" style="width: 100%;">
                                 <option value="">Выберите серию</option>
                                 <? foreach ( $series as $seriaItem ): ?>
-                                    <option <?=$this->getGET()['seriaId']==$seriaItem->id?'selected':''?> value="<?=$seriaItem->id?>"><?=$seriaItem->value?></option>
+                                    <option <?=$this->getGET()['seriaId']==$seriaItem->id?'selected':''?> value="<?=$seriaItem->id?>">
+                                        <?=$seriaItem->value?> (<?=$seriaItem->alias?> - <?=$seriaItem->id?>)
+                                    </option>
                                 <? endforeach; ?>
                             </select>
                         </div>

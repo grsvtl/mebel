@@ -1,8 +1,10 @@
 <?php
 namespace controllers\admin;
+use core\db\Db;
 use modules\catalog\catalog\lib\Catalog;
 use modules\catalog\catalog\lib\CatalogItem;
 use modules\catalog\catalog\lib\CatalogItemConfig;
+use modules\catalog\priority\CatalogGroupPriorityGenerator;
 use modules\catalog\priority\CatalogPriorityGenerator;
 use modules\catalog\priority\lib\CatalogPriorityConfig;
 use modules\fabricators\lib\Fabricator;
@@ -92,11 +94,23 @@ class CatalogPriorityAdminController extends \controllers\base\Controller
     {
         $catalog        = new Catalog();
 
-        if( $category->getChildrenIdString() ) {
-            $catalog->setSubquery(' AND (`categoryId`=?d OR `categoryId` IN (?s)) ', $category->id, $category->getChildrenIdString());
-        } else {
-            $catalog->setSubquery('AND `categoryId` = ?d', $category->id);
-        }
+//        if( $category->getChildrenIdString() ) {
+//            $catalog->setSubquery(' AND (`categoryId`=?d OR `categoryId` IN (?s)) ', $category->id, $category->getChildrenIdString());
+//        } else {
+//            $catalog->setSubquery('AND `categoryId` = ?d', $category->id);
+//        }
+
+        $childrenIdString = $category->getChildrenIdString();
+
+        $catalog->setSubquery('            
+            AND (
+                `categoryId`  = '.$category->id.'               
+                OR
+                `id` IN (SELECT `ownerId` FROM `'.(new CatalogItemConfig())->mainTable().'_additional_categories` WHERE `objectId` = '.$category->id.')
+                OR 
+                `categoryId` IN ('.($childrenIdString ? $childrenIdString : '-1').')               
+            )
+        ');
 
         $catalog->orderByDomainAlias($domainAlias, $category->id);
 
@@ -120,22 +134,11 @@ class CatalogPriorityAdminController extends \controllers\base\Controller
 
     protected function setGroupPriority()
     {
-        $domainAlias = $this->getGET()['domainAlias'];
-        $categoryId  = $this->getGET()['categoryId'];
-
-        if ( $this->getGET()['data'] ) {
-            foreach ( $this->getGET()['data'] as $objectId=>$priority ) {
-                $generator = new CatalogPriorityGenerator(new CatalogItem($objectId), $domainAlias, $categoryId, $priority);
-                if ( $generator->execute() === false ) {
-                    $this->ajaxResponse(false);
-                    return;
-                }
-            }
-        } else {
-            $this->ajaxResponse(false);
-            return;
-        }
-        $this->ajaxResponse( true );
+        $data = $this->getPOST();
+        if(!$data['data'])
+            return $this->ajaxResponse(false);
+        $generator = new CatalogGroupPriorityGenerator($data['domainAlias'], $data['categoryId'], $data['data']);
+        return $this->ajaxResponse( $generator ->execute() );
     }
 
     protected function getSeriesByCategoryAndFabricator($category, $fabricator)

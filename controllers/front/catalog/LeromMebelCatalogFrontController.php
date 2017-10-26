@@ -494,13 +494,15 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             ob_start();
 
             $objects = $this->getActiveObjectsBySeriaAndCategory($seria, $category, $this->getLeromFabricatorId())
-                    ->setSubquery('AND `id` IN (SELECT DISTINCT `goodId` FROM `tbl_catalog_subgoods`)');
+                            ->orderByDomainAlias($this->getCurrentDomainAlias(), $category->id)
+                            ->setSubquery('AND `id` IN (SELECT DISTINCT `goodId` FROM `tbl_catalog_subgoods`)');
             if ($this->isFilteringCategory())
                 $this->filterByUserSelection($objects);
                $objects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD)
             ;
 
             $subGoods = $this->getActiveObjectsBySeriaAndCategory($seria, $category, $this->getLeromFabricatorId())
+                            ->orderByDomainAlias($this->getCurrentDomainAlias(), $category->id)
                             ->setSubquery('AND `id` NOT IN (SELECT DISTINCT `goodId` FROM `tbl_catalog_subgoods`)');
             if ($subGoods->count()) {
                 if ($this->isFilteringCategory())

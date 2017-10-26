@@ -21,7 +21,8 @@ var groupSorting = function (settings) {
         'distance': 1,
         'axys' : '',
         'start' : function() {},
-        'update' : function() {}
+        'update' : function() {},
+        'method' : 'post'
     }, settings||{});
 
     this.action = '/admin/catalogPriority/setGroupPriority/?';
@@ -71,8 +72,9 @@ var groupSorting = function (settings) {
         $.ajax({
             beforeSend: $.proxy(that.before, that),
             error: $.proxy(that.error, that),
-            url: that.action+query,
+            url: that.action,
             type: that.method || 'post',
+            data: query,
             dataType: 'json',
             success: $.proxy(that.success, that),
             complete: $.proxy(that.complete, that)

@@ -297,7 +297,7 @@ class CatalogFrontController extends \controllers\base\Controller
     protected function getActiveObjectsBySeriaAndCategory($seria, $category, $fabricatorId = null)
     {
         return $this->getObjectsByCategory($category, $fabricatorId)
-                    ->setSubquery(' AND `seriaId` = ?d', $seria->id);
+                    ->setCatalogSubquery(' AND `seriaId` = ?d', $seria->id);
     }
 
     protected function getParameterArrayByIdAndGood($parameterId, $good)
@@ -328,7 +328,7 @@ class CatalogFrontController extends \controllers\base\Controller
 
     protected function getSorting($category = null)
     {
-        $sortingValues = (new CatalogCategoryConfig())->getSortingValues();
+        $sortingValues = (new CatalogCategoryConfig())->getSortingValues($this->getCurrentDomainAlias(), $category);
         $currentSortField = '';
         $sortString = "`priority` ASC";
 
@@ -357,6 +357,8 @@ class CatalogFrontController extends \controllers\base\Controller
                 'tile' => 'catalogListContent'
             )
         );
+
+//        var_dump($sorting);
 
         return $sorting;
     }
