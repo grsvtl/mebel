@@ -269,8 +269,11 @@ class CatalogFrontController extends \controllers\base\Controller
             return false;
 
         $array = array();
-        foreach ($categoriesId as $key=>$value)
-            $array[] = $this->getObject('\modules\catalog\categories\CatalogCategory', $value['parentId'], $this->_config);
+        foreach ($categoriesId as $key=>$value){
+            $category = $this->getObject('\modules\catalog\categories\CatalogCategory', $value['parentId'], $this->_config);
+            if($category->isMain())
+                $array[] = $category;
+        }
 
         usort($array, function($a, $b){
             if ($a->priority == $b->priority) return 0;
