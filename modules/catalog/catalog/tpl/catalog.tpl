@@ -109,10 +109,8 @@
 				<!-- End: Filters Block -->
 				<? if (!count($objects)): echo 'No Data'; else: ?>
 				<div class="table_edit">
-					<table
-                            id="objects-tbl"
-<!--                            data-sortUrlAction="/admin/catalog/changePriority/?"-->
-                            width="100%">
+<!--					<table id="objects-tbl" data-sortUrlAction="/admin/catalog/changePriority/?" width="100%">-->
+                    <table id="objects-tbl" width="100%">
 						<tr>
 							<th colspan="2" class="first">#</th>
 							<th>Фото</th>
