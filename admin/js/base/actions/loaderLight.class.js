@@ -17,4 +17,6 @@ var loaderLight = function () {
 	};
 
     this.init = function () {};
+
+    this.title = function () {return this;};
 };
