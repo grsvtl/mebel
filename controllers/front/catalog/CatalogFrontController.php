@@ -294,7 +294,11 @@ class CatalogFrontController extends \controllers\base\Controller
         if(!$category->isMain()) return false;
         $objects = $this->getActiveObjectsBySeriaAndCategory($seria, $category);
         if(!$objects->count()) return false;
-        return $objects->current()->getCategory()->getParent()->alias == $category->alias;
+        return
+            $objects->current()->getCategory()->alias == $category->alias
+                ||
+            $objects->current()->getCategory()->getParent()->alias == $category->alias
+        ;
     }
 
     protected function getActiveObjectsBySeriaAndCategory($seria, $category, $fabricatorId = null)
