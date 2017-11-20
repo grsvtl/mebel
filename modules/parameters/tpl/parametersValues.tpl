@@ -14,7 +14,9 @@
 				>
 					<input type="hidden" name="parameterId" value="<?=$parameter->id?>" />
 					<input name="value" type="text" value=""/>
-					<a class="newParameterFormSubmit addInContent"></a>
+					<a class="newParameterFormSubmit">
+                        <img style="margin-top: 7px" src="/admin/images/buttons/add.png">
+                    </a>
 					<div class="additionalInfo">
 						<textarea class="transformer" data-default="добавить описание" name="description"></textarea>
 					</div>
