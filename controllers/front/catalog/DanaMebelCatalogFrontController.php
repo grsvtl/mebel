@@ -207,6 +207,7 @@ class DanaMebelCatalogFrontController extends \controllers\front\catalog\Catalog
 			}
 
 			$objects = $this->getActiveObjectsBySeriaAndCategory($seria, $category)
+                            ->setCatalogSubquery('AND `fabricatorId` = (?d)', $this->getDanaFabricatorId())
                             ->orderByDomainAlias($this->getCurrentDomainAlias(), $category->id)
                             ->setQuantityItemsOnSubpageList(array(self::QUANTITY_ITEMS_ON_SUBPAGE))
 							->setPager(self::QUANTITY_ITEMS_ON_SUBPAGE);
