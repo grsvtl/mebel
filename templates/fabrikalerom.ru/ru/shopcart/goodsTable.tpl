@@ -145,7 +145,7 @@
                     <div class="form-group">
                         <label for="infoInput" class="col-sm-3 control-label">Комментарий</label>
                         <div class="col-sm-9">
-                            <textarea data-name="info" data-namedefault="s6" name="s6" class="form-control" rows="3" id="infoInput"></textarea>
+                            <textarea data-name="info" data-namedefault="s6" name="info" class="form-control" rows="3" id="infoInput"></textarea>
                         </div>
                     </div>
                 </div>
@@ -160,25 +160,25 @@
                     <div class="radio">
                         <label>
                             <input type="radio" name="lift" id="liftBySelf" checked="">
-                            Не нужно (Сами поднимем)
+                            <label for="liftBySelf">Не нужно (Сами поднимаем)</label>
                         </label>
                     </div>
                     <div class="radio">
                         <label>
                             <input type="radio" name="lift" id="liftWithoutLift">
-                            Заказываем подъём (нет лифта)
+                            <label for="liftWithoutLift">Заказываем подъём (нет лифта)</label>
                         </label>
                     </div>
                     <div class="radio">
                         <label>
                             <input type="radio" name="lift" id="liftWithSmallLift">
-                            Заказываем подъём (пассажирский лифт)
+                            <label for="liftWithSmallLift">Заказываем подъём (пассажирский лифт)</label>
                         </label>
                     </div>
                     <div class="radio">
                         <label>
                             <input type="radio" name="lift" id="liftWithBigLift">
-                            Заказываем подъём (грузовой лифт)
+                            <label for="liftWithBigLift">Заказываем подъём (грузовой лифт)</label>
                         </label>
                     </div>
                 </div>
@@ -263,6 +263,16 @@
                         <label for="flatInput" class="col-sm-3 control-label">Квартира</label>
                         <div class="col-sm-9">
                             <input type="text" name="v13" data-namedefault="v13" data-name="flat" class="form-control" id="flatInput" placeholder="Квартира">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="flatInput" class="col-sm-3 control-label">Способ оплаты</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" name="paymentType">
+                                <option>Наличные</option>
+                                <option>Банковский перевод</option>
+                                <option>Кредитная карта</option>
+                            </select>
                         </div>
                     </div>
                 </div>
