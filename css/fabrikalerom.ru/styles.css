@@ -1468,3 +1468,15 @@ a:hover, a:focus {
 .main-content .right-block .offer-block .info-offer .adminShow{
     margin: -30px 0px 0px 50px;
 }
+
+.hint_in {
+    height: 27px;
+}
+
+.successBlockHybrid {
+    display: none;
+    font-size: 20px;
+    min-height: 300px;
+    margin-top: 80px;
+    text-align: center;
+}

@@ -216,8 +216,9 @@ var shopcart = function (sources) {
                         if( $.isNumeric(data.orderSum) )
                             that.fillYandexPayForm(data);
                         else{
-                            dataLayer.push({'event':'event_zakaz_finish'});
                             $('.successBlockHybrid').show();
+                            if(typeof dataLayer !== 'undefined')
+                                dataLayer.push({'event':'event_zakaz_finish'});
                         }
 
                         that.updateShopcartBar();
