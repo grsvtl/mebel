@@ -14,8 +14,8 @@
                     <li class="main-list-c-l">
                         <?$series = $this->getSeriesByCategory($category);?>
                         <?if($series):?>
-                        <img src="/images/fabrikaLerom/decorating.svg" alt="">
-                        <a href="<?=$category->getPath()?>"><?=$category->getName()?></a>
+                        <img src="<?=$category->leftMenuImg?>" alt="">
+                        <a href="<?=$category->getPath()?>"><?=$category->leftMenuName?></a>
                         <ul class="inset-list-c-l">
                             <?foreach($series as $seria):?>
                             <li>
