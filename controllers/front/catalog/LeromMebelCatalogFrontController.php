@@ -309,8 +309,8 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
     {
         $categories = array();
         foreach ($this->leftMenuCategoriesMapping as $key=>$value) {
-            $category = $this->getCategoryById($key);
-            if($this->isNotNoop($category) && is_object($category)){
+            if($this->getActiveCategories()->objectExists($key)){
+                $category = $this->getCategoryById((int)$key);
                 $category->leftMenuImg = self::LEFT_MENU_CATEGORIES_IMG_PATH.$value['img'];
                 $category->leftMenuName = $value['name'];
                 $category->showSeries = $value['showSeries'];
