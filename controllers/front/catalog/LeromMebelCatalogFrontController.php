@@ -49,12 +49,12 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
     const LEFT_MENU_CATEGORIES_IMG_PATH = '/images/fabrikaLerom/leftMenuCategories/';
 
     private $leftMenuCategoriesMapping = array(
-        '108' => array('img' => 'decorating.svg', 'name' => 'Для гостиной'),
-        '104' => array('img' => 'bed.svg', 'name' => 'Для спальни'),
-        '110' => array('img' => 'furniture.svg', 'name' => 'Для прихожей'),
-        '107' => array('img' => 'frontal-teddy-bear.svg', 'name' => 'Для детской'),
-//        '' => array('img' => 'wardrobe.svg', 'name' => 'Шкафы купе'),
-        '170' => array('img' => 'matrass.svg', 'name' => 'Матрасы')
+        '108' => array('img' => 'decorating.svg', 'name' => 'Для гостиной', 'showSeries' => true),
+        '104' => array('img' => 'bed.svg', 'name' => 'Для спальни', 'showSeries' => true),
+        '110' => array('img' => 'furniture.svg', 'name' => 'Для прихожей', 'showSeries' => true),
+        '107' => array('img' => 'frontal-teddy-bear.svg', 'name' => 'Для детской', 'showSeries' => true),
+        '217' => array('img' => 'wardrobe.svg', 'name' => 'Шкафы купе', 'showSeries' => false),
+        '170' => array('img' => 'matrass.svg', 'name' => 'Матрасы', 'showSeries' => true)
     );
 
     protected function pageDetect()
@@ -313,6 +313,7 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             if($this->isNotNoop($category) && is_object($category)){
                 $category->leftMenuImg = self::LEFT_MENU_CATEGORIES_IMG_PATH.$value['img'];
                 $category->leftMenuName = $value['name'];
+                $category->showSeries = $value['showSeries'];
                 $categories[] = $category;
             }
         }

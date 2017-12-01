@@ -16,6 +16,7 @@
                         <?if($series):?>
                         <img src="<?=$category->leftMenuImg?>" alt="">
                         <a href="<?=$category->getPath()?>"><?=$category->leftMenuName?></a>
+                        <?if($category->showSeries):?>
                         <ul class="inset-list-c-l">
                             <?foreach($series as $seria):?>
                             <li>
@@ -23,6 +24,7 @@
                             </li>
                             <?endforeach?>
                         </ul>
+                        <?endif?>
                         <?endif?>
                     </li>
                 </ul>
