@@ -46,6 +46,17 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
         'prihojii'  => 'podtovaryi_dlya_prihojey',
     ];
 
+    const LEFT_MENU_CATEGORIES_IMG_PATH = '/images/fabrikaLerom/leftMenuCategories/';
+
+    private $leftMenuCategoriesMapping = array(
+        '108' => array('img' => 'decorating.svg', 'name' => 'Для гостиной'),
+        '104' => array('img' => 'bed.svg', 'name' => 'Для спальни'),
+        '110' => array('img' => 'furniture.svg', 'name' => 'Для прихожей'),
+        '107' => array('img' => 'frontal-teddy-bear.svg', 'name' => 'Для детской'),
+//        '' => array('img' => 'wardrobe.svg', 'name' => 'Шкафы купе'),
+        '170' => array('img' => 'matrass.svg', 'name' => 'Матрасы')
+    );
+
     protected function pageDetect()
     {
         $alias = $this->getLastElementFromRequest();
@@ -273,17 +284,39 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
 
     protected function getLeftMenu()
     {
+//        var_dump($this->getLeftMenuCategoriesObject());
+//
+//
+//        die();
+
+
         $cacheKey = md5($this->getCurrentDomainAlias().'-'.__METHOD__.serialize($this->getREQUEST()->getArray()));
         $contents = \core\cache\Cacher::getInstance()->get($cacheKey);
         if ($contents === false){
             ob_start();
-            $this->setContent('leftMenuCategories', $this->getMainCategoriesWhichHasChildren($this->getLeromFabricatorId()))
+            $this
+//                ->setContent('leftMenuCategories', $this->getMainCategoriesWhichHasChildren($this->getLeromFabricatorId()))
+                ->setContent('leftMenuCategories', $this->getLeftMenuCategoriesObject())
                 ->includeTemplate('catalog/leftMenu');
             $contents = ob_get_contents();
             ob_end_clean();
             \core\cache\Cacher::getInstance()->set($contents, $cacheKey);
         }
         echo $contents;
+    }
+
+    private function getLeftMenuCategoriesObject()
+    {
+        $categories = array();
+        foreach ($this->leftMenuCategoriesMapping as $key=>$value) {
+            $category = $this->getCategoryById($key);
+            if($this->isNotNoop($category) && is_object($category)){
+                $category->leftMenuImg = self::LEFT_MENU_CATEGORIES_IMG_PATH.$value['img'];
+                $category->leftMenuName = $value['name'];
+                $categories[] = $category;
+            }
+        }
+        return (object)$categories;
     }
 
     public function getObjectPropertiesListByAlias($alias, $object, $limit = null)

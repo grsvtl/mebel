@@ -43,7 +43,8 @@ trait Categories
 		if (!empty($name))
 			$objectsCategories->setSubquery('AND `name` LIKE \'%?s%\'', $name);
 
-		$objectsCategories->setOrderBy('`priority` ASC')->setPager($itemsOnPage);
+		$orderBy = (isset($this->getGET()['orderBy'])) ? $this->getGET()['orderBy'] : 'priority';
+		$objectsCategories->setOrderBy('`'.$orderBy.'` ASC')->setPager($itemsOnPage);
 
 		$this->setContent('categories', $objectsCategories)
 			->setContent('pager', $objectsCategories->getPager())
