@@ -43,6 +43,8 @@ class Parameter extends \core\modules\base\ModuleDecorator
 		foreach ($this->getParameterValues() as $value)
 			if(in_array($value->id, $objectParametersArray)){
 				$temp = [];
+                $temp['id'] = $value->id;
+                $temp['alias'] = $value->getAlias();
 				$temp['description'] = $value->description;
 				$temp['name'] = $value->getValue();
 				$array[] = $temp;

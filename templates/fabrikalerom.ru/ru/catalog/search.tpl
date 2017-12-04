@@ -13,8 +13,6 @@
 
             <h1><?=$h1?></h1>
 
-            <?//$this->includeTemplate('catalog/filterBlock')?>
-
             <div class="tab-catalog">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs">

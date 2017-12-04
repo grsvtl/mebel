@@ -153,7 +153,6 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             ->setContent('objects', $objects)
             ->setContent('level', 'search')
             ->setContent('query', $this->getGET()['query'])
-            ->setContent('activeSearchParameters', $this->getActiveSearchParameters())
             ->setContent('isParameterSearchActive', $this->isFilteringCategory())
             ->includeTemplate('catalog/search');
     }
@@ -182,6 +181,8 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             } else
                 $mainObjects = $this->getObjectsByCategory($category, $fabricator->id);
 
+            $allObjects = clone $mainObjects;
+
             if ($this->isFilteringCategory())
                 $this->filterByUserSelection($mainObjects);
 
@@ -195,7 +196,7 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             $mainObjects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
 
             $this->setContent('mainObjects', $mainObjects)
-                ->setContent('activeSearchParameters', $this->getActiveSearchParameters())
+                ->setContent('colorsArray', $this->getColorParametersArrayByObjects($allObjects))
                 ->setContent('isParameterSearchActive', $this->isFilteringCategory())
                 ->setContent('hasModules', isset($restObjects))
                 ->setContent('fabricator', $fabricator)
@@ -258,6 +259,17 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
         return $searchParameters->setSubquery('AND `statusId` = ?d', SearchParameterConfig::ACTIVE_STATUS_ID);
     }
 
+    private function getColorParametersArrayByObjects($objects)
+    {
+        $array = array();
+        foreach($objects as $object){
+            $parameters = $this->getParameterArrayByIdAndGood(CatalogItemConfig::CORPUS_PARMETERS_ID, $object);
+            foreach($parameters as $parameter)
+                $array[] = $parameter;
+        }
+        return array_unique($array, SORT_REGULAR);
+    }
+
     private function isFilteringCategory()
     {
         return isset($_GET['searchParameterActive']) && $_GET['searchParameterActive'] == 1 && count($_GET) > 1;
@@ -273,7 +285,6 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             $id = $this->parseUserSearchParameterValue($param);
             $userParameters[] = $id;
         }
-
         $objects->setSubquery('AND `id` IN (SELECT `ownerId` FROM `tbl_catalog_catalog_parameters_values_relation` WHERE `objectId` IN (' . implode(',', $userParameters) . '))');
     }
 
@@ -530,10 +541,13 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             $objects = $this->getActiveObjectsBySeriaAndCategory($seria, $category, $this->getLeromFabricatorId())
                             ->orderByDomainAlias($this->getCurrentDomainAlias(), $category->id)
                             ->setSubquery('AND `id` IN (SELECT DISTINCT `goodId` FROM `tbl_catalog_subgoods`)');
+
+            $allObjects = $objects;
+
             if ($this->isFilteringCategory())
                 $this->filterByUserSelection($objects);
-               $objects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD)
-            ;
+
+            $objects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
 
             $subGoods = $this->getActiveObjectsBySeriaAndCategory($seria, $category, $this->getLeromFabricatorId())
                             ->orderByDomainAlias($this->getCurrentDomainAlias(), $category->id)
@@ -557,7 +571,7 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
 
                 ->setContent('level', 'category')
                 ->setContent('category', $category)
-                ->setContent('activeSearchParameters', $this->getActiveSearchParameters())
+                ->setContent('colorsArray', $this->getColorParametersArrayByObjects($allObjects))
                 ->setContent('isParameterSearchActive', $this->isFilteringCategory())
 
                 ->includeTemplate('catalog/seria');
