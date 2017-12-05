@@ -12,7 +12,7 @@
         </a>
         <div class="body-offer">
             <a href="<?=$object->getPath()?>" class="link-c-o"><?=$object->getName()?></a>
-            <span class="type-offer">Для спальни</span>
+            <span class="type-offer"><?=$this->getCategoryModyName($object->getCategory())?></span>
             <ul>
                 <? if($sizesAndWeight): ?>
                 <? foreach( $sizesAndWeight as $size ): ?>

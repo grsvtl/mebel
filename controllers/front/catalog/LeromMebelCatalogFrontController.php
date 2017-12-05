@@ -24,7 +24,8 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
         'ajaxCheckMoreGoodsAvailable',
         'search',
         'test',
-        'getSeriesByCategory'
+        'getSeriesByCategory',
+        'getCategoryModyName'
     ];
 
     protected $compositionsCategories = [
@@ -221,18 +222,35 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
         if ($contents === false){
             ob_start();
 
-            $sizesAndWeight = $this->getObjectPropertiesListByAlias('sizesAndWeight', $good);
+            $weightAndSizeArray = array();
+            foreach ($this->getObjectPropertiesListByAlias('sizesAndWeight', $good) as $item)
+                if( in_array($item['value'], array('Вес', 'Объем')) )
+                    $weightAndSizeArray[] = $item;
+
+            $subGoodsString = '';
+            $subGoodsArray = array();
+            if($good->isSubGoodsExists())
+                foreach ($good->getSubgoods() as $subGood){
+                    $subGoodsString .= $subGood->getGood()->getName();
+                    $subGoodsString .= $subGood->getQuantity() > 1  ?  '&nbsp;*&nbsp;'.$subGood->getQuantity().'шт.'  :  '';
+                    $subGoodsString .= ', ';
+                    $subGoodsArray[] = $subGood;
+                }
+            $subGoodsString = empty($subGoodsString) ? $subGoodsString : substr($subGoodsString, 0, -2);
 
             $this->setLevels($good)
                 ->setMetaFromObject($good)
                 ->setContent('object', $good)
                 ->setContent('category', $good->getCategory())
-                ->setContent('sizesAndWeight', $sizesAndWeight)
-                ->setContent('hasOtherProperties', (count($sizesAndWeight) > 3 ) )
+                ->setContent('weightAndSizeArray', $weightAndSizeArray)
+//                ->setContent('hasOtherProperties', (count($sizesAndWeight) > 3 ) )
                 ->setContent('dimensions', $this->getObjectPropertiesListByAlias('sizesAndWeight', $good, 3))
                 ->setContent('materialArray', $this->getParameterArrayByIdAndGood($this->_config->getMaterialParametersId(), $good))
                 ->setContent('corpusArray', $this->getParameterArrayByIdAndGood($this->_config->getCorpusParametersId(), $good))
                 ->setContent('fasadArray', $this->getParameterArrayByIdAndGood($this->_config->getFasadParametersId(), $good))
+                ->setContent('subGoodsString', $subGoodsString)
+                ->setContent('subGoodsArray', $subGoodsArray)
+
                 //->setContent('otherGoodsOfSeriaAndCategory', $this->getOtherGoodsOfSeriaAndCategory($good, self::QUANTITY_OF_OTHER_GOODS_OF_SERIA_AND_CATEGORY))
                 ->includeTemplate('catalog/catalogObject');
 
@@ -259,7 +277,7 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
         return $searchParameters->setSubquery('AND `statusId` = ?d', SearchParameterConfig::ACTIVE_STATUS_ID);
     }
 
-    private function getColorParametersArrayByObjects($objects)
+    protected function getColorParametersArrayByObjects($objects)
     {
         $array = array();
         foreach($objects as $object){
@@ -295,18 +313,11 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
 
     protected function getLeftMenu()
     {
-//        var_dump($this->getLeftMenuCategoriesObject());
-//
-//
-//        die();
-
-
         $cacheKey = md5($this->getCurrentDomainAlias().'-'.__METHOD__.serialize($this->getREQUEST()->getArray()));
         $contents = \core\cache\Cacher::getInstance()->get($cacheKey);
         if ($contents === false){
             ob_start();
             $this
-//                ->setContent('leftMenuCategories', $this->getMainCategoriesWhichHasChildren($this->getLeromFabricatorId()))
                 ->setContent('leftMenuCategories', $this->getLeftMenuCategoriesObject())
                 ->includeTemplate('catalog/leftMenu');
             $contents = ob_get_contents();
@@ -581,5 +592,15 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             \core\cache\Cacher::getInstance()->set($contents, $cacheKey);
         }
         echo $contents;
+    }
+
+    protected function getCategoryModyName($category)
+    {
+        if(isset($this->leftMenuCategoriesMapping[$category->id]['name']))
+            return $this->leftMenuCategoriesMapping[$category->id]['name'];
+        if($category->parentId)
+            if(isset($this->leftMenuCategoriesMapping[$category->parentId]['name']))
+                return $this->leftMenuCategoriesMapping[$category->parentId]['name'];
+        return $category->getName();
     }
 }

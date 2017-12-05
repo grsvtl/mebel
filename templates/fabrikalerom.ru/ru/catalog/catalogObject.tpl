@@ -62,60 +62,30 @@
                             <span class="add-t-c">Добавить в корзину</span>
                         </div>
                     </div>
-                    <div class="color-block">
-                    </div>
-                    <!--<div class="color-block">
-                        <span class="name-select-color">Цвета</span>
-                        <div class="select-main-block">
-                            <div class="back-fon-select"></div>
-                            <div class="select-block-inset">
-                                <div class="name-select">Выбрать цвет</div>
-                                <div class="list-select">
-                                    <div class="line-select">
-                                        <input type="radio" name="cheked-b" id="check-a-1" class="hidden input-select">
-                                        <label for="check-a-1" class="label-select">
-                                            <img src="img/Oval 6.png" alt=""> <span>Цвет 1</span>
-                                        </label>
-                                    </div>
-                                    <div class="line-select">
-                                        <input type="radio" name="cheked-b" id="check-a-2" class="hidden input-select">
-                                        <label for="check-a-2" class="label-select">
-                                            <img src="img/Oval 6.png" alt=""> <span>Цвет 2</span>
-                                        </label>
-                                    </div>
-                                    <div class="line-select">
-                                        <input type="radio" name="cheked-b" id="check-a-3" class="hidden input-select">
-                                        <label for="check-a-3" class="label-select">
-                                            <img src="img/Oval 6.png" alt=""> <span>Цвет 3</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
 
-                    <? if($dimensions): ?>
-                    <div class="info-inset-block">
-                        <? $dimension = ''; ?>
-                        <? $i=1; foreach($dimensions as $parameter):?>
-                        <? $dimension = $dimension . $parameter['name']; ?>
-                        <? if (count($dimensions)==$i) { $dimension = $dimension . ' '.$parameter['measure']; } else { $dimension = $dimension . ' x '; } ?>
-                        <? $i++; endforeach?>
-                        <span>Размер (ш.г.в.):</span>
-                        <p><?=$dimension?></p>
-                    </div>
-                    <? endif ?>
+<!--                    <div class="color-block">-->
+<!--                        <span class="name-select-color">Цвета:</span>-->
+<!--                        <div class="select-main-block">-->
+<!--                            <div class="back-fon-select"></div>-->
+<!--                            <div class="select-block-inset">-->
+<!--                                <div class="name-select">Выбрать цвет</div>-->
+<!--                                <div class="list-select">-->
+<!--                                    --><?//foreach ($this->getColorParametersArrayByObjects(array($object)) as $color):?>
+<!--                                    <div class="line-select">-->
+<!--                                        <input type="radio" name="cheked-b" id="check-a-1" class="hidden input-select" >-->
+<!--                                        <label for="check-a-1" class="label-select">-->
+<!--                                            <img src="/images/fabrikaLerom/oval6.png" alt=""> <span>--><?//=$color['name']?><!--</span>-->
+<!--                                        </label>-->
+<!--                                    </div>-->
+<!--                                    --><?//endforeach?>
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                    <? if($hasOtherProperties): ?>
-                    <?for ($i = 2; $i <= count($sizesAndWeight) - 1; $i++):?>
-                    <div class="info-inset-block">
-                        <span><?=$sizesAndWeight[$i]['value']?>:</span>
-                        <p><?=$sizesAndWeight[$i]['name']?> <?=$sizesAndWeight[$i]['measure']?></p>
-                    </div>
-                    <? endfor ?>
-                    <? endif ?>
 
-                    <? $labels = ['Материал:','Корпус:','Фасад:']; $i = 0; foreach( [$materialArray, $corpusArray, $fasadArray] as $array ): ?>
+
+                    <? $labels = ['Материалы:']; $i = 0; foreach( [$materialArray] as $array ): ?>
                     <? if($array): ?>
                     <div class="info-inset-block">
                         <span><?=$labels[$i]?></span>
@@ -128,11 +98,82 @@
                     <? endif ?>
                     <? $i++; endforeach; ?>
 
+                    <? if($dimensions): ?>
+                    <div class="info-inset-block">
+                        <? $dimension = ''; ?>
+                        <? $i=1; foreach($dimensions as $parameter):?>
+                            <? $dimension = $dimension . $parameter['name']; ?>
+                            <? if (count($dimensions)==$i) { $dimension = $dimension . ' '.$parameter['measure']; } else { $dimension = $dimension . ' x '; } ?>
+                            <? $i++; endforeach?>
+                        <span>Размер (ш.г.в.):</span>
+                        <p><?=$dimension?></p>
+                    </div>
+                    <? endif ?>
+
+                    <?if (!empty($weightAndSizeArray)):?>
+                    <div class="info-inset-block">
+                        <span>Вес и объем:</span>
+                        <p>
+                            <?=$weightAndSizeArray[0]['name']?> <?=$weightAndSizeArray[0]['measure']?>
+                            <?if(isset($weightAndSizeArray[1])):?>
+                            |
+                            <?=$weightAndSizeArray[1]['name']?> <?=$weightAndSizeArray[1]['measure']?>
+                            <?endif;?>
+                        </p>
+
+                    </div>
+                    <?endif;?>
+
+                    <?if (!empty($subGoodsString)):?>
+                    <div class="info-inset-block">
+                        <span>Состав набора:</span>
+                        <p><?=$subGoodsString?></p>
+                    </div>
+                    <?endif;?>
+
                 </div>
                 <div class="clear"></div>
 
                 <div class="complect-block">
-                    <h3>Другие модули </h3>
+
+
+                    <?if(!empty($subGoodsArray)):?>
+                    <h3>Состав комплека</h3>
+                    <?foreach($subGoodsArray as $subGood):?>
+                    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <div class="container-offer">
+                            <a href="" class="img-c-o">
+                                <img src="<?=$subGood->getGood()->getFirstPrimaryImage()->getImage('254x170')?>" alt="">
+                            </a>
+                            <div class="body-offer">
+                                <a href="<?=$subGood->getGood()->getPath()?>" class="link-c-o"><?=$subGood->getGood()->getName()?></a>
+                                <span class="type-offer"><?=$this->getCategoryModyName($object->getCategory())?></span>
+                                <ul>
+                                    <?$sizesAndWeight = $this->getObjectPropertiesListByAlias('sizesAndWeight', $subGood->getGood(), 3);?>
+                                    <? if($sizesAndWeight): ?>
+                                        <? foreach( $sizesAndWeight as $size ): ?>
+                                            <? if($size['name']): ?>
+                                                <li>
+                                                    <strong><?=$size['name']?> <?=$size['measure']?></strong>
+                                                    <span><?=$size['value']?>:</span>
+                                                </li>
+                                            <? endif; ?>
+                                        <? endforeach; ?>
+                                    <? endif; ?>
+                                </ul>
+                                <div class="price-offer-block complect-include">
+                                    <a href="<?=$subGood->getGood()->getPath()?>" class="more-offer">Подробнее</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <?endforeach;?>
+                    <div class="clear"></div>
+                    <?endif?>
+
+
+                    <h3>Другие модули этой коллекции</h3>
                     <?foreach($this->getOtherGoodsByCategory($category,$object) as $otherItem):?>
                     <div class="col-md-4 col-sm-6 col-xs-6">
                         <?$this->getController('Catalog')->getCatalogListContentItemBlock($otherItem)?>
