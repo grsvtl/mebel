@@ -39,4 +39,13 @@ $(function(){
         });
     }
 
+    $(".name-select, .back-fon-select, .select-block-inset").click(function(e) {
+        e.stopPropagation();
+        $(this).parents(".select-main-block").toggleClass("check-select");
+    });
+
+    $(".label-select").click(function(e) {
+        e.stopPropagation();
+        $(this).parents(".line-select").toggleClass("select");
+    });
 });
