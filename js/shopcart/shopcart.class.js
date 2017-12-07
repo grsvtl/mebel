@@ -56,13 +56,39 @@ var shopcart = function (sources) {
 
     this.addToShopcart = function (object) {
         var that = this;
-        that.loader.setLoader( object );
+
+
+
+
+
+
+
+
+
+
+
+        // that.loader.setLoader( object );
+
+
+
+
+
+
+
+
+
+
+
+
+
         var objectId = $(object).attr('data-objectId');
         var isByeMoreQuantity = $('[data-objectId=' + objectId + '].byeMoreQuantity').length > 0;
         var quantity = 1;
 
         if( isByeMoreQuantity )
             quantity = $('[data-objectId=' + objectId + '].byeMoreQuantity').html();
+
+        var objectColor = $(object).attr('data-objectColor');
 
         $.ajax({
             url: that.ajax.addToShopcart,
@@ -71,6 +97,7 @@ var shopcart = function (sources) {
                 'objectId' : objectId,
                 'objectClass' : $(object).attr('data-objectClass'),
                 'quantity' : quantity,
+                'objectColor' : objectColor
             },
             dataType: 'json',
             success: function(data){
@@ -262,7 +289,7 @@ var shopcart = function (sources) {
                 'goodId' : $(object).attr('data-goodId'),
                 'goodClass' : $(object).attr('data-goodClass'),
                 'goodCode' : $(object).attr('data-goodCode'),
-                'quantity' : $(object).attr('data-quantity')
+                'quantity' : $(object).attr('data-quantity'),
             },
             success: function(data){
                 that.loader.getElement();
@@ -285,7 +312,8 @@ var shopcart = function (sources) {
                 'goodId' : $(object).attr('data-goodId'),
                 'goodClass' : $(object).attr('data-goodClass'),
                 'goodCode' : $(object).attr('data-goodCode'),
-                'quantity' : $(object).attr('data-quantity')
+                'quantity' : $(object).attr('data-quantity'),
+                'goodColor' : $(object).attr('data-goodColorId')
             },
             success: function(data){
                 if(data == 1){

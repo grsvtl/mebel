@@ -54,12 +54,12 @@ trait ShopcartBaseMethods
 
 	protected function getElementKeyByGood($shopcartGood)
 	{
-		return $this->getElementKey($shopcartGood->getObjectClass(), $shopcartGood->getObjectId());
+		return $this->getElementKey($shopcartGood->getObjectClass(), $shopcartGood->getObjectId(), $shopcartGood->getObjectColor());
 	}
 
-	protected function getElementKey($objectClass, $objectId)
+	protected function getElementKey($objectClass, $objectId, $objectColor)
 	{
-		return $objectClass.'-'.$objectId;
+		return $objectClass.'-'.$objectId.'-'.$objectColor;
 	}
 
 	protected function removeShopcartGoodByKey($key)
@@ -81,6 +81,7 @@ trait ShopcartBaseMethods
 				'objectId' => $shopcartGood->getObjectId(),
 				'quantity' => $shopcartGood->getQuantity(),
 				'index' => $shopcartGood->index,
+                'objectColor' => $shopcartGood->getObjectColor(),
 			);
 		}
 		$serializedGoodsList = serialize($cookieArray);

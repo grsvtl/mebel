@@ -900,147 +900,143 @@ a:hover, a:focus {
 
 /*стили для цветов*/
 
-/*style select*/
+/*style select start*/
 
-		.select-main-block {
-			display: block;
-		}
+.select-main-block {
+    display: block;
+}
 
-		.select-block-inset {
-		    margin-right: auto;
-		    margin-left: auto;
-		    width: 100%;
-		    border: 1px solid #D5D5D5;
-		    border-radius: 3px;
-		    height: 45px;
-		    cursor: pointer;
-		    position: relative;
-		    margin-top: 2px;
-		    margin-bottom: 0px;
-		}
+.select-block-inset {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    border: 1px solid #D5D5D5;
+    border-radius: 3px;
+    height: 45px;
+    cursor: pointer;
+    position: relative;
+    margin-top: 2px;
+    margin-bottom: 0px;
+}
 
-		.select-block-inset:after {
-		    content: "";
-		    display: block;
-		    position: absolute;
-		    top: 18px;
-		    border: 8px solid transparent;
-		    border-top: 10px solid #b1b1b1;
-		    right: 15px;
-		}
+.select-block-inset:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 18px;
+    border: 8px solid transparent;
+    border-top: 10px solid #b1b1b1;
+    right: 15px;
+}
 
-		.name-select {
-			display: block;
-		    font-size: 14px;
-		    color: #777;
-		    height: 45px;
-		    width: 100%;
-		    padding-top: 11px;
-		    padding-left: 25px;
-		    cursor: pointer;
-		}
+.name-select {
+    display: block;
+    font-size: 14px;
+    color: #777;
+    height: 45px;
+    width: 100%;
+    padding-top: 11px;
+    padding-left: 25px;
+    cursor: pointer;
+}
 
-		.list-select {
-			height: 0px;
-    		border: none;
-		}
+.list-select {
+    height: 0px;
+    border: none;
+}
 
-		.line-select {
-			max-width: 400px;
-		    text-align: left;
-		    border-bottom: 1px solid #f2f2f2;
-		    width: auto;
-		    display: none;
-		    padding: 22px 15px;
-    		position: relative;
-    		cursor: pointer;
-		}
+.line-select {
+    max-width: 400px;
+    text-align: left;
+    border-bottom: 1px solid #f2f2f2;
+    width: auto;
+    display: none;
+    padding: 22px 15px;
+    position: relative;
+    cursor: pointer;
+}
 
-		.input-select + label {
-		    position: absolute;
-		    left: 0px;
-		    top: 0px;
-		    right: 0px;
-		    bottom: 0px;
-		    display: block;
-		    cursor: pointer;
-		    width: 100%;
-		    height: 100%;
-		    z-index: 4;
-	        color: #7b7b7b;
-		    font-size: 13px;
-		    font-weight: 400;
-	        padding-top: 15px;
-	        padding-left: 15px;
-		}
+.input-select + label {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    display: block;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    color: #7b7b7b;
+    font-size: 13px;
+    font-weight: 400;
+    padding-top: 15px;
+    padding-left: 15px;
+}
 
-		.select .label-select {
-			    padding-top: 12px;
-			    height: 44px;
-    			left: 0px;
-    			padding-left: 15px;
-		}
+.select .label-select {
+    padding-top: 12px;
+    height: 44px;
+    left: 0px;
+    padding-left: 15px;
+}
 
-		.input-select:checked ~ label {
-		    
-    		color: #BB2823;
-		}
+.input-select:checked ~ label {
 
-		.check-select .list-select {
-		    display: block;
-		    position: absolute;
-		    width: 100%;
-		    z-index: 5;
-		    background: #fff;
-	        border: 1px solid #D5D5D5;
-		    left: 0px;
-		    top: 50px;
-		    height: auto;
-		}
+    color: #BB2823;
+}
 
-		.check-select .line-select {
-			display: block;
-		}
+.check-select .list-select {
+    display: block;
+    position: absolute;
+    width: 100%;
+    z-index: 5;
+    background: #fff;
+    border: 1px solid #D5D5D5;
+    left: 0px;
+    top: 50px;
+    height: auto;
 
-		.line-select.select {
-		        position: absolute;
-		    border-bottom: 0px;
-		    top: 0px;
-		    background: #fff;
-		    width: 100%;
-		    height: 43px;
-		    padding-top: 0px;
-		    display: block;
-		}
+    display: none;
+}
 
-		.back-fon-select {
-			display: none;
-		}
+.check-select .line-select {
+    display: block;
+}
 
-		.check-select .back-fon-select {
-		    display: block;
-		    position: fixed;
-		    left: 0px;
-		    right: 0px;
-		    top: 0px;
-		    bottom: 0px;
-		    z-index: 1;
-		}
+.line-select.select {
+    position: absolute;
+    border-bottom: 0px;
+    top: 0px;
+    background: #fff;
+    width: 100%;
+    height: 43px;
+    padding-top: 0px;
+    display: block;
+}
 
-		.label-select span {
-			padding-left: 10px;
-		}
+.back-fon-select {
+    display: none;
+}
 
-		.label-select img {
-			border-radius: 50%;
-		}
+.check-select .back-fon-select {
+    display: block;
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    z-index: 1;
+}
 
+.label-select span {
+    padding-left: 10px;
+}
 
-
-
-
-
-/*style select*/
+.label-select img {
+    border-radius: 50%;
+}
+/*style select end*/
 
 .info-inset-block {
 	border-top: 1px solid #EDEDED;
