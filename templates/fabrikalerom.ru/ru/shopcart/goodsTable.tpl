@@ -33,6 +33,11 @@
 
                         <a href="<?=$object->getPath()?>"><?=$object->getName()?></a>
 
+                        <?if($object->hasColor()):?>
+                        <br>
+                        Цвет: <?=$object->getColorParameter()->getValue()?>
+                        <?endif?>
+
                         <? if($dimensions): ?>
                             <? $dimension = ''; ?>
                             <? $i=1; foreach($dimensions as $parameter):?>
@@ -53,16 +58,20 @@
                     <div>
                         <span class="itemQuantity">1</span>
                         <button class="btn btn-primary plusQuantity changeQuantity" <?= $object->getQuantity()==1 ? 'disabled="disabled"' : ''?>
-                              data-goodId="<?=$object->id?>"
-                              data-goodClass="<?=$object->getClass()?>"
-                              data-goodCode="<?=$object->getCode()?>"
-                              data-quantity="<?=$object->getQuantity() - 1?>">-</button>
+                            data-goodId="<?=$object->id?>"
+                            data-goodClass="<?=$object->getClass()?>"
+                            data-goodCode="<?=$object->getCode()?>"
+                            data-quantity="<?=$object->getQuantity() - 1?>"
+                            data-goodColorId="<?=$object->hasColor() ? $object->getObjectColor() : ''?>"
+                        >-</button>
                         <span class="shopcartItemQnt"><?=$object->getQuantity()?></span>
                         <button class="btn btn-primary minusQuantity changeQuantity"
-                              data-goodId="<?=$object->id?>"
-                              data-goodClass="<?=$object->getClass()?>"
-                              data-goodCode="<?=$object->getCode()?>"
-                              data-quantity="<?=$object->getQuantity() + 1?>">+</button>
+                            data-goodId="<?=$object->id?>"
+                            data-goodClass="<?=$object->getClass()?>"
+                            data-goodCode="<?=$object->getCode()?>"
+                            data-quantity="<?=$object->getQuantity() + 1?>"
+                            data-goodColorId="<?=$object->hasColor() ? $object->getObjectColor() : ''?>"
+                        >+</button>
                     </div>
                 </td>
                 <td class="card-inset-5">

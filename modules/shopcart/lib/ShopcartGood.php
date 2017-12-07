@@ -1,5 +1,9 @@
 <?php
 namespace modules\shopcart\lib;
+use core\modules\base\ModuleObjects;
+use modules\parameters\components\parametersValues\lib\ParameterValues;
+use modules\parameters\lib\Parameters;
+
 class ShopcartGood
 {
 	use traits\ShopcartBaseMethods;
@@ -8,16 +12,18 @@ class ShopcartGood
 	protected $objectId;
 	protected $good;
 	protected $quantity;
+	private $color;
 
 	protected $index;
 
-	public function __construct($objectClass, $objectId, $quantity, $index)
+	public function __construct($objectClass, $objectId, $quantity, $index, $objectColor)
 	{
 		$this->setObjectClass($objectClass)
-			 ->setObjectId($objectId)
-			 ->setQuantity($quantity)
-			->setIndex($index)
-			 ->setGood();
+            ->setObjectId($objectId)
+            ->setQuantity($quantity)
+            ->setIndex($index)
+            ->setObjectColor($objectColor)
+            ->setGood();
 	}
 
 	protected function setObjectClass($objectClass)
@@ -125,4 +131,32 @@ class ShopcartGood
 	{
 		return get_class($this->good) == 'modules\catalog\complects\lib\Complect';
 	}
+
+    public function getObjectColor()
+    {
+        if($this->hasColor())
+            return $this->color;
+        return false;
+    }
+
+    public function hasColor()
+    {
+        if(isset($this->color) && !empty($this->color))
+            return true;
+        return false;
+    }
+
+    public function setObjectColor($color)
+    {
+        $this->color = $color;
+        return $this;
+    }
+
+    public function getColorParameter()
+    {
+        $id = $this->getObjectColor();
+        if((new ParameterValues())->isExist($id))
+            return (new ParameterValues())->getObjectById($id);
+        return false;
+    }
 }

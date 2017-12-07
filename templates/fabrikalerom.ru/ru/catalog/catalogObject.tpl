@@ -56,34 +56,38 @@
                             <span class="itemQuantity byeMoreQuantity" data-objectId="<?=$object->id?>">1</span>
                         </div>
                     </div>
-                    <div class="add-to-card addToShopcart" data-objectId="<?=$object->id?>" data-objectClass="<?=$object->getClass()?>">
+                    <div
+                            class="add-to-card addToShopcart"
+                            data-objectId="<?=$object->id?>"
+                            data-objectClass="<?=$object->getClass()?>"
+                            data-objectColor=""
+                    >
                         <div class="add-to-card-btn btn">
                             <?$this->includeTemplate('catalog/shopcartImage')?>
                             <span class="add-t-c">Добавить в корзину</span>
                         </div>
                     </div>
 
-<!--                    <div class="color-block">-->
-<!--                        <span class="name-select-color">Цвета:</span>-->
-<!--                        <div class="select-main-block">-->
-<!--                            <div class="back-fon-select"></div>-->
-<!--                            <div class="select-block-inset">-->
-<!--                                <div class="name-select">Выбрать цвет</div>-->
-<!--                                <div class="list-select">-->
-<!--                                    --><?//foreach ($this->getColorParametersArrayByObjects(array($object)) as $color):?>
-<!--                                    <div class="line-select">-->
-<!--                                        <input type="radio" name="cheked-b" id="check-a-1" class="hidden input-select" >-->
-<!--                                        <label for="check-a-1" class="label-select">-->
-<!--                                            <img src="/images/fabrikaLerom/oval6.png" alt=""> <span>--><?//=$color['name']?><!--</span>-->
-<!--                                        </label>-->
-<!--                                    </div>-->
-<!--                                    --><?//endforeach?>
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-
-
+                    <div class="color-block">
+                        <span class="name-select-color">Цвета:</span>
+                        <div class="select-main-block">
+                            <div class="back-fon-select"></div>
+                            <div class="select-block-inset check-select">
+                                <div class="name-select">Выбрать цвет</div>
+                                <div class="list-select">
+                                    <?foreach ($this->getColorParametersArrayByObjects(array($object)) as $color):?>
+                                    <div class="line-select">
+                                        <input type="radio" name="cheked-b" id="check-a-<?=$color['id']?>" class="hidden input-select" >
+                                        <label for="check-a-<?=$color['id']?>" class="label-select">
+                                            <img src="/images/fabrikaLerom/oval6.png" alt="">
+                                            <span class="choosedColor" data-colorId="<?=$color['id']?>"><?=$color['name']?></span>
+                                        </label>
+                                    </div>
+                                    <?endforeach?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <? $labels = ['Материалы:']; $i = 0; foreach( [$materialArray] as $array ): ?>
                     <? if($array): ?>

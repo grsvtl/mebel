@@ -25,8 +25,15 @@ class Shopcart implements \Iterator, \Countable
 		$this->resetGoods();
 		if (isset($_COOKIE[$this->cookieGoodsKey])) {
 			try {
-				foreach($this->getUnserializedCookie() as $good)
-					$this->setShopcartGood($good['objectClass'], $good['objectId'], $good['quantity'], $good['index']);
+				foreach($this->getUnserializedCookie() as $good){
+                    $this->setShopcartGood(
+                        $good['objectClass'],
+                        $good['objectId'],
+                        $good['quantity'],
+                        $good['index'],
+                        isset($good['objectColor']) ? $good['objectColor'] : ''
+                    );
+                }
 			} catch (ShopcartException $e) {
 				$this->getGoodsFromCookie();
 			}
@@ -34,18 +41,18 @@ class Shopcart implements \Iterator, \Countable
 		return $this;
 	}
 
-	protected function setShopcartGood($objectClass, $objectId, $quantity, $index)
+	protected function setShopcartGood($objectClass, $objectId, $quantity, $index, $objectColor)
 	{
-		$elementKey = $this->getElementKey($objectClass, $objectId);
+		$elementKey = $this->getElementKey($objectClass, $objectId, $objectColor);
 		$shopcartGood = $this->getGood($elementKey);
 		if (is_object($shopcartGood))
 			$shopcartGood->setQuantity($shopcartGood->getQuantity()+$quantity);
 		else
-			$this->setGood($elementKey, new ShopcartGood($objectClass, $objectId, $quantity, $index));
+			$this->setGood($elementKey, new ShopcartGood($objectClass, $objectId, $quantity, $index, $objectColor));
 		return $this;
 	}
 
-	public function addGood($objectClass, $objectId, $quantity, $index)
+	public function addGood($objectClass, $objectId, $quantity, $index, $objectColor)
 	{
 		$objectClass = (string)$objectClass;
 		$objectId    = (int)$objectId;
@@ -54,7 +61,7 @@ class Shopcart implements \Iterator, \Countable
 			$this->checkObjectClass($objectClass)
 				->checkObjectId($objectId)
 				->checkQuantityForGood($quantity, $this->getObject($objectClass, $objectId))
-				->setShopcartGood($objectClass, $objectId, $quantity, $index)
+				->setShopcartGood($objectClass, $objectId, $quantity, $index, $objectColor)
 				->updateCookie();
 			return true;
 		} catch (\exceptions\ExceptionShopcart $e) {
@@ -202,9 +209,9 @@ class Shopcart implements \Iterator, \Countable
 		return ($this->getDelivery()->price) ? $this->getDelivery()->price : 0 ;
 	}
 
-	public function getGoodByObjectClassAndId($objectClass, $objectId)
+	public function getGoodByObjectClassAndId($objectClass, $objectId, $objectColor)
 	{
-		$elementKey = $this->getElementKey($objectClass, $objectId);
+		$elementKey = $this->getElementKey($objectClass, $objectId, $objectColor);
 		return $this->getGood($elementKey);
 	}
 

@@ -7,7 +7,6 @@ $(function(){
 
     $('select[name="productQuantity"]').on('change', function() {
         var that = this;
-
         $('span.itemQuantity').html(that.value);
     });
 
@@ -39,13 +38,16 @@ $(function(){
         });
     }
 
-    $(".name-select, .back-fon-select, .select-block-inset").click(function(e) {
-        e.stopPropagation();
-        $(this).parents(".select-main-block").toggleClass("check-select");
+    $(".select-main-block").click(function(e) {
+        $('.list-select').toggle();
     });
 
-    $(".label-select").click(function(e) {
+    $('.line-select').click(function(e){
         e.stopPropagation();
-        $(this).parents(".line-select").toggleClass("select");
+        var color = $(this).find('span.choosedColor').html();
+        $('.name-select').html(color);
+        var colorId = $(this).find('span.choosedColor').attr('data-colorId');
+        $('.addToShopcart').attr('data-objectColor', colorId);
+        $('.list-select').hide();
     });
 });

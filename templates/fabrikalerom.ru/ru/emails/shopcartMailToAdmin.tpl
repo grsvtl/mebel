@@ -105,7 +105,8 @@
 											<a href="<?=$_SERVER['HTTP_HOST'].$good->getPrimaryGood()->getGood()->getPath()?>">
 												<?=$good->getPrimaryGood()->getGood()->getName()?>
 											</a>
-											&nbsp;(<?=$good->getPrimaryGood()->getPrice()?>  руб)
+                                            (цвет <?= $good->hasColor() ? $good->getColorParameter()->getValue() : 'не выбран'?>)
+											(<?=$good->getPrimaryGood()->getPrice()?>  руб)
 										</p>
 									</td>
 									<td><p><?=$good->getPrimaryGood()->quantity?></p></td>
@@ -140,7 +141,12 @@
 							<tr>
 								<td><div class="image"><a href="<?=$_SERVER['HTTP_HOST'].$good->getPath()?>"><img src="http://<?= $_SERVER['HTTP_HOST'].$good->getFirstPrimaryImage()->getFocusImage('100x0')?>" alt="" /></a></div></td>
 								<td>
-									<p class="name"><a href="<?=$_SERVER['HTTP_HOST'].$good->getPath()?>"><?=$good->getName()?></a></p>
+									<p class="name">
+                                        <a href="<?=$_SERVER['HTTP_HOST'].$good->getPath()?>">
+                                            <?=$good->getName()?>
+                                            (цвет <?= $good->hasColor() ? $good->getColorParameter()->getValue() : 'не выбран'?>)
+                                        </a>
+                                    </p>
 									<?if($good->getSubgoods() && $good->getSubgoods()->count()):?>
 									<table>
 										<tr>

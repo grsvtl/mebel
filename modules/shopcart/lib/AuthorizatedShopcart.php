@@ -30,7 +30,7 @@ class AuthorizatedShopcart extends Shopcart
 		return !$this->isAuthorizatedUser();
 	}
 
-	protected function setShopcartGood($objectClass, $objectId, $quantity, $index)
+	protected function setShopcartGood($objectClass, $objectId, $quantity, $index, $objectColor)
 	{
 		if ($this->isAuthorizatedUser()) {
 			$goodExistInShopcartTable = $this->isGoodExistInShopcartTable($objectClass, $objectId);
@@ -51,7 +51,7 @@ class AuthorizatedShopcart extends Shopcart
 					(`objectClass`, `objectId`, `quantity`, `clientId`, `domain`, `index`)
 						VALUES
 					("?s", ?d, ?d, ?d, "?s", ?d)';
-				$data = array($objectClass, $objectId, $quantity, $this->authorizatedUserId, $this->getCurrentDomain(), $index);
+				$data = array($objectClass, $objectId, $quantity, $this->authorizatedUserId, $this->getCurrentDomain(), $index, $objectColor);
 			}
 
 			$res = \core\db\Db::getMysql()->query($query, $data);
@@ -59,7 +59,7 @@ class AuthorizatedShopcart extends Shopcart
 				return $this;
 			throw new Exception('Failed to add good in shopcart table in database!');
 		} else
-			return parent::setShopcartGood($objectClass, $objectId, $quantity, $index);
+			return parent::setShopcartGood($objectClass, $objectId, $quantity, $index, $objectColor);
 	}
 
 	private function isGoodExistInShopcartTable($objectClass, $objectId)

@@ -104,7 +104,7 @@ class ShopcartFrontController extends \controllers\base\ShopcartBaseController
 	{
         $index = $this->shopcart->getNextIndex();
 		$post = new \core\ArrayWrapper($this->getPOST());
-		$res = $this->shopcart->addGood($post->objectClass, $post->objectId, $post->quantity, $index);
+		$res = $this->shopcart->addGood($post->objectClass, $post->objectId, $post->quantity, $index, $post->objectColor);
 		$this->ajaxResponse( $res );
 	}
 
@@ -151,10 +151,20 @@ class ShopcartFrontController extends \controllers\base\ShopcartBaseController
 
 	protected function ajaxChangeQuantity()
 	{
-		$index = $this->shopcart->getGoodByObjectClassAndId($this->getPOST()['goodClass'], $this->getPOST()['goodId'])->index;
+		$index = $this->shopcart->getGoodByObjectClassAndId(
+                                                                $this->getPOST()['goodClass'],
+                                                                $this->getPOST()['goodId'],
+                                                                $this->getPOST()['goodColor']
+                                                            )->index;
 		$res = $this->shopcart->removeGoodByCode($this->getPOST()['goodCode']);
 		if($res == 1)
-			$res = $this->shopcart->addGood($this->getPOST()['goodClass'], $this->getPOST()['goodId'], $this->getPOST()['quantity'], $index);
+			$res = $this->shopcart->addGood(
+			    $this->getPOST()['goodClass'],
+                $this->getPOST()['goodId'],
+                $this->getPOST()['quantity'],
+                $index,
+                $this->getPOST()['goodColor']
+            );
 		$this->ajaxResponse( $res );
 	}
 
