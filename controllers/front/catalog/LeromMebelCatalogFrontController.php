@@ -280,8 +280,6 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
     protected function getColorParametersArrayByObjects($objects)
     {
         $array = array();
-        if(!$objects->count())
-            return false;
         foreach($objects as $object){
             $parameters = $this->getParameterArrayByIdAndGood(CatalogItemConfig::CORPUS_PARMETERS_ID, $object);
             if($parameters  &&  count($parameters))
