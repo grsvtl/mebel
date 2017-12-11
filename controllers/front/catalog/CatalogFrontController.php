@@ -290,8 +290,8 @@ class CatalogFrontController extends \controllers\base\Controller
 
     protected function checkSeriaCategoryPath($seria, $category, $fabricatorId = null)
     {
-        if($this->getUriLength() != 2) return false;
-        if(!$category->isMain()) return false;
+//        if($this->getUriLength() != 2) return false;
+//        if(!$category->isMain()) return false;
         $objects = $this->getActiveObjectsBySeriaAndCategory($seria, $category);
         if(!$objects->count()) return false;
         return

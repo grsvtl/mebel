@@ -68,6 +68,8 @@
                         </div>
                     </div>
 
+                    <?$colors = $this->getColorParametersArrayByObjects(array($object) );?>
+                    <?if(!empty($colors)):?>
                     <div class="color-block">
                         <span class="name-select-color">Цвета:</span>
                         <div class="select-main-block">
@@ -75,7 +77,7 @@
                             <div class="select-block-inset check-select">
                                 <div class="name-select">Выбрать цвет</div>
                                 <div class="list-select">
-                                    <?foreach ($this->getColorParametersArrayByObjects(array($object)) as $color):?>
+                                    <?foreach ($colors as $color):?>
                                     <div class="line-select">
                                         <input type="radio" name="cheked-b" id="check-a-<?=$color['id']?>" class="hidden input-select" >
                                         <label for="check-a-<?=$color['id']?>" class="label-select">
@@ -88,6 +90,7 @@
                             </div>
                         </div>
                     </div>
+                    <?endif;?>
 
                     <? $labels = ['Материалы:']; $i = 0; foreach( [$materialArray] as $array ): ?>
                     <? if($array): ?>
@@ -176,13 +179,16 @@
                     <div class="clear"></div>
                     <?endif?>
 
-
+                    <?$otherGoods = $this->getOtherGoodsByCategory($category,$object)->count();?>
+                    <?if($otherGoods):?>
                     <h3>Другие модули этой коллекции</h3>
                     <?foreach($this->getOtherGoodsByCategory($category,$object) as $otherItem):?>
                     <div class="col-md-4 col-sm-6 col-xs-6">
                         <?$this->getController('Catalog')->getCatalogListContentItemBlock($otherItem)?>
                     </div>
                     <?endforeach?>
+                    <?endif?>
+
                     <div class="clear"></div>
                 </div>
             </div>
