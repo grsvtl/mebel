@@ -1476,3 +1476,8 @@ a:hover, a:focus {
     margin-top: 80px;
     text-align: center;
 }
+
+.okAddShopcartMessage{
+    display: none;
+    margin: 20px 0px 0px 0px;
+}

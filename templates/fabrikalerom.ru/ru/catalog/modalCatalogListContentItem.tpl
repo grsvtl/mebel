@@ -39,38 +39,34 @@
                                 <span class="del-t-c removeFromShopcart" data-goodId="<?=$object->id?>" data-goodClass="<?=$object->getClass()?>" data-goodCode="<?=$object->getCode()?>">Удалить из корзины</span>
                             </div>
                         </div>
-                        <div class="color-block">
 
+                        <div class="alert alert-success text-center okAddShopcartMessage">
+                            Товар добавлен в корзину
                         </div>
-                        <!--<div class="color-block">
-                            <span class="name-select-color">Цвета</span>
-                            <div class="select-main-block">
-                                <div class="back-fon-select"></div>
-                                <div class="select-block-inset">
-                                    <div class="name-select">Выбрать цвет</div>
-                                    <div class="list-select">
-                                        <div class="line-select">
-                                            <input type="radio" name="cheked-b" id="check-a-1" class="hidden input-select" >
-                                            <label for="check-a-1" class="label-select">
-                                                <img src="img/Oval 6.png" alt=""> <span>Цвет 1</span>
-                                            </label>
-                                        </div>
-                                        <div class="line-select">
-                                            <input type="radio" name="cheked-b" id="check-a-2" class="hidden input-select" >
-                                            <label for="check-a-2" class="label-select">
-                                                <img src="img/Oval 6.png" alt=""> <span>Цвет 2</span>
-                                            </label>
-                                        </div>
-                                        <div class="line-select">
-                                            <input type="radio" name="cheked-b" id="check-a-3" class="hidden input-select" >
-                                            <label for="check-a-3" class="label-select">
-                                                <img src="img/Oval 6.png" alt=""> <span>Цвет 3</span>
-                                            </label>
+
+                        <?$colors = $this->getColorParametersArrayByObjects(array($object) );?>
+                        <?if(!empty($colors)):?>
+                            <div class="color-block">
+                                <span class="name-select-color">Цвета:</span>
+                                <div class="select-main-block">
+                                    <div class="back-fon-select"></div>
+                                    <div class="select-block-inset check-select">
+                                        <div class="name-select">Выбрать цвет</div>
+                                        <div class="list-select">
+                                            <?foreach ($colors as $color):?>
+                                                <div class="line-select">
+                                                    <input type="radio" name="cheked-b" id="check-a-<?=$color['id']?>" class="hidden input-select" >
+                                                    <label for="check-a-<?=$color['id']?>" class="label-select">
+                                                        <img src="/images/fabrikaLerom/oval6.png" alt="">
+                                                        <span class="choosedColor" data-colorId="<?=$color['id']?>"><?=$color['name']?></span>
+                                                    </label>
+                                                </div>
+                                            <?endforeach?>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>-->
+                        <?endif;?>
 
                         <? if($dimensions): ?>
                         <div class="info-inset-block">

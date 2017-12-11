@@ -37,17 +37,4 @@ $(function(){
             dataType: 'json'
         });
     }
-
-    $(".select-main-block").click(function(e) {
-        $('.list-select').toggle();
-    });
-
-    $('.line-select').click(function(e){
-        e.stopPropagation();
-        var color = $(this).find('span.choosedColor').html();
-        $('.name-select').html(color);
-        var colorId = $(this).find('span.choosedColor').attr('data-colorId');
-        $('.addToShopcart').attr('data-objectColor', colorId);
-        $('.list-select').hide();
-    });
 });

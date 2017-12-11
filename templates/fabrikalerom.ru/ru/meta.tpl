@@ -41,23 +41,24 @@
     <?
     $js = $this->getController('imploder')->js();
     $js
-      ->add('jquery.min.js', '/templates/node_modules/jquery/dist/')
-      ->add('bootstrap.min.js', '/templates/node_modules/bootstrap/dist/js/')
-      ->add('jquery.htmlFromServer.js', '/admin/js/jquery/extensions/')
-      ->add('jquery.autoScroll-1.0.js', '/admin/js/jquery/extensions/')
-      ->add('loaderBlock.class.js', '/admin/js/base/actions/')
-      ->add('ajaxLoader.class.js')
-      ->add('loaderLight.class.js', '/admin/js/base/actions/')
-      ->add('errors.class.js','/admin/js/base/actions/')
-      ->add('error.class.js','/admin/js/base/actions/')
-      ->add('form.class.js','/admin/js/base/actions/')
-      ->add('buttons.class.js','/admin/js/base/actions/')
-      ->add('jquery.inputmask.js','/admin/js/jquery/extensions/')
-      ->add('loader.class.js','/admin/js/base/actions/')
-      ->add('shopcartHandler.js', '/js/shopcart/')
-      ->add('shopcart.class.js', '/js/shopcart/')
-      ->add('shopcartBar.js', '/js/shopcart/')
-      ->tagsPrint();
+        ->add('jquery.min.js', '/templates/node_modules/jquery/dist/')
+        ->add('bootstrap.min.js', '/templates/node_modules/bootstrap/dist/js/')
+        ->add('jquery.htmlFromServer.js', '/admin/js/jquery/extensions/')
+        ->add('jquery.autoScroll-1.0.js', '/admin/js/jquery/extensions/')
+        ->add('loaderBlock.class.js', '/admin/js/base/actions/')
+        ->add('ajaxLoader.class.js')
+        ->add('loaderLight.class.js', '/admin/js/base/actions/')
+        ->add('errors.class.js','/admin/js/base/actions/')
+        ->add('error.class.js','/admin/js/base/actions/')
+        ->add('form.class.js','/admin/js/base/actions/')
+        ->add('buttons.class.js','/admin/js/base/actions/')
+        ->add('jquery.inputmask.js','/admin/js/jquery/extensions/')
+        ->add('loader.class.js','/admin/js/base/actions/')
+        ->add('shopcartHandler.js', '/js/shopcart/')
+        ->add('shopcart.class.js', '/js/shopcart/')
+        ->add('shopcartBar.js', '/js/shopcart/')
+        ->add('browserMsieAdapter.js', '/js/')
+        ->tagsPrint();
     ?>
 
 </head>

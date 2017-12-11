@@ -3,6 +3,7 @@
 
 <link href="/css/fabrikalerom.ru/content/catalogObject.css" rel="stylesheet">
 <script type="text/javascript" src="/js/fabrikaLerom/catalogObject.js"></script>
+<script src="/js/fabrikaLerom/colorChoose.js"></script>
 
 <main>
     <div class="container main-content">
@@ -66,6 +67,10 @@
                             <?$this->includeTemplate('catalog/shopcartImage')?>
                             <span class="add-t-c">Добавить в корзину</span>
                         </div>
+                    </div>
+
+                    <div class="alert alert-success text-center okAddShopcartMessage">
+                        Товар добавлен в корзину
                     </div>
 
                     <?$colors = $this->getColorParametersArrayByObjects(array($object) );?>
