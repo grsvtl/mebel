@@ -114,6 +114,9 @@ var shopcart = function (sources) {
                                 console.log("event : " + $(object).attr('data-dataLayerPushEvent'));
                             }
                     }
+                    if($('.okAddShopcartMessage').length)
+                        if(!$('.okAddShopcartMessage').is(":visible"))
+                            $('.okAddShopcartMessage').fadeIn(1000).delay(3000).fadeOut(1000);
                 }
                 else
                     alert('Error while trying to add good in shopcart');

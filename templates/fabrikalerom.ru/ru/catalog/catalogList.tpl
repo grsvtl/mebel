@@ -2,6 +2,7 @@
 <?$this->includeTemplate('header')?>
 
 <script type="text/javascript" src="/js/fabrikaLerom/catalog.js"></script>
+<script src="/js/fabrikaLerom/colorChoose.js"></script>
 
 <main>
     <div class="container main-content">

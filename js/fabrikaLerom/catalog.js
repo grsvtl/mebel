@@ -1,5 +1,4 @@
 $(function(){
-
     try {
         var catalogObject = new catalog();
         catalogObject.enableTabWatcher();
@@ -11,12 +10,9 @@ $(function(){
             function() {
 
             }, false);
-
-
     } catch (e) {
         alert(e.message);
     }
-
 });
 
 var catalog = function () {
@@ -77,21 +73,25 @@ var catalog = function () {
     this.enableModalFormButton = function () {
         var that = this;
         var modalsBlock = $('.modalsBlock');
-
         $('a.getObjectModalButton').click(function () {
+
+            var button$ = $(this);
+            button$.after('<div class="text-center"><img src="/admin/images/loaders/ajax-loader.gif"></div>');
+            button$.hide();
+
             var objectId = $(this).data('objectid');
             var modalForm = $('#objectModal'+objectId);
-
             if (modalForm.length == 0) {
-
                 that.fetchObjectModalForm(objectId).done(
                     function (data) {
                         modalsBlock.append(data['content']);
                         $('#objectModal'+objectId).modal('toggle');
                     }
                 );
-
-            } else modalForm.modal('toggle');
+            } else
+                modalForm.modal('toggle');
+            button$.show();
+            button$.next().remove();
         });
     };
 
