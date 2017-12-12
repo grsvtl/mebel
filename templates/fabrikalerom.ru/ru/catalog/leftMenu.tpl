@@ -12,7 +12,7 @@
                 <?$i = 0; foreach($leftMenuCategories as $category):?>
                 <ul class="ul-main-list-c-l">
                     <li class="main-list-c-l">
-                        <?$series = $this->getSeriesByCategory($category);?>
+                        <?$series = $this->getSeriesWithObjectsByCategory($category);?>
                         <?if($series):?>
                         <img src="<?=$category->leftMenuImg?>" alt="">
                         <a href="<?=$category->getPath()?>"><?=$category->leftMenuName?></a>
