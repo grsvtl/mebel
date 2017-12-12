@@ -5,6 +5,9 @@
 <script type="text/javascript" src="/js/fabrikaLerom/catalogObject.js"></script>
 <script src="/js/fabrikaLerom/colorChoose.js"></script>
 
+    <script src="/js/plugins/lightbox/lightbox.js"></script>
+    <link href="/js/plugins/lightbox/css/lightbox.css" rel="stylesheet">
+
 <main>
     <div class="container main-content">
         <?$this->getController('Catalog')->getLeftMenu()?>
@@ -17,7 +20,10 @@
                         <div class="carousel-inner">
                             <? $i = 0; foreach($object->getImagesByObjectId() as $image ): ?>
                             <div class="item slide-foto <?=$i == 0 ? 'active' : ''?>">
-                                <a data-href="<?=$image->getUserImage('0x0', 'watermarkPng')?>" class="bigImage">
+                                <a data-href="<?=$image->getUserImage('0x0', 'watermarkPng')?>" class="bigImage"
+                                   href="<?=$image->getUserImage('0x0', 'watermarkPng')?>"
+                                   data-lightbox="set"
+                                >
                                     <img src="<?=$image->getUserImage('543x340', 'watermarkPng')?>" alt="">
                                 </a>
                             </div>
