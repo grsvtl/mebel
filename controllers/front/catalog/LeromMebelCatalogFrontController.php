@@ -604,4 +604,13 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
                 return $this->leftMenuCategoriesMapping[$category->parentId]['name'];
         return $category->getName();
     }
+
+    protected function getSeriesWithObjectsByCategory($category)
+    {
+        $array = array();
+        foreach($this->getSeriesByCategory($category) as $seria)
+            if($this->checkSeriaCategoryPath($seria, $category, $this->getLeromFabricatorId()))
+                $array[] = $seria;
+        return (object)$array;
+    }
 }
