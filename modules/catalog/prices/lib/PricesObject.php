@@ -57,6 +57,7 @@ class PricesObject extends \core\modules\base\ModuleObjects
 			GROUP BY `price` ASC LIMIT 1
 		';
 		$data = array($quantity, $this->catalogObject->id, $this->catalogObject->id);
+        \core\db\Db::getMysql()->query('SET sql_mode = \'\'');
 		$result = \core\db\Db::getMysql()->rowAssoc($query, $data);
 
 		if ($result['id'])
@@ -76,6 +77,7 @@ class PricesObject extends \core\modules\base\ModuleObjects
 			GROUP BY `price` LIMIT 1
 		';
 		$data = array($this->catalogObject->id, $this->catalogObject->id);
+        \core\db\Db::getMysql()->query('SET sql_mode = \'\'');
 		$result = \core\db\Db::getMysql()->rowAssoc($query, $data);
 
 		if ($result['id'])
@@ -100,6 +102,7 @@ class PricesObject extends \core\modules\base\ModuleObjects
 			GROUP BY `price` LIMIT 1
 		';
 		$data = array($this->catalogObject->id, $this->catalogObject->id);
+        \core\db\Db::getMysql()->query('SET sql_mode = \'\'');
 		$result = \core\db\Db::getMysql()->rowAssoc($query, $data);
 		if ($result['id'])
 			return $this->getObjectById($result['id']);
