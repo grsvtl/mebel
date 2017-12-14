@@ -531,6 +531,7 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             }
             $this->ajaxResponse( boolval($objectsCount - $loadedGoods > 0) );
         }
+        $this->ajaxResponse( 0 );
     }
 
     protected function getSeriesByCategory($category)
