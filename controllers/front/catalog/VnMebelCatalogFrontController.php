@@ -223,6 +223,8 @@ class VnMebelCatalogFrontController extends \controllers\front\catalog\CatalogFr
 
 	private function getQuantityItemsOnSubpage($categoryId = false)
 	{
+	    if(isset($_GET['showAll']) && $_GET['showAll'] == true)
+	        return 99999999999999;
 		$return = $categoryId
 					?
 				isset($this->quantityItemsOnSubpageCategoriesId[$categoryId]) ? $this->quantityItemsOnSubpageCategoriesId[$categoryId]  : self::QUANTITY_ITEMS_ON_SUBPAGE
