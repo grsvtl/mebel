@@ -192,9 +192,10 @@ class VnMebelCatalogFrontController extends \controllers\front\catalog\CatalogFr
             $sorting = $this->getSorting($category);
 
 			if ( $objects->count() > 0 ) {
+                $quantityItemsOnSubpage = $this->getQuantityItemsOnSubpage($category->id);
 				$objects->setOrderBy($sorting['sortString'])
-						->setQuantityItemsOnSubpageList(array($this->getQuantityItemsOnSubpage($category->id)))
-						->setPager( $this->getQuantityItemsOnSubpage($category->id) );
+						->setQuantityItemsOnSubpageList(array($quantityItemsOnSubpage))
+						->setPager($quantityItemsOnSubpage);
 			}
 
 			$template = isset($this->getGet()['view'])  &&  isset($sorting['view'][$this->getGet()['view']])
@@ -344,9 +345,10 @@ class VnMebelCatalogFrontController extends \controllers\front\catalog\CatalogFr
 
 		$objectsCount = $objects->count();
 		if ( $objectsCount > 0 ) {
+            $quantityItemsOnSubpage = $this->getQuantityItemsOnSubpage();
 			$objects->setOrderBy($sorting['sortString'])
-				->setQuantityItemsOnSubpageList(array($this->getQuantityItemsOnSubpage()))
-				->setPager( $this->getQuantityItemsOnSubpage() );
+				->setQuantityItemsOnSubpageList(array($quantityItemsOnSubpage))
+				->setPager($quantityItemsOnSubpage);
 		}
 
 		$template = isset($search['view']) ? $sorting['view'][($search['view'])] : $category->template;

@@ -354,6 +354,8 @@ class CatalogFrontController extends \controllers\base\Controller
         if(isset($sortKey)  &&  isset($sortingValues[$sortKey][$sortDirection]))
             $sortString = $sortingValues[$sortKey][$sortDirection];
 
+        $sortString .= ' ,priority ASC,`id` ASC';
+
         $sorting = array(
             'current' => $currentSortField,
             'direction' => isset($sortDirection) ? $sortDirection : '',
@@ -364,9 +366,6 @@ class CatalogFrontController extends \controllers\base\Controller
                 'tile' => 'catalogListContent'
             )
         );
-
-//        var_dump($sorting);
-
         return $sorting;
     }
 
