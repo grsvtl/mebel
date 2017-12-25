@@ -8,7 +8,7 @@
 				<div class="bl">
 					<div class="h4">Контакты</div>
 					<span class="address">
-                        8 (800) 301-29-09</br>
+                        +7 (495) 223-38-21</br>
 						<span class="phone_alloka">+7 (495) 540-44-62</span></br>
 						г.Москва, ул. Генерала Белова д.35
 					</span>

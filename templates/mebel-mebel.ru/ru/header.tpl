@@ -63,7 +63,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="clear"></div>
             </div>
             <div class="phone">
-                <span class="phone-header"><b>8 (800)</b> 301-29-09</span>
+                <span class="phone-header"><b>+7 (495)</b> 223-38-21</span>
                 <span class="mail-header"><b>info</b>@mebel-mebel.ru</span>
             </div>
             <div class="phone">
