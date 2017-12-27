@@ -223,9 +223,11 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             ob_start();
 
             $weightAndSizeArray = array();
-            foreach ($this->getObjectPropertiesListByAlias('sizesAndWeight', $good) as $item)
-                if( in_array($item['value'], array('Вес', 'Объем')) )
-                    $weightAndSizeArray[] = $item;
+            $sizesAndWeightObj = $this->getObjectPropertiesListByAlias('sizesAndWeight', $good);
+            if($sizesAndWeightObj)
+                foreach ($this->getObjectPropertiesListByAlias('sizesAndWeight', $good) as $item)
+                    if( in_array($item['value'], array('Вес', 'Объем')) )
+                        $weightAndSizeArray[] = $item;
 
             $subGoodsString = '';
             $subGoodsArray = array();
