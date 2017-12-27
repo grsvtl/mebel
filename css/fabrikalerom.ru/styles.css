@@ -1045,14 +1045,14 @@ a:hover, a:focus {
 
 .info-inset-block span {
 	color: #333333;
-	display: inline-block;
+	display: block;
 	font-size: 13px;
 	padding-bottom: 0px;
 }
 
 .info-inset-block p {
 	color: #777;
-    display: inline-block;
+	display: block;
 	font-size: 13px;
 	padding-bottom: 0px;
 	font-weight: 700;
