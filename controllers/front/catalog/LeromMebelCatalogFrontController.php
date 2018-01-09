@@ -25,7 +25,8 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
         'search',
         'test',
         'getSeriesByCategory',
-        'getCategoryModyName'
+        'getCategoryModyName',
+        'getOtherSubGoodsByCategoryArray'
     ];
 
     protected $compositionsCategories = [
@@ -440,13 +441,25 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
         echo json_encode(['content' => $content]);
     }
 
-    protected function getOtherGoodsByCategory($category, $exceptGood)
+    protected function getOtherGoodsByCategory($category, $exceptGood, $limit = false)
     {
         $catalog = $this->getObjectsByCategory($category, $this->getLeromFabricatorId());
-        $catalog->setSubquery('AND `id` != ?d', $exceptGood->id)
-            ->setLimit(6)
-            ->setOrderBy('`priority` ASC');
-        return $catalog;
+        $catalog->setSubquery('AND `id` != ?d', $exceptGood->id);
+        if($limit)
+            $catalog->setLimit($limit);
+        return $catalog->setOrderBy('`priority` ASC');
+    }
+
+    protected function getOtherSubGoodsByCategoryArray($category, $exceptGood)
+    {
+        $catalog = $this->getOtherGoodsByCategory($category, $exceptGood);
+        $array = array();
+        if($catalog->count())
+            foreach($catalog as $good)
+                if($good->isSubGoodsExists())
+                    foreach ($good->getSubgoods() as $subgood)
+                        $array[] = $subgood->getGood();
+        return $array;
     }
 
     protected function ajaxFetchMoreGoods()
