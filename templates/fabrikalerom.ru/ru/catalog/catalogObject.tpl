@@ -190,10 +190,10 @@
                     <div class="clear"></div>
                     <?endif?>
 
-                    <?$otherGoods = $this->getOtherGoodsByCategory($category,$object)->count();?>
-                    <?if($otherGoods):?>
+                    <?$otherSubGoods = $this->getOtherSubGoodsByCategoryArray($category,$object);?>
+                    <?if(!empty($otherSubGoods)):?>
                     <h3>Другие модули этой коллекции</h3>
-                    <?foreach($this->getOtherGoodsByCategory($category,$object) as $otherItem):?>
+                    <?foreach($otherSubGoods as $otherItem):?>
                     <div class="col-md-4 col-sm-6 col-xs-6">
                         <?$this->getController('Catalog')->getCatalogListContentItemBlock($otherItem)?>
                     </div>
