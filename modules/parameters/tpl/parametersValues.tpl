@@ -1,7 +1,10 @@
 <link rel="stylesheet" type="text/css" href="/modules/parameters/css/parameters.css">
 <script type="text/javascript" src="/admin/js/base/system/sorting.js"></script>
 <script type="text/javascript" src="/modules/parameters/js/editFromViewMode.js"></script>
-<table class="parameterValuesTable" data-sortUrlAction="/admin/parameters/changeParametersValuesPriority/?">
+<table class="parameterValuesTable"
+       data-sortUrlAction="/admin/parameters/changeParametersValuesPriority/?"
+       data-method="post"
+>
 		<tr>
 			<td>
 
@@ -23,7 +26,8 @@
 				</div>
 			</td>
 		</tr>
-		<? $count=1; foreach( $parameter->getParameterValues() as $value ): ?>
+
+		<? $count=1; foreach( $parameter->getParameterValues()->orderByPriority('ASC') as $value ): ?>
 		<tr data-id="<?=$value->id?>" data-priority="<?=$value->priority?>">
 			<td class="sortHandle">
 				<?=$count++?>

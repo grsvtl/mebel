@@ -1,5 +1,7 @@
 <?php
 namespace controllers\admin;
+use core\db\Db;
+
 class ParametersAdminController extends \controllers\base\Controller
 {
 	use	\core\traits\controllers\Categories,
@@ -238,15 +240,25 @@ class ParametersAdminController extends \controllers\base\Controller
 	protected function changeParametersValuesPriority ()
 	{
 		$data = $this->getREQUEST()['data'];
-		$counter = 0;
-		foreach ($data as $objectId=>$priority) {
-			$counter++;
-			$parameterValue = new \modules\parameters\components\parametersValues\lib\ParameterValue((int)$objectId);
-			$this->setObject($parameterValue)
-				->modelObject->edit(array('id'=>$objectId, 'priority'=>$counter), array('id', 'priority'));
-			$this->modelObject->getErrors();
-		}
-		echo 1;
+
+//		foreach ($data as $objectId=>$priority) {
+//			$parameterValue = new \modules\parameters\components\parametersValues\lib\ParameterValue((int)$objectId);
+//			$this->setObject($parameterValue)
+//				->modelObject->edit(array('id'=>$objectId, 'priority'=>$priority), array('id', 'priority'));
+//			$this->modelObject->getErrors();
+//		}
+
+        $query = 'UPDATE `tbl_parameters_values` SET `priority` = CASE';
+        foreach ($data as $objectId=>$priority) {
+            $query .= ' WHEN `id` = '.$objectId.' THEN '.$priority;
+        }
+        $query .= ' END WHERE `id` IN ('.implode(',', array_flip($data)).')';
+
+        $res = Db::getMysql()->query($query);
+        if($res)
+            echo 1;
+        else
+            throw new \Error('Error in '.__FILE__.'->'.__FUNCTION__.'()');
 	}
 	
 	protected function editParameterAlias()
