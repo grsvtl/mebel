@@ -179,4 +179,22 @@ class DanaMebelArticleFrontController extends \controllers\front\article\Article
 					->setOrderBy('`priority` DESC, `date` DESC, `id` DESC');
 		return $limit ? $articles->setLimit($limit) : $articles;
 	}
+
+    public function view404()
+    {
+        if($this->getSERVER()['REQUEST_URI'] != '/404/'){
+            header('Location: /404/');
+            die();
+        }
+        $cacheKey = md5($this->getCurrentDomainAlias().'-'.__METHOD__.serialize($this->getREQUEST()->getArray()));
+        $contents = \core\cache\Cacher::getInstance()->get($cacheKey);
+        if ($contents === false){
+            ob_start();
+            $this->setLevel('404')
+                ->includeTemplate('articles/404');
+            $contents = ob_get_contents();
+            ob_end_clean();
+        }
+        echo $contents;
+    }
 }
