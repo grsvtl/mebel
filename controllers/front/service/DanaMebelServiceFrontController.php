@@ -24,10 +24,10 @@ class DanaMebelServiceFrontController extends \controllers\base\Controller
 		}
 	}
 
-	public function redirect404()
-	{
-		$this->getController('Article')->viewArticle('404');
-	}
+    public function redirect404()
+    {
+        $this->getController('Article')->view404();
+    }
 
 	public function accessDenied($right)
 	{
