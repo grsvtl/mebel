@@ -626,7 +626,8 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
         $array = array();
         foreach($this->getSeriesByCategory($category) as $seria)
             if($this->checkSeriaCategoryPath($seria, $category, $this->getLeromFabricatorId()))
-                $array[] = $seria;
+                $array[$seria->priority] = $seria;
+        ksort($array);
         return (object)$array;
     }
 }
