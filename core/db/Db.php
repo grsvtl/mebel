@@ -46,6 +46,7 @@ class Db
 	{
 		$this->setVariables($query, $data);
 //		if(strpos($this->query, '999999999999')){
+//            ini_set("xdebug.overload_var_dump", "off");
 //            var_dump($this->query);
 //            die();
 //        }

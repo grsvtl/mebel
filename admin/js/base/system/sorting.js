@@ -11,5 +11,6 @@ $(function () {
 		'containment' : $( ".parameterValuesTable" )
 	});
 	window.parameterValuesSorting.action = $('.parameterValuesTable').attr('data-sortUrlAction');
-	parameterValuesSorting.sortable().stylize();
-})
+    window.parameterValuesSorting.method = $('.parameterValuesTable').attr('data-method');
+	parameterValuesSorting.sortable();
+});
