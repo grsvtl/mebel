@@ -8,8 +8,9 @@
         <div class="successBlockHybrid">Спасибо. Ваш заказ принят. Мы перезвоним Вам в ближайшее время.</div>
 
         <div class="yandex_s_p">
-            <h2>Моментальная оплата</h2>
-            <p>Вы можете оплатить ваш заказ прямо сейчас или позже, когда наши операторы вам позвонят.</p>
+<!--            <h2>Моментальная оплата</h2>-->
+<!--            <p>Вы можете оплатить ваш заказ прямо сейчас или позже, когда наши операторы вам позвонят.</p>-->
+            <p>Завершите оформление заказа и наши операторы вам позвонят чтобы обговорить оплату и прочие детали.</p>
             </br>
             <div>Стоимость заказа: <span class="orderSum"></span> руб.</div>
             </br>
@@ -17,9 +18,10 @@
             <h4>Детали заказа</h4>
             </br>
 
-            <form action="https://money.yandex.ru/eshop.xml" method="post">
-                <input required name="shopId" value="96107" type="hidden"/>
-                <input required name="scid" value="86076" type="hidden"/>
+<!--            <form action="https://money.yandex.ru/eshop.xml" method="post">-->
+            <form>
+<!--                <input required name="shopId" value="96107" type="hidden"/>-->
+<!--                <input required name="scid" value="86076" type="hidden"/>-->
 
                 <label>Сумма платежа:</label>
                 <input required name="sum" value="" type="number" min="1" placeholder="Укажите сумму платежа">
@@ -45,8 +47,9 @@
                 <textarea name="orderDetails" value="" rows="5" cols="68" wrap="soft"></textarea>
                 <!-- Кнопку "Оплатить", можно назвать по своему, например value="Оплатить за курсы вождения"
                      или value="Оплатить подписку на журнал" и т.д.                                        -->
-                <input type="submit" onclick="dataLayer.push({'event': 'event_zakaz_paynow'});" value="Оплатить">
-                <button type="button" onclick="dataLayer.push({'event': 'event_pay_late'});" class="payAfter">Я оплачу позже</button>
+<!--                <input type="submit" onclick="dataLayer.push({'event': 'event_zakaz_paynow'});" value="Оплатить">-->
+<!--                <button type="button" onclick="dataLayer.push({'event': 'event_pay_late'});" class="payAfter">Я оплачу позже</button>-->
+                <button type="button" onclick="dataLayer.push({'event': 'event_pay_late'});" class="payAfter">Завершить оформление</button>
             </form>
         </div>
 
