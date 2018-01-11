@@ -50,9 +50,9 @@
                             </div>
                         <?endif?>
                     </div>
-                    <div class="navigation text-center">
-                        <span class="see-more-offers btn loadMoreButton">Показать еще</span>
-                    </div>
+<!--                    <div class="navigation text-center">-->
+<!--                        <span class="see-more-offers btn loadMoreButton">Показать еще</span>-->
+<!--                    </div>-->
                 </div>
                 <?endif?>
 

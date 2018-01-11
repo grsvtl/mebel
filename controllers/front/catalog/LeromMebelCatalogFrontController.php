@@ -145,7 +145,7 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             $objects = $this->filterObjectsByQuery($objects, $this->getGET()['query']);
         }
 
-        $objects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
+//        $objects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
 
         $this->setTitle('Поиск')
             ->setDescription('Поиск')
@@ -191,11 +191,11 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             if (isset($restObjects)) {
                 if ($this->isFilteringCategory())
                     $this->filterByUserSelection($restObjects);
-                $restObjects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
+//                $restObjects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
                 $this->setContent('restObjects', $restObjects);
             }
 
-            $mainObjects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
+//            $mainObjects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
 
             $this->setContent('mainObjects', $mainObjects)
                 ->setContent('colorsArray', $this->getColorParametersArrayByObjects($allObjects))
@@ -575,15 +575,19 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             if ($this->isFilteringCategory())
                 $this->filterByUserSelection($objects);
 
-            $objects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
+//            $objects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
 
-            $subGoods = $this->getActiveObjectsBySeriaAndCategory($seria, $category, $this->getLeromFabricatorId())
-                            ->orderByDomainAlias($this->getCurrentDomainAlias(), $category->id)
-                            ->setSubquery('AND `id` NOT IN (SELECT DISTINCT `goodId` FROM `tbl_catalog_subgoods`)');
+            $subGoods = $this->getActiveObjects()
+                ->orderByDomainAlias($this->getCurrentDomainAlias(), $category->id)
+                ->setSubquery(
+                    'AND `id` IN (SELECT `subGoodId` FROM `tbl_catalog_subgoods` WHERE `goodId` IN (?s))',
+                    $objects->getIdStringInModuleObjects()
+                );
+
             if ($subGoods->count()) {
                 if ($this->isFilteringCategory())
                     $this->filterByUserSelection($subGoods);
-                $subGoods->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
+//                $subGoods->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
             }
 
             if(!$this->isNoop($category->getParent()))

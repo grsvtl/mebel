@@ -39,7 +39,12 @@
                     <div class="col-md-4 catalog-list col-sm-6">
                         <a href="/gostinnye">
                             <img src="/images/fabrikaLerom/gostinye.jpg" alt="">
-                            <span class="col-com"><?=$this->getQuantityByCategoryAlias('gostinnye')?> композиции</span>
+                            <span class="col-com">
+                                <?
+                                echo $quantityGoods = $this->getQuantityByCategoryAlias('gostinnye');
+                                echo ' '.\core\utils\Utils::declension($quantityGoods, array("композиция", "композиции", "композиций"));
+                                ?>
+                            </span>
                             <span class="name-cat">Гостиные</span>
                             <span class="clear"></span>
                         </a>
@@ -47,7 +52,12 @@
                     <div class="col-md-4 catalog-list col-sm-6">
                         <a href="/spalni/">
                             <img src="/images/fabrikaLerom/spalny.jpg" alt="">
-                            <span class="col-com"><?=$this->getQuantityByCategoryAlias('spalni')?> композиции</span>
+                            <span class="col-com">
+                                <?
+                                echo $quantityGoods = $this->getQuantityByCategoryAlias('spalni');
+                                echo ' '.\core\utils\Utils::declension($quantityGoods, array("композиция", "композиции", "композиций"));
+                                ?>
+                            </span>
                             <span class="name-cat">Спальни</span>
                             <span class="clear"></span>
                         </a>
@@ -55,7 +65,12 @@
                     <div class="col-md-4 catalog-list col-sm-6">
                         <a href="/detskie/">
                             <img src="/images/fabrikaLerom/detskie.jpg" alt="">
-                            <span class="col-com"><?=$this->getQuantityByCategoryAlias('detskie')?> композиции</span>
+                            <span class="col-com">
+                                <?
+                                echo $quantityGoods = $this->getQuantityByCategoryAlias('detskie');
+                                echo ' '.\core\utils\Utils::declension($quantityGoods, array("композиция", "композиции", "композиций"));
+                                ?>
+                            </span>
                             <span class="name-cat">Детские</span>
                             <span class="clear"></span>
                         </a>
@@ -63,23 +78,39 @@
                     <div class="col-md-4 catalog-list col-sm-6">
                         <a href="/prihojii/">
                             <img src="/images/fabrikaLerom/prihijie.jpg" alt="">
-                            <span class="col-com"><?=$this->getQuantityByCategoryAlias('prihojii')?> композиции</span>
+                            <span class="col-com">
+                                <?
+                                echo $quantityGoods = $this->getQuantityByCategoryAlias('prihojii');
+                                echo ' '.\core\utils\Utils::declension($quantityGoods, array("композиция", "композиции", "композиций"));
+                                ?>
+                            </span>
                             <span class="name-cat">Прихожие</span>
                             <span class="clear"></span>
                         </a>
                     </div>
                     <div class="col-md-4 catalog-list col-sm-6">
-                        <a href="">
+                        <a href="/shkafyi-kupe/">
                             <img src="/images/fabrikaLerom/shkaf.jpg" alt="">
-                            <span class="col-com"><?=$this->getQuantityByCategoryAlias('modulnyie_detskie')?> композиции</span>
+                            <span class="col-com">
+                                <?
+                                echo $quantityGoods = $this->getQuantityByCategoryAlias('shkafyi-kupe');
+                                echo ' '.\core\utils\Utils::declension($quantityGoods, array("композиция", "композиции", "композиций"));
+                                ?>
+                            </span>
                             <span class="name-cat">Шкафы-купе</span>
                             <span class="clear"></span>
                         </a>
                     </div>
                     <div class="col-md-4 catalog-list col-sm-6">
-                        <a href="">
+                        <a>
                             <img src="/images/fabrikaLerom/new.jpg" alt="">
-                            <span class="col-com"><?=$this->getQuantityByCategoryAlias('modulnyie_detskie')?> композиции</span>
+                            <span class="col-com">
+                                <?//=$this->getQuantityByCategoryAlias('modulnyie_detskie')?>
+                                <?
+//                                echo $quantityGoods = $this->getQuantityByCategoryAlias('modulnyie_detskie');
+//                                echo ' '.\core\utils\Utils::declension($quantityGoods, array("композиция", "композиции", "композиций"));
+                                ?>
+                            </span>
                             <span class="name-cat">Новинки!</span>
                             <span class="clear"></span>
                         </a>
