@@ -63,11 +63,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="clear"></div>
             </div>
             <div class="phone">
-                <span class="phone-header"><b>+7 (495)</b> 223-38-21</span>
+                <span class="phone-header"><b>+7 (495)</b> 540-44-62</span>
                 <span class="mail-header"><b>info</b>@mebel-mebel.ru</span>
             </div>
             <div class="phone">
-                <span class="phone-header phone_alloka"><b>+7 (495)</b> 540-44-62</span>
+                <span class="phone-header phone_alloka"><b>+7 (495)</b> 223-38-21</span>
                 <span class="mail-header"><b>director</b>@mebel-mebel.ru</span>
             </div>
 
