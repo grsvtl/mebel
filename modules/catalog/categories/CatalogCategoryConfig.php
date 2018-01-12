@@ -17,6 +17,7 @@ class CatalogCategoryConfig extends \core\modules\base\ModuleConfig
     const DETSKIE_CATEGORY_ID = 107;
     const STENKI_CATEGORY_ID = 126;
     const SHKAFI_DLYA_SPALNI_CATEGORY_ID = 127;
+    const MATRASY_CATEGORY_ID = 170;
 
 	protected $objectClass = '\modules\catalog\categories\CatalogCategory';
 	protected $objectsClass = '\modules\catalog\categories\CatalogCategories';

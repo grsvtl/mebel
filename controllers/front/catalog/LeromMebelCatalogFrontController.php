@@ -1,8 +1,10 @@
 <?php
 namespace controllers\front\catalog;
 use core\traits\controllers\RequestLevels;
+use Couchbase\Exception;
 use modules\catalog\catalog\lib\CatalogItemConfig;
 use modules\catalog\CatalogFactory;
+use modules\catalog\categories\CatalogCategoryConfig;
 use modules\catalog\searchParameters\lib\SearchParameterConfig;
 use modules\catalog\searchParameters\lib\SearchParameters;
 
@@ -112,22 +114,22 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
 
     protected function setMetaFromObject($object)
     {
-            $articleConfig = new \modules\articles\lib\ArticleConfig;
-            $defaultMetaArticle = (new \modules\articles\lib\Articles())->getObjectByAlias($articleConfig::DEFAULT_META_UG_ARTICLE_ALIAS);
+        $articleConfig = new \modules\articles\lib\ArticleConfig;
+        $defaultMetaArticle = (new \modules\articles\lib\Articles())->getObjectByAlias($articleConfig::DEFAULT_META_UG_ARTICLE_ALIAS);
 
-            if (get_class($object) == 'modules\parameters\components\parametersValues\lib\ParameterValue')
-                $seriaMetaArticle = (new \modules\articles\lib\Articles())->getObjectByAlias($object->getAlias());
+        if (get_class($object) == 'modules\parameters\components\parametersValues\lib\ParameterValue')
+            $seriaMetaArticle = (new \modules\articles\lib\Articles())->getObjectByAlias($object->getAlias());
 
-            $articleConfig = new \modules\articles\lib\ArticleConfig();
-            $object = (!empty($seriaMetaArticle) && $seriaMetaArticle->categoryId == $articleConfig::META_UG_CATEGORY_ID)
-                ?
-                $seriaMetaArticle
-                :
-                $object;
+        $articleConfig = new \modules\articles\lib\ArticleConfig();
+        $object = (!empty($seriaMetaArticle) && $seriaMetaArticle->categoryId == $articleConfig::META_UG_CATEGORY_ID)
+            ?
+            $seriaMetaArticle
+            :
+            $object;
 
-            return $this->setTitle(empty($object->getMetaTitle()) ? $defaultMetaArticle->getMetaTitle() : $object->getMetaTitle())
-                ->setDescription(empty($object->getMetaDescription()) ? $defaultMetaArticle->getMetaDescription() : $object->getMetaDescription())
-                ->setKeywords(empty($object->getMetaKeywords()) ? $defaultMetaArticle->getMetaKeywords() : $object->getMetaKeywords());
+        return $this->setTitle(empty($object->getMetaTitle()) ? $defaultMetaArticle->getMetaTitle() : $object->getMetaTitle())
+            ->setDescription(empty($object->getMetaDescription()) ? $defaultMetaArticle->getMetaDescription() : $object->getMetaDescription())
+            ->setKeywords(empty($object->getMetaKeywords()) ? $defaultMetaArticle->getMetaKeywords() : $object->getMetaKeywords());
     }
 
     protected function isCategoryCompositional($category)
@@ -168,7 +170,7 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
 
             $category = $this->getCatalogObject()->getCategories()->getObjectByAlias($alias);
             $this->setLevel($category->getParent()->name, $category->getParent()->getPath())
-                 ->setLevel($category->getName());
+                ->setLevel($category->getName());
             $fabricator = $this->getFabricator();
 
             if ($this->isCategoryCompositional($alias)) {
@@ -405,9 +407,9 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
     {
         $objects = $this->getActiveObjects();
         $objects->setSubquery('AND `statusId` = (?d)', (int)CatalogItemConfig::TOP_SELL_ID)
-                ->setSubquery('AND `fabricatorId` = (?d)', $this->getLeromFabricatorId())
-                ->setLimit(35)
-                ->setOrderBy('`priority` ASC');
+            ->setSubquery('AND `fabricatorId` = (?d)', $this->getLeromFabricatorId())
+            ->setLimit(35)
+            ->setOrderBy('`priority` ASC');
         return $objects;
     }
 
@@ -567,8 +569,10 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             ob_start();
 
             $objects = $this->getActiveObjectsBySeriaAndCategory($seria, $category, $this->getLeromFabricatorId())
-                            ->orderByDomainAlias($this->getCurrentDomainAlias(), $category->id)
-                            ->setSubquery('AND `id` IN (SELECT DISTINCT `goodId` FROM `tbl_catalog_subgoods`)');
+                            ->orderByDomainAlias($this->getCurrentDomainAlias(), $category->id);
+
+            if(!$this->isMatrasyCategoryId($category->id))
+               $objects ->setSubquery('AND `id` IN (SELECT DISTINCT `goodId` FROM `tbl_catalog_subgoods`)');
 
             $allObjects = $objects;
 
@@ -577,11 +581,13 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
 
 //            $objects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
 
+            $ids = $objects->getIdStringInModuleObjects();
+            $ids = $ids ? $ids : 0;
             $subGoods = $this->getActiveObjects()
                 ->orderByDomainAlias($this->getCurrentDomainAlias(), $category->id)
                 ->setSubquery(
                     'AND `id` IN (SELECT `subGoodId` FROM `tbl_catalog_subgoods` WHERE `goodId` IN (?s))',
-                    $objects->getIdStringInModuleObjects()
+                    $ids
                 );
 
             if ($subGoods->count()) {
@@ -633,5 +639,17 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
                 $array[$seria->priority] = $seria;
         ksort($array);
         return (object)$array;
+    }
+
+    private function isMatrasyCategoryId($categoryId)
+    {
+        $config = new CatalogCategoryConfig();
+        $matrasyCategoryId = $config::MATRASY_CATEGORY_ID;
+        if($categoryId == $matrasyCategoryId)
+            return true;
+        $categories = new \modules\catalog\categories\CatalogCategories($this->_config);
+        if( !$categories->objectExists($categoryId) )
+            return false;
+        return $categories->getObjectById($categoryId)->parentId == $matrasyCategoryId;
     }
 }
