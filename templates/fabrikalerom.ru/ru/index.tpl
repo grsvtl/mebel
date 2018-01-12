@@ -102,13 +102,12 @@
                         </a>
                     </div>
                     <div class="col-md-4 catalog-list col-sm-6">
-                        <a>
+                        <a href="/new-lerom-products/">
                             <img src="/images/fabrikaLerom/new.jpg" alt="">
                             <span class="col-com">
-                                <?//=$this->getQuantityByCategoryAlias('modulnyie_detskie')?>
                                 <?
-//                                echo $quantityGoods = $this->getQuantityByCategoryAlias('modulnyie_detskie');
-//                                echo ' '.\core\utils\Utils::declension($quantityGoods, array("композиция", "композиции", "композиций"));
+                                echo $quantityGoods = $this->getQuantityByCategoryAlias('new-lerom-products');
+                                echo ' '.\core\utils\Utils::declension($quantityGoods, array("композиция", "композиции", "композиций"));
                                 ?>
                             </span>
                             <span class="name-cat">Новинки!</span>
