@@ -190,16 +190,32 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             if ($this->isFilteringCategory())
                 $this->filterByUserSelection($mainObjects);
 
-            if (isset($restObjects)) {
+//            if (isset($restObjects)) {
+//                if ($this->isFilteringCategory())
+//                    $this->filterByUserSelection($restObjects);
+////                $restObjects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
+//                $this->setContent('restObjects', $restObjects);
+//            }
+
+            $ids = $mainObjects->getIdStringInModuleObjects();
+            $ids = $ids ? $ids : 0;
+            $subGoods = $this->getActiveObjects()
+                ->orderByDomainAlias($this->getCurrentDomainAlias(), $category->id)
+                ->setSubquery(
+                    'AND `id` IN (SELECT `subGoodId` FROM `tbl_catalog_subgoods` WHERE `goodId` IN (?s))',
+                    $ids
+                );
+
+            if ($subGoods->count()) {
                 if ($this->isFilteringCategory())
-                    $this->filterByUserSelection($restObjects);
-//                $restObjects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
-                $this->setContent('restObjects', $restObjects);
+                    $this->filterByUserSelection($subGoods);
+//                $subGoods->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
             }
 
 //            $mainObjects->setLimit(self::QUANTITY_OBJECTS_ON_FIRST_LOAD);
 
             $this->setContent('mainObjects', $mainObjects)
+                ->setContent('restObjects', $subGoods)
                 ->setContent('colorsArray', $this->getColorParametersArrayByObjects($allObjects))
                 ->setContent('isParameterSearchActive', $this->isFilteringCategory())
                 ->setContent('hasModules', isset($restObjects))
@@ -457,10 +473,13 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
         $catalog = $this->getOtherGoodsByCategory($category, $exceptGood);
         $array = array();
         if($catalog->count())
-            foreach($catalog as $good)
+            foreach($catalog as $good){
                 if($good->isSubGoodsExists())
                     foreach ($good->getSubgoods() as $subgood)
                         $array[] = $subgood->getGood();
+                else
+                    $array[] = $good;
+            }
         return $array;
     }
 
