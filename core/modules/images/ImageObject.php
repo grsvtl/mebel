@@ -1,7 +1,11 @@
 <?php
 namespace core\modules\images;
+use core\Configurator;
+
 class ImageObject extends \core\modules\base\ModuleObject
 {
+    use	\core\traits\RequestHandler;
+
 	const FOCUS = true;
 
 	protected $configClass = '\core\modules\images\ImageConfig';
@@ -52,8 +56,17 @@ class ImageObject extends \core\modules\base\ModuleObject
 
 	private function baseImageResize($resize, $watermark, $focusMode = false)
 	{
-		return $this->checkResizeString($resize)->getCacher()->getImagePath($this, $resize, $watermark, $focusMode);
+		return $this->checkResizeString($resize)
+                    ->getCacher()
+                    ->getImagePath($this, $resize, $this->getWatermarkByDomain($watermark), $focusMode);
 	}
+
+	private function getWatermarkByDomain($watermark)
+    {
+        if(Configurator::getInstance()->url->mainDomain === $this->getCurrentDomainAlias())
+            return $watermark;
+        return false;
+    }
 
 	private function checkResizeString($resize)
 	{
@@ -79,7 +92,9 @@ class ImageObject extends \core\modules\base\ModuleObject
 
 	public function getUserImage($resolution = '0x0', $watermark = null)
 	{
-		return $this->checkResizeString($resolution)->getCacher()->getUserImagePath($this, $resolution, $watermark);
+		return $this->checkResizeString($resolution)
+                    ->getCacher()
+                    ->getUserImagePath($this, $resolution, $this->getWatermarkByDomain($watermark));
 	}
 
 	private function clearImageCache()

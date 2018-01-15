@@ -40,14 +40,14 @@
                 <input type="hidden" value="4" class="slick-slidesToShow">
                 <div class="slider slider-for">
                     <div class="item">
-                        <a data-href="<?=$object->getFirstPrimaryImage()->getImage('0x0', 'watermarkPng')?>" class="bigImage">
-                            <img src="<?=$object->getFirstPrimaryImage()->getImage('600x331', 'watermark')?>">
+                        <a data-href="<?=$object->getFirstPrimaryImage()->getImage('0x0')?>" class="bigImage">
+                            <img src="<?=$object->getFirstPrimaryImage()->getImage('600x331')?>">
                         </a>
                     </div>
                     <?foreach($images as $image ): ?>
                         <div class="item">
-                            <a data-href="<?=$image->getImage('0x0', 'watermarkPng')?>" class="bigImage">
-                                <img src="<?=$image->getImage('600x331', 'watermark')?>">
+                            <a data-href="<?=$image->getImage('0x0')?>" class="bigImage">
+                                <img src="<?=$image->getImage('600x331')?>">
                             </a>
                         </div>
                     <? endforeach; ?>
@@ -97,11 +97,11 @@
 
         <div class="slider slider-nav">
             <div class="item-small">
-                <img src="<?=$object->getFirstPrimaryImage()->getUserImage('167x90', 'watermark')?>">
+                <img src="<?=$object->getFirstPrimaryImage()->getUserImage('167x90')?>">
             </div>
             <?foreach($images as $image ): ?>
                 <div class="item-small">
-                    <img src="<?=$image->getUserImage('167x90', 'watermark')?>">
+                    <img src="<?=$image->getUserImage('167x90')?>">
                 </div>
             <? endforeach; ?>
         </div>
