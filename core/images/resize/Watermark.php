@@ -14,8 +14,6 @@ class Watermark
 	private $g;
 	private $b;
 
-
-
 	public function create($image, $watermark)
 	{
 		$this->setImage($image);
@@ -56,7 +54,7 @@ class Watermark
 		$height = imagesy($img);
 		$angle = -rad2deg(atan2((-$height),($width)));
 
-		$text = " ".$this->getTExt()." ";
+		$text = " ".$this->getText()." ";
 
 		$c = imagecolorallocatealpha($img, $this->r, $this->g, $this->b, $this->transparency);
 
@@ -124,4 +122,3 @@ class Watermark
 		return $this->mergeImages($img, $newWatermark);
 	}
 }
-

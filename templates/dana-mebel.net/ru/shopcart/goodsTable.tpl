@@ -32,7 +32,7 @@
                         <?foreach($shopcart->getSortedByIndexArray() as $object):?>
 
                             <tr class="row-product">
-                                <td width="150" class="col-photo"><div class="img-cover" style="background-image: url(<?=$object->getFirstPrimaryImage()->getImage('120x80', 'watermark')?>);"></div></td>
+                                <td width="150" class="col-photo"><div class="img-cover" style="background-image: url(<?=$object->getFirstPrimaryImage()->getImage('120x80')?>);"></div></td>
                                 <td class="col-name">
                                     <h5 class="text-uppercase"><?=$object->getName()?></h5>
 <!--                                    <small>Товар</small>-->
@@ -87,7 +87,7 @@
                                                 <?foreach ($object->getSubgoods() as $subGood):?>
                                                     <tr>
                                                         <td width="150">
-                                                            <div class="img-cover" style="background-image: url(<?=$subGood->getGood()->getFirstPrimaryImage()->getUserImage('150x80', 'watermark')?>);"></div>
+                                                            <div class="img-cover" style="background-image: url(<?=$subGood->getGood()->getFirstPrimaryImage()->getUserImage('150x80')?>);"></div>
                                                         </td>
                                                         <td>
                                                             <h5><?=$subGood->getGood()->getName()?></h5>
