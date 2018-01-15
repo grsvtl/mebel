@@ -30,10 +30,11 @@ class ArticleConfig extends \core\modules\base\ModuleConfig
 
     const TOP_MENU_UG_CATEGORY_ID = 119;
     const DEFAULT_META_UG_ARTICLE_ALIAS = 'defaultmetaforugdomain';
-    const META_UG_CATEGORY_ID = 114;
+    const META_UG_CATEGORY_ID = 118;
     const NEWS_UG_CATEGORY_ID = 120;
 
     const TOP_MENU_LEROM_CATEGORY_ID = 124;
+    const DEFAULT_META_LEROM_ARTICLE_ALIAS = 'defaultmetaforleromdomain';
 
     const IMAGES_SMALL_MAIN_MEBEL = 757;
     const IMAGES_BIG_MAIN_MEBEL = 758;
