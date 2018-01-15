@@ -35,6 +35,7 @@ class ArticleConfig extends \core\modules\base\ModuleConfig
 
     const TOP_MENU_LEROM_CATEGORY_ID = 124;
     const DEFAULT_META_LEROM_ARTICLE_ALIAS = 'defaultmetaforleromdomain';
+    const META_LEROM_CATEGORY_ID = 126;
 
     const IMAGES_SMALL_MAIN_MEBEL = 757;
     const IMAGES_BIG_MAIN_MEBEL = 758;
