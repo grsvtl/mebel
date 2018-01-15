@@ -13,23 +13,23 @@
             <div class="main-banner">
                 <div id="main-banner" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
-                        <li data-target="#main-banner" data-slide-to="0" class="active"></li>
-                        <li data-target="#main-banner" data-slide-to="1" ></li>
-                        <li data-target="#main-banner" data-slide-to="2" ></li>
+<!--                        <li data-target="#main-banner" data-slide-to="0" class="active"></li>-->
+<!--                        <li data-target="#main-banner" data-slide-to="1" ></li>-->
+<!--                        <li data-target="#main-banner" data-slide-to="2" ></li>-->
                     </ol>
                     <div class="carousel-inner">
                         <div class="item active slide-banner slide-1">
                             <h1 class="banner-h1">Добро пожаловать на сайт фабрики <br>«Лером мебель»</h1>
-                            <div class="text-center"><a href="" class="btn btn-white-color">Подробнее о фабрике</a></div>
+<!--                            <div class="text-center"><a href="" class="btn btn-white-color">Подробнее о фабрике</a></div>-->
                         </div>
-                        <div class="item  slide-banner">
-                            <h1 class="banner-h1">Добро пожаловать на сайт фабрики <br>«Лером мебель»</h1>
-                            <div class="text-center"><a href="" class="btn btn-white-color">Подробнее о фабрике</a></div>
-                        </div>
-                        <div class="item  slide-banner">
-                            <h1 class="banner-h1">Добро пожаловать на сайт фабрики <br>«Лером мебель»</h1>
-                            <div class="text-center"><a href="" class="btn btn-white-color">Подробнее о фабрике</a></div>
-                        </div>
+<!--                        <div class="item  slide-banner">-->
+<!--                            <h1 class="banner-h1">Добро пожаловать на сайт фабрики <br>«Лером мебель»</h1>-->
+<!--                            <div class="text-center"><a href="" class="btn btn-white-color">Подробнее о фабрике</a></div>-->
+<!--                        </div>-->
+<!--                        <div class="item  slide-banner">-->
+<!--                            <h1 class="banner-h1">Добро пожаловать на сайт фабрики <br>«Лером мебель»</h1>-->
+<!--                            <div class="text-center"><a href="" class="btn btn-white-color">Подробнее о фабрике</a></div>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>
@@ -120,7 +120,7 @@
     </div>
     <?$this->includeTemplate('benefits')?>
     <?$this->includeTemplate('topSales')?>
-    <?$this->includeTemplate('reviews')?>
+<!--    --><?//$this->includeTemplate('reviews')?>
     <?$this->includeTemplate('indexMap')?>
 
     <div class="modalsBlock"></div>
