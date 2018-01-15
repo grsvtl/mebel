@@ -115,7 +115,7 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
     protected function setMetaFromObject($object)
     {
         $articleConfig = new \modules\articles\lib\ArticleConfig;
-        $defaultMetaArticle = (new \modules\articles\lib\Articles())->getObjectByAlias($articleConfig::DEFAULT_META_UG_ARTICLE_ALIAS);
+        $defaultMetaArticle = (new \modules\articles\lib\Articles())->getObjectByAlias($articleConfig::DEFAULT_META_LEROM_ARTICLE_ALIAS);
 
         if (get_class($object) == 'modules\parameters\components\parametersValues\lib\ParameterValue')
             $seriaMetaArticle = (new \modules\articles\lib\Articles())->getObjectByAlias($object->getAlias());
