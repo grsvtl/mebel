@@ -121,7 +121,7 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             $seriaMetaArticle = (new \modules\articles\lib\Articles())->getObjectByAlias($object->getAlias());
 
         $articleConfig = new \modules\articles\lib\ArticleConfig();
-        $object = (!empty($seriaMetaArticle) && $seriaMetaArticle->categoryId == $articleConfig::META_UG_CATEGORY_ID)
+        $object = (!empty($seriaMetaArticle) && $seriaMetaArticle->categoryId == $articleConfig::META_LEROM_CATEGORY_ID)
             ?
             $seriaMetaArticle
             :
