@@ -10,29 +10,29 @@
         <?$this->getController('Catalog')->getLeftMenu()?>
 
         <div class="right-block">
+
+            <?$indexImages = $indexArticle->getImagesByObjectId()?>
+            <?if($indexImages->count()):?>
             <div class="main-banner">
                 <div id="main-banner" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
-<!--                        <li data-target="#main-banner" data-slide-to="0" class="active"></li>-->
-<!--                        <li data-target="#main-banner" data-slide-to="1" ></li>-->
-<!--                        <li data-target="#main-banner" data-slide-to="2" ></li>-->
+                        <?$j=0; foreach ($indexImages as $indexImage):?>
+                        <li data-target="#main-banner" data-slide-to="<?=$j?>" <?= $j==0 ? 'class="active"' : ''?>></li>
+                        <?$j++; endforeach;?>
                     </ol>
                     <div class="carousel-inner">
-                        <div class="item active slide-banner slide-1">
-                            <h1 class="banner-h1">Добро пожаловать на сайт фабрики <br>«Лером мебель»</h1>
-<!--                            <div class="text-center"><a href="" class="btn btn-white-color">Подробнее о фабрике</a></div>-->
-                        </div>
-<!--                        <div class="item  slide-banner">-->
-<!--                            <h1 class="banner-h1">Добро пожаловать на сайт фабрики <br>«Лером мебель»</h1>-->
-<!--                            <div class="text-center"><a href="" class="btn btn-white-color">Подробнее о фабрике</a></div>-->
-<!--                        </div>-->
-<!--                        <div class="item  slide-banner">-->
-<!--                            <h1 class="banner-h1">Добро пожаловать на сайт фабрики <br>«Лером мебель»</h1>-->
-<!--                            <div class="text-center"><a href="" class="btn btn-white-color">Подробнее о фабрике</a></div>-->
-<!--                        </div>-->
+                        <?$j=0; foreach ($indexImages as $indexImage):?>
+                        <a href="<?=$indexImage->description?>" class="item slide-banner <?= $j==0 ? 'slide-0 active' : ''?>"
+                             style="background:#333 url(<?=$indexImage->getImage('830x0')?>) no-repeat center; cursor: hand"
+                        >
+
+                        </a>
+                        <?$j++; endforeach;?>
                     </div>
                 </div>
             </div>
+            <?endif;?>
+
             <h2>Основные категории</h2>
             <div class="catalog-blocks">
                 <div class="row">
