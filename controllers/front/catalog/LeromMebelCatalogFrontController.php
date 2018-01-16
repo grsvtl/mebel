@@ -2,6 +2,7 @@
 namespace controllers\front\catalog;
 use core\traits\controllers\RequestLevels;
 use Couchbase\Exception;
+use modules\catalog\catalog\lib\Catalog;
 use modules\catalog\catalog\lib\CatalogItemConfig;
 use modules\catalog\CatalogFactory;
 use modules\catalog\categories\CatalogCategoryConfig;
@@ -274,8 +275,9 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
                 ->setContent('subGoodsArray', $subGoodsArray)
                 ->setContent(
                     'otherSubGoodsOfSeriaAndCategory',
-                    $this->getOtherGoodsOfSeriaAndCategory($good, 9999999999)
-                        ->setSubquery('AND `id` NOT IN (SELECT `goodId` FROM `tbl_catalog_subgoods`)')
+                    (new Catalog())->setSubquery(' AND `seriaId` = ?d', $good->seriaId)
+                                    ->setSubquery('AND `fabricatorId` = ?d', $good->fabricatorId)
+                                    ->setSubquery('AND `id` NOT IN (SELECT `goodId` FROM `tbl_catalog_subgoods`)')
                 )
                 ->includeTemplate('catalog/catalogObject');
 
