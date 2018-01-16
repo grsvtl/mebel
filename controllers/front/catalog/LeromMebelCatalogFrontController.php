@@ -271,8 +271,11 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
                 ->setContent('fasadArray', $this->getParameterArrayByIdAndGood($this->_config->getFasadParametersId(), $good))
                 ->setContent('subGoodsString', $subGoodsString)
                 ->setContent('subGoodsArray', $subGoodsArray)
-
-                //->setContent('otherGoodsOfSeriaAndCategory', $this->getOtherGoodsOfSeriaAndCategory($good, self::QUANTITY_OF_OTHER_GOODS_OF_SERIA_AND_CATEGORY))
+                ->setContent(
+                    'otherSubGoodsOfSeriaAndCategory',
+                    $this->getOtherGoodsOfSeriaAndCategory($good, 9999999999)
+                        ->setSubquery('AND `id` NOT IN (SELECT `goodId` FROM `tbl_catalog_subgoods`)')
+                )
                 ->includeTemplate('catalog/catalogObject');
 
             $contents = ob_get_contents();
