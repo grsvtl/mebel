@@ -103,6 +103,7 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             ob_start();
             $article = $this->getObject('\modules\articles\lib\Articles')->getObjectByAlias('index_lerom');
             $this
+                ->setContent('indexArticle', $article)
                 ->setMetaFromObject($article)
                 ->includeTemplate('index');
             $contents = ob_get_contents();
