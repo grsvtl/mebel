@@ -78,7 +78,8 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
 
         if ($category){
             if ($this->checkObjectPath($category))
-                return $this->viewCategory($alias);
+                if ($category->statusId == 1)
+                    return $this->viewCategory($alias);
         }
         else{
             $seria = $this->getParameterValuesObject()->getObjectByAlias($this->getLastElementFromRequest());
@@ -171,8 +172,11 @@ class LeromMebelCatalogFrontController extends \controllers\front\catalog\Catalo
             ob_start();
 
             $category = $this->getCatalogObject()->getCategories()->getObjectByAlias($alias);
-            $this->setLevel($category->getParent()->name, $category->getParent()->getPath())
-                ->setLevel($category->getName());
+
+            if($category->alias != 'new-lerom-products')
+                $this->setLevel($category->getParent()->name, $category->getParent()->getPath());
+            $this->setLevel($category->getName());
+
             $fabricator = $this->getFabricator();
 
             if ($this->isCategoryCompositional($alias)) {
