@@ -28,11 +28,10 @@
                         </form>
                     </div>
                     <div class="call-back col-md-3 hidden-xs col-sm-3 col-lg-2">
-                        <a href="/contacts_lerom/">
-                            <div class="btn btn-red-line">
-                                Обратная связь
-                            </div>
-                        </a>
+                        <div class="btn btn-red-line orderCall">
+                            Заказать звонок
+                        </div>
+                        <?include ('modalOrderCall.tpl')?>
                     </div>
                     <div class="col-ld-4 col-md-3 col-sm-3 col-xs-6 phone-head">
                         <p>+7 (495)226-44-34 <span>Без выходных с 9:00 до 21:00</span></p>

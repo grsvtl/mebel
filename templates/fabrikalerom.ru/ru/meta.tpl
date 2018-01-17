@@ -43,6 +43,8 @@
     $js
         ->add('jquery.min.js', '/templates/node_modules/jquery/dist/')
         ->add('bootstrap.min.js', '/templates/node_modules/bootstrap/dist/js/')
+        ->add('ajaxCapcha.js', '/js/feedback/')
+        ->add('modalOrderCall.js', '/js/lerom/')
         ->add('jquery.htmlFromServer.js', '/admin/js/jquery/extensions/')
         ->add('jquery.autoScroll-1.0.js', '/admin/js/jquery/extensions/')
         ->add('loaderBlock.class.js', '/admin/js/base/actions/')

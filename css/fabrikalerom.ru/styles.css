@@ -1481,3 +1481,35 @@ a:hover, a:focus {
     display: none;
     margin: 20px 0px 0px 0px;
 }
+
+
+#modalOrderCall p, #modalOrderCall p input{
+    font-size: 18px;
+}
+
+#modalOrderCall p{
+    margin-bottom: 16px;
+}
+
+#modalOrderCall .phoneInputP{
+    width: auto;
+    display: inline-block;
+}
+
+#modalOrderCall .modal-header{
+    background-color: #004583;
+}
+
+#modalOrderCall .modal-header .close{
+    color: white;
+    opacity: 1;
+}
+
+#modalOrderCall .modal-header .close:hover{
+    margin-top: -1px;
+}
+
+#modalOrderCall .modal-title{
+    color: white;
+    font-size: 24px;
+}

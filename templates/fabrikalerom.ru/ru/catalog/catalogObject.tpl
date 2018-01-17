@@ -156,11 +156,11 @@
 
 
                     <?if(!empty($subGoodsArray)):?>
-                    <h3>Состав комплека</h3>
+                    <h3>Состав комплекта</h3>
                     <?foreach($subGoodsArray as $subGood):?>
                     <div class="col-md-4 col-sm-6 col-xs-6">
                         <div class="container-offer">
-                            <a href="" class="img-c-o">
+                            <a href="<?=$subGood->getGood()->getPath()?>" class="img-c-o">
                                 <img src="<?=$subGood->getGood()->getFirstPrimaryImage()->getImage('254x170')?>" alt="">
                             </a>
                             <div class="body-offer">
