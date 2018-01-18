@@ -6,16 +6,10 @@
 
 <main>
     <div class="container main-content">
-
         <?$this->getController('Catalog')->getLeftMenu()?>
-
         <div class="right-block">
             <?$this->includeBreadcrumbs()?>
-
             <h1><?=$h1?></h1>
-
-
-
             <div class="tab-catalog">
                 <?if($objects->count()):?>
                 <!-- Nav tabs -->
@@ -34,24 +28,23 @@
                         </div>
                     </div>
                 </div>
-                <?endif?>
-<!--                <div class="navigation text-center">-->
-<!--                    <span class="see-more-offers btn loadMoreButton">Показать еще </span>-->
-<!--                </div>-->
+                <?else:?>
+                <!--                <div class="navigation text-center">-->
+                <!--                    <span class="see-more-offers btn loadMoreButton">Показать еще </span>-->
+                <!--                </div>-->
                 <div class="text-content-inset">
-<!--                    <h3>Заголовок сео текса</h3>-->
+                    <!--                    <h3>Заголовок сео текса</h3>-->
                     <p>Таких товаров не найдено.</p>
                     <p>Попробуйте изменить запрос.</p>
                 </div>
+                <?endif?>
             </div>
         </div>
-
     </div>
 </main>
 
 <span class="listLevel" data-value="<?=$level?>"></span>
 <span class="query" data-value="<?=$query?>"></span>
 <span class="paramSearchOn" data-value="<?=$isParameterSearchActive?>"></span>
-
 
 <?$this->includeTemplate('footer')?>
