@@ -95,8 +95,8 @@
 
     <div class="form-cargo">
         <h3 class="text-center">Оформить заказ</h3>
-        <p class="text-f-c">01. Выберите тип получения товара. </p>
-        <div class="button-block">
+<!--        <p class="text-f-c">01. Выберите тип получения товара. </p>-->
+        <div class="button-block hidden">
             <ul class="nav">
                 <li>
                     <a href="#sam" class="btn samovyvoz" data-toggle="tab">
@@ -113,104 +113,104 @@
             </ul>
         </div>
         <div class="tab-content cargo-content">
-            <div class="tab-pane samovyvoz" id="sam">
-                <div class="address-sam">
-                    <p><span>Адрес нашего магазина: </span>Калуга, ул. Ленина 27</p>
-                    <p><span>Телефон для справок: </span>+7 (495) 226-44-34</p>
-
-                </div>
-                <p class="text-f-c">02. Заполните форму заявки</p>
-                <div class="checked-clock">
-                    <div class="form-group">
-                        <label for="familyInput" class="col-sm-3 control-label">Фамилия</label>
-                        <div class="col-sm-9">
-                            <input type="text" data-name="family" data-namedefault="s1" name="s1" class="form-control" id="familyInput" placeholder="Фамилия">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="nameInput" class="col-sm-3 control-label">Имя</label>
-                        <div class="col-sm-9">
-                            <input type="text" data-name="name" data-namedefault="s2" name="s2" class="form-control" id="nameInput" placeholder="Имя">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="parentNameInput" class="col-sm-3 control-label">Отчество</label>
-                        <div class="col-sm-9">
-                            <input type="text" data-name="parentName" data-namedefault="s3" name="s3" class="form-control" id="parentNameInput" placeholder="Отчество">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="phoneInput" class="col-sm-3 control-label">Телефон</label>
-                        <div class="col-sm-9">
-                            <input type="text" data-name="phone" data-namedefault="s4" name="s4" class="form-control" id="phoneInput" placeholder="Телефон">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="emailInput" class="col-sm-3 control-label">Email</label>
-                        <div class="col-sm-9">
-                            <input type="text" data-name="email" data-namedefault="s5" name="s5" class="form-control" id="emailInput" placeholder="Email">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="infoInput" class="col-sm-3 control-label">Комментарий</label>
-                        <div class="col-sm-9">
-                            <textarea data-name="info" data-namedefault="s6" name="info" class="form-control" rows="3" id="infoInput"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="button-center-bl">
-                    <button class="of-order btn sendOrderGetSuccessBlock">Оформить заказ</button>
-                    <button class="ot-order btn cancelOrder">Отменить заказ</button>
-                </div>
-            </div>
+<!--            <div class="tab-pane samovyvoz" id="sam">-->
+<!--                <div class="address-sam">-->
+<!--                    <p><span>Адрес нашего магазина: </span>Калуга, ул. Ленина 27</p>-->
+<!--                    <p><span>Телефон для справок: </span>+7 (495) 226-44-34</p>-->
+<!---->
+<!--                </div>-->
+<!--                <p class="text-f-c">02. Заполните форму заявки</p>-->
+<!--                <div class="checked-clock">-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="familyInput" class="col-sm-3 control-label">Фамилия</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <input type="text" data-name="family" data-namedefault="s1" name="s1" class="form-control" id="familyInput" placeholder="Фамилия">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="nameInput" class="col-sm-3 control-label">Имя</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <input type="text" data-name="name" data-namedefault="s2" name="s2" class="form-control" id="nameInput" placeholder="Имя">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="parentNameInput" class="col-sm-3 control-label">Отчество</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <input type="text" data-name="parentName" data-namedefault="s3" name="s3" class="form-control" id="parentNameInput" placeholder="Отчество">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="phoneInput" class="col-sm-3 control-label">Телефон</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <input type="text" data-name="phone" data-namedefault="s4" name="s4" class="form-control" id="phoneInput" placeholder="Телефон">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="emailInput" class="col-sm-3 control-label">Email</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <input type="text" data-name="email" data-namedefault="s5" name="s5" class="form-control" id="emailInput" placeholder="Email">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="infoInput" class="col-sm-3 control-label">Комментарий</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <textarea data-name="info" data-namedefault="s6" name="info" class="form-control" rows="3" id="infoInput"></textarea>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="button-center-bl">-->
+<!--                    <button class="of-order btn sendOrderGetSuccessBlock">Оформить заказ</button>-->
+<!--                    <button class="ot-order btn cancelOrder">Отменить заказ</button>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="tab-pane vyvoz" id="vyv">
-                <p class="text-f-c">02. Выберите способ поднятия на этаж</p>
+<!--                <p class="text-f-c">02. Выберите способ поднятия на этаж</p>-->
+<!--                <div class="checked-clock">-->
+<!--                    <div class="radio">-->
+<!--                        <label>-->
+<!--                            <input type="radio" name="lift" id="liftBySelf" checked="">-->
+<!--                            <label for="liftBySelf">Не нужно (Сами поднимаем)</label>-->
+<!--                        </label>-->
+<!--                    </div>-->
+<!--                    <div class="radio">-->
+<!--                        <label>-->
+<!--                            <input type="radio" name="lift" id="liftWithoutLift">-->
+<!--                            <label for="liftWithoutLift">Заказываем подъём (нет лифта)</label>-->
+<!--                        </label>-->
+<!--                    </div>-->
+<!--                    <div class="radio">-->
+<!--                        <label>-->
+<!--                            <input type="radio" name="lift" id="liftWithSmallLift">-->
+<!--                            <label for="liftWithSmallLift">Заказываем подъём (пассажирский лифт)</label>-->
+<!--                        </label>-->
+<!--                    </div>-->
+<!--                    <div class="radio">-->
+<!--                        <label>-->
+<!--                            <input type="radio" name="lift" id="liftWithBigLift">-->
+<!--                            <label for="liftWithBigLift">Заказываем подъём (грузовой лифт)</label>-->
+<!--                        </label>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <p class="text-f-c">03. Заполните форму заявки</p>-->
                 <div class="checked-clock">
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="lift" id="liftBySelf" checked="">
-                            <label for="liftBySelf">Не нужно (Сами поднимаем)</label>
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="lift" id="liftWithoutLift">
-                            <label for="liftWithoutLift">Заказываем подъём (нет лифта)</label>
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="lift" id="liftWithSmallLift">
-                            <label for="liftWithSmallLift">Заказываем подъём (пассажирский лифт)</label>
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="lift" id="liftWithBigLift">
-                            <label for="liftWithBigLift">Заказываем подъём (грузовой лифт)</label>
-                        </label>
-                    </div>
-                </div>
-                <p class="text-f-c">03. Заполните форму заявки</p>
-                <div class="checked-clock">
-                    <div class="form-group">
-                        <label for="familyInput" class="col-sm-3 control-label">Фамилия</label>
-                        <div class="col-sm-9">
-                            <input name="v1" data-namedefault="v1" data-name="family" type="text" class="form-control" id="familyInput" placeholder="Фамилия">
-                        </div>
-                    </div>
+<!--                    <div class="form-group">-->
+<!--                        <label for="familyInput" class="col-sm-3 control-label">Фамилия</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <input name="v1" data-namedefault="v1" data-name="family" type="text" class="form-control" id="familyInput" placeholder="Фамилия">-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="form-group">
                         <label for="nameInput" class="col-sm-3 control-label">Имя</label>
                         <div class="col-sm-9">
                             <input name="v2" data-namedefault="v2" data-name="name" type="text" class="form-control" id="nameInput" placeholder="Имя">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="parentNameInput" class="col-sm-3 control-label">Отчество</label>
-                        <div class="col-sm-9">
-                            <input name="v3" data-namedefault="v3" data-name="parentName" type="text" class="form-control" id="parentNameInput" placeholder="Отчество">
-                        </div>
-                    </div>
+<!--                    <div class="form-group">-->
+<!--                        <label for="parentNameInput" class="col-sm-3 control-label">Отчество</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <input name="v3" data-namedefault="v3" data-name="parentName" type="text" class="form-control" id="parentNameInput" placeholder="Отчество">-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="form-group">
                         <label for="phoneInput" class="col-sm-3 control-label">Телефон</label>
                         <div class="col-sm-9">
@@ -230,61 +230,68 @@
                         </div>
                     </div>
                 </div>
-                <p class="text-f-c">Адрес доставки</p>
-                <div class="checked-clock">
-                    <div class="form-group">
-                        <label for="indexInput" class="col-sm-3 control-label">Индекс</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="v7" data-namedefault="v7" data-name="index" class="form-control" id="indexInput" placeholder="Индекс">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="regionInput" class="col-sm-3 control-label">Область</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="v8" data-namedefault="v8" data-name="region" class="form-control" id="regionInput" placeholder="Область">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="cityInput" class="col-sm-3 control-label">Город</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="v9" data-namedefault="v9" data-name="city" class="form-control" id="cityInput" placeholder="Город">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="streetInput" class="col-sm-3 control-label">Улица</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="v10" data-namedefault="v10" data-name="street" class="form-control" id="streetInput" placeholder="Улица">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="blockInput" class="col-sm-3 control-label">Корпус</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="v11" data-namedefault="v11" data-name="block" class="form-control" id="blockInput" placeholder="Корпус">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="homeInput" class="col-sm-3 control-label">Дом</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="v12" data-namedefault="v12" data-name="home" class="form-control" id="homeInput" placeholder="Дом">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="flatInput" class="col-sm-3 control-label">Квартира</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="v13" data-namedefault="v13" data-name="flat" class="form-control" id="flatInput" placeholder="Квартира">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="flatInput" class="col-sm-3 control-label">Способ оплаты</label>
-                        <div class="col-sm-9">
-                            <select class="form-control" name="paymentType">
-                                <option>Наличные</option>
-                                <option>Банковский перевод</option>
-                                <option>Кредитная карта</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+<!--                <p class="text-f-c">Адрес доставки</p>-->
+<!--                <div class="checked-clock">-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="indexInput" class="col-sm-3 control-label">Индекс</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <input type="text" name="v7" data-namedefault="v7" data-name="index" class="form-control" id="indexInput" placeholder="Индекс">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="regionInput" class="col-sm-3 control-label">Область</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <input type="text" name="v8" data-namedefault="v8" data-name="region" class="form-control" id="regionInput" placeholder="Область">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="cityInput" class="col-sm-3 control-label">Город</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <input type="text" name="v9" data-namedefault="v9" data-name="city" class="form-control" id="cityInput" placeholder="Город">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="streetInput" class="col-sm-3 control-label">Улица</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <input type="text" name="v10" data-namedefault="v10" data-name="street" class="form-control" id="streetInput" placeholder="Улица">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="blockInput" class="col-sm-3 control-label">Корпус</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <input type="text" name="v11" data-namedefault="v11" data-name="block" class="form-control" id="blockInput" placeholder="Корпус">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="homeInput" class="col-sm-3 control-label">Дом</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <input type="text" name="v12" data-namedefault="v12" data-name="home" class="form-control" id="homeInput" placeholder="Дом">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="flatInput" class="col-sm-3 control-label">Квартира</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <input type="text" name="v13" data-namedefault="v13" data-name="flat" class="form-control" id="flatInput" placeholder="Квартира">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="flatInput" class="col-sm-3 control-label">Способ оплаты</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <select class="form-control" name="paymentType">-->
+<!--                                <option>Наличные</option>-->
+<!--                                <option>Банковский перевод</option>-->
+<!--                                <option>Кредитная карта</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+                <script>
+                    $(function () {
+                        $('.vyvoz').click();
+                    });
+                </script>
+
                 <div class="button-center-bl">
                     <button type="submit" class="of-order btn sendOrderGetSuccessBlock">Оформить заказ</button>
                     <button class="ot-order btn cancelOrder">Отменить заказ</button>
