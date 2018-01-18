@@ -22,7 +22,10 @@
                     <div class="col-md-4 col-sm-4 hidden-xs searg-head">
                         <form action="/search/" method="get">
                             <div class="searg-head-inset">
-                                <input type="text" name="query" placeholder="Поиск товара" required>
+                                <input
+                                    type="text" name="query" placeholder="Поиск товара" required
+                                    value="<?= (isset($_GET['query']) && !empty($_GET['query'])  ?  $_GET['query']  :  '')?>"
+                                >
                                 <button><img src="/images/fabrikaLerom/zoom.svg" alt=""></button>
                             </div>
                         </form>
